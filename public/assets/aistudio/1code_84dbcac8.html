@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>REDHEIR Showroom Stage — Executive Client Portal</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#10141a",
+            "primary": "#ffb3b1",
+            "primary-fixed-dim": "#ffb3b1",
+            "surface-container-highest": "#31353c",
+            "secondary-fixed-dim": "#c2c7d0",
+            "surface-variant": "#31353c",
+            "surface-container-high": "#262a31",
+            "on-secondary-fixed-variant": "#42474f",
+            "tertiary-container": "#8b9199",
+            "on-tertiary-container": "#242a31",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#171c23",
+            "on-primary-fixed": "#410007",
+            "primary-fixed": "#ffdad8",
+            "secondary-fixed": "#dee2ec",
+            "on-error": "#690005",
+            "surface": "#10141a",
+            "surface-bright": "#353940",
+            "outline-variant": "#5b403f",
+            "tertiary-fixed": "#dde3ec",
+            "on-primary-container": "#5b000e",
+            "on-tertiary-fixed": "#161c23",
+            "on-primary": "#680011",
+            "on-error-container": "#ffdad6",
+            "background": "#10141a",
+            "inverse-primary": "#bb152c",
+            "on-tertiary-fixed-variant": "#41474f",
+            "secondary": "#c2c7d0",
+            "primary-container": "#ff535b",
+            "on-tertiary": "#2b3138",
+            "on-surface": "#dfe2eb",
+            "on-secondary": "#2c3138",
+            "outline": "#ab8987",
+            "error-container": "#93000a",
+            "surface-container": "#1c2026",
+            "surface-tint": "#ffb3b1",
+            "surface-container-low": "#181c22",
+            "secondary-container": "#42474f",
+            "inverse-surface": "#dfe2eb",
+            "on-background": "#dfe2eb",
+            "on-surface-variant": "#e4bebc",
+            "on-primary-fixed-variant": "#92001c",
+            "surface-container-lowest": "#0a0e14",
+            "tertiary": "#c1c7d0",
+            "tertiary-fixed-dim": "#c1c7d0",
+            "on-secondary-container": "#b1b5be",
+            "inverse-on-surface": "#2d3137"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-sm": "1rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter-sm": "1rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "tabular-price": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "display-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "tabular-price": ["15px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "display-sm": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom scrollbar for sleek studio aesthetic */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #10141a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #31353c;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #42474f;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased flex min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- PERSISTENT LEFT SIDEBAR (Shared Component: SideNavBar) -->
+<aside class="fixed top-0 left-0 h-screen w-[280px] flex flex-col justify-between p-4 bg-surface border-r border-surface-container-highest z-40">
+<!-- Top Segment: Monogram, Status, Main Nav -->
+<div class="flex flex-col gap-6">
+<!-- Brand Header -->
+<div class="flex items-center justify-between px-2 pt-1 pb-2 border-b border-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container text-white flex items-center justify-center font-headline-sm text-headline-sm font-bold shadow-sm">
+            R
+          </div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-bold tracking-tight text-on-surface">REDHEIR</span>
+<span class="text-label-sm font-label-sm text-secondary">Showroom Mode</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider bg-surface-container-high border border-surface-container-highest text-primary">
+          Live
+        </span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<!-- Home (Active as this is Screen 01 - HOME) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded bg-surface-container-high text-primary font-headline-sm text-headline-sm border-l-2 border-primary transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<!-- Catalogue -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="grid_view">grid_view</span>
+<span>Catalogue</span>
+</a>
+<!-- Selection Cart -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_bag">shopping_bag</span>
+<span>Selection Cart</span>
+</div>
+<span class="w-5 h-5 rounded-full bg-primary-container text-white text-[11px] font-bold flex items-center justify-center">
+            3
+          </span>
+</a>
+<!-- Quotations -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="request_quote">request_quote</span>
+<span>Quotations</span>
+</a>
+<!-- Invoices -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="receipt_long">receipt_long</span>
+<span>Invoices</span>
+</a>
+</nav>
+<!-- Present Pitch Primary CTA -->
+<div class="px-1">
+<button class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded bg-primary-container text-white hover:bg-inverse-primary transition-colors text-label-md font-label-md font-semibold tracking-wide shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="slideshow">slideshow</span>
+<span>Present Pitch</span>
+</button>
+</div>
+<!-- Meeting Operator Controls / Presentation Toggles -->
+<div class="p-3 mx-1 rounded bg-surface-container-low border border-surface-container-highest flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Show Pricing</span>
+<!-- Active Toggle Switch (ON) -->
+<button aria-label="Toggle Pricing" class="w-8 h-4 bg-primary-container rounded-full relative flex items-center transition-colors px-0.5 focus:outline-none" type="button">
+<span class="w-3 h-3 bg-white rounded-full translate-x-4 transition-transform"></span>
+</button>
+</div>
+<div class="flex items-center justify-between border-t border-surface-container-high pt-2.5">
+<div class="flex items-center gap-1.5">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Internal Details</span>
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="lock">lock</span>
+</div>
+<!-- Inactive Toggle Switch (OFF) -->
+<button aria-label="Toggle Internal Details" class="w-8 h-4 bg-surface-container-highest rounded-full relative flex items-center transition-colors px-0.5 focus:outline-none" type="button">
+<span class="w-3 h-3 bg-secondary rounded-full translate-x-0 transition-transform"></span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Footer Segment (Operator profile & settings) -->
+<div class="flex flex-col gap-3 pt-3 border-t border-surface-container-high">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-sm text-label-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span>Admin Panel</span>
+</a>
+<a class="flex items-center gap-2.5 px-2.5 py-1.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-sm text-label-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+<span>Settings</span>
+</a>
+</nav>
+<!-- Current Operator Profile Card -->
+<div class="flex items-center gap-3 p-2 rounded bg-surface-container-low border border-surface-container-highest">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-surface-bright flex items-center justify-center text-primary font-headline-sm text-headline-sm">
+          V
+        </div>
+<div class="flex flex-col truncate">
+<span class="text-label-sm font-label-sm font-semibold text-on-surface truncate">Vikram Lead Architect</span>
+<span class="text-[11px] text-secondary truncate">vikram@redheir.studio</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN VIEWPORT CONTAINER (With fixed sidebar offset) -->
+<main class="ml-[280px] flex-1 flex flex-col min-h-screen">
+<!-- TOP BAR (Shared Component: TopNavBar) -->
+<header class="sticky top-0 w-full h-16 flex items-center justify-between px-8 bg-surface-dim border-b border-surface-container-highest z-30 backdrop-blur-md bg-opacity-95">
+<!-- Search Input with Keyboard Shortcut -->
+<div class="flex items-center w-[480px] relative">
+<span class="material-symbols-outlined absolute left-3.5 text-secondary text-[18px]" data-icon="search">search</span>
+<input class="w-full pl-10 pr-20 py-2 bg-surface-container border border-surface-container-highest rounded text-body-md font-body-md text-on-surface placeholder-secondary focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search 180+ websites, UI screens, functional modules..." type="text"/>
+<div class="absolute right-2.5 flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-surface-container-highest text-secondary text-[10px] font-mono border border-surface-bright">
+<span class="text-[9px]">⌘</span>K
+        </div>
+</div>
+<!-- Quick Category Nav Tabs & Trailing Actions -->
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-5">
+<button class="text-on-surface border-b-2 border-primary pb-1 font-label-md text-label-md">All</button>
+<button class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors">Concepts</button>
+<button class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors">Pages</button>
+<button class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors">Modules</button>
+<button class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors">UI Screens</button>
+</nav>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<!-- Trailing Utility Cluster -->
+<div class="flex items-center gap-3">
+<!-- Selection Cart Shortcut Badge -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container border border-surface-container-highest text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-label-md font-label-md font-semibold text-primary">Cart:</span>
+<span class="text-label-md font-label-md text-on-surface">3 items (₹2,45,000)</span>
+</div>
+<!-- Utility Icons -->
+<div class="flex items-center gap-1 text-secondary">
+<button class="p-2 rounded hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Filter Settings">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+</button>
+<button class="p-2 rounded hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Notifications">
+<span class="material-symbols-outlined text-[18px]" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded hover:bg-surface-container-high hover:text-on-surface transition-colors" title="Toggle Fullscreen Pitch">
+<span class="material-symbols-outlined text-[18px]" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- STAGE CONTENT CANVAS -->
+<div class="p-8 max-w-[1600px] w-full mx-auto space-y-10">
+<!-- Hero Welcome Banner -->
+<section class="relative rounded-lg p-8 bg-surface-container-low border border-surface-container-highest overflow-hidden">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-primary-container opacity-5 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="space-y-2 max-w-3xl">
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-surface-container border border-surface-container-highest">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-widest">Executive Presentation Console</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface font-bold tracking-tight">
+              REDHEIR Interactive Showroom
+            </h1>
+<p class="text-body-md font-body-md text-secondary leading-relaxed">
+              Presenting bespoke digital experiences, modular SaaS architectures, and conversion-focused web applications. Browse live with clients and assemble tailor-made project scopes in real-time.
+            </p>
+</div>
+<!-- Quick Filter Chips -->
+<div class="flex flex-wrap items-center gap-2">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-white text-label-sm font-label-sm font-semibold transition-all">All Industries</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-secondary hover:text-on-surface hover:border-outline text-label-sm font-label-sm transition-all">SaaS</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-secondary hover:text-on-surface hover:border-outline text-label-sm font-label-sm transition-all">Ecommerce</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-secondary hover:text-on-surface hover:border-outline text-label-sm font-label-sm transition-all">Healthcare</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-secondary hover:text-on-surface hover:border-outline text-label-sm font-label-sm transition-all">Corporate</button>
+</div>
+</div>
+</section>
+<!-- SECTION: INDUSTRY BENTO GRID (10 Categories) -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface font-semibold">Specialized Industry Domains</h2>
+<p class="text-body-sm font-body-sm text-secondary">Pre-architected industry engines engineered for rapid tailored deployment</p>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-mono">10 SECTORS ACTIVE</span>
+</div>
+<!-- 12-Column Responsive Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
+<!-- 1. Education (Featured Large Bento Card - spans 8 cols) -->
+<div class="lg:col-span-8 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between relative overflow-hidden">
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-30 pointer-events-none group-hover:opacity-40 transition-opacity">
+<img class="w-full h-full object-cover object-left" data-alt="A modern educational technology dashboard preview rendered on an architectural dark slate canvas with luminous soft red highlights, showing real-time student admission metrics, lecture analytics, and interactive course completion graphs in high editorial fidelity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2V2TJevlDRXlz7OzvG4JTs8YN6q6Jh5qzy-rZklURQAhN7a5OV0mieYwFd1FP5QCpuK4Iv1w8WE1WvQx8mzzECMrpFGM-ZZ7guDIgXmkrkreffUWvP0n7fekonfi36oSQbP5DEKu_sNipcDmY6ar_Ju8f30NB1O2WfnX08WbbXf2-_vwk1uVeVV3IP32LjG94QntgJs_6p3h-rkOXMghYbFJ2tIcgn-GjKAIjvrxd"/>
+</div>
+<div class="relative z-10 max-w-md space-y-3">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="school">school</span>
+</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-surface-container-high border border-surface-container-highest text-secondary">
+                  Featured Sector
+                </span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Education &amp; EdTech Portals
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Comprehensive coaching infrastructure, LMS learning modules, automated student admissions funnels, and real-time live interactive classroom prototypes.
+              </p>
+</div>
+<div class="relative z-10 pt-6 mt-4 border-t border-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-4 text-body-sm font-body-sm text-secondary">
+<span class="flex items-center gap-1"><span class="text-on-surface font-semibold">18</span> Modules</span>
+<span class="flex items-center gap-1"><span class="text-on-surface font-semibold">4</span> Complete Portals</span>
+</div>
+<button class="inline-flex items-center gap-1 text-label-sm font-label-sm text-primary group-hover:translate-x-1 transition-transform">
+                Explore Sector <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- 2. Healthcare & Telemed (spans 4 cols) -->
+<div class="lg:col-span-4 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_hospital">local_hospital</span>
+</span>
+<span class="text-[11px] font-mono text-secondary">HIPAA READY</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Healthcare &amp; Telemed
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Hospital enterprise suites, friction-free doctor consultation booking engines, and verified patient dashboards.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>12 Ready Modules</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 3. Legal & Advisory (spans 4 cols) -->
+<div class="lg:col-span-4 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary inline-block">
+<span class="material-symbols-outlined text-[20px]" data-icon="gavel">gavel</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Legal &amp; Advisory
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Prestige law firm layouts, structured dispute resolution intake channels, and verified partner showcase portfolios.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>8 Ready Modules</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 4. NGOs & Non-Profits (spans 4 cols) -->
+<div class="lg:col-span-4 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary inline-block">
+<span class="material-symbols-outlined text-[20px]" data-icon="volunteer_activism">volunteer_activism</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                NGOs &amp; Non-Profits
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                High-converting impact storytelling frameworks, recurring donor checkout engines, and transparent grant reporting.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>9 Ready Modules</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 5. Business & Corporate (spans 4 cols) -->
+<div class="lg:col-span-4 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary inline-block">
+<span class="material-symbols-outlined text-[20px]" data-icon="domain">domain</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Business &amp; Corporate
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Executive enterprise hubs, B2B industrial capability engines, and ESG interactive annual report microsites.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>15 Ready Modules</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 6. Ecommerce & Retail (spans 6 cols) -->
+<div class="lg:col-span-6 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="storefront">storefront</span>
+</span>
+<span class="text-[11px] font-mono text-primary">HEADLESS ARCHITECTURE</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Ecommerce &amp; Retail
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                D2C luxury storefront blueprints, hyper-optimized 2-step checkout funnels, multi-currency engines, and modular catalog filters.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>22 Modules &amp; Storefronts</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 7. Restaurants & Hospitality (spans 6 cols) -->
+<div class="lg:col-span-6 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary inline-block">
+<span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Restaurants &amp; Hospitality
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Fine dining sensory digital menus, instant reservation synchronization, resort visual storytelling, and event booking.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>11 Ready Modules</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 8. Professionals & Agencies (spans 4 cols) -->
+<div class="lg:col-span-4 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary inline-block">
+<span class="material-symbols-outlined text-[20px]" data-icon="architecture">architecture</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Professionals &amp; Agencies
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Spatial architectural portfolios, boutique consultancy frameworks, and fluid kinetic work presentations.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>14 Ready Modules</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 9. Software & SaaS (spans 4 cols) -->
+<div class="lg:col-span-4 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary inline-block">
+<span class="material-symbols-outlined text-[20px]" data-icon="dataset">dataset</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Software &amp; SaaS
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Production-grade administrative dashboards, subscription billing matrices, API documentation, and telemetry views.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>26 UI Suites &amp; Modules</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- 10. Custom Applications (spans 4 cols) -->
+<div class="lg:col-span-4 rounded-lg bg-surface-container p-6 border border-surface-container-highest hover:border-outline transition-all duration-200 group flex flex-col justify-between">
+<div class="space-y-3">
+<span class="p-2 rounded bg-surface-container-high border border-surface-bright text-primary inline-block">
+<span class="material-symbols-outlined text-[20px]" data-icon="hub">hub</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Custom Applications
+              </h3>
+<p class="text-body-sm font-body-sm text-secondary">
+                Tailored enterprise ERP tools, logistics dispatch algorithms, and bespoke multi-step employee workflows.
+              </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-secondary">
+<span>10 Tailored Frameworks</span>
+<span class="material-symbols-outlined text-secondary group-hover:text-on-surface text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: RECENTLY ADDED & POPULAR SHOWROOM DESIGNS -->
+<section class="space-y-5 pt-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface font-semibold">Recently Added &amp; Popular Showroom Designs</h2>
+<p class="text-body-sm font-body-sm text-secondary">High-conversion assets verified across production deployments</p>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container border border-surface-container-highest text-secondary hover:text-on-surface hover:border-outline text-label-md font-label-md transition-colors">
+<span>View Full Catalogue (180+)</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- 3-Column Showcase Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Design Card 1: Apex Health Telemed Suite -->
+<div class="rounded-lg bg-surface-container border border-surface-container-highest hover:border-outline transition-all duration-200 overflow-hidden flex flex-col group">
+<!-- Media Viewport -->
+<div class="relative w-full aspect-[16/10] bg-surface-container-lowest overflow-hidden border-b border-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" data-alt="A clean, dark mode medical telemedicine web application UI screen showcasing doctor appointment queues, live video consultations, patient vital telemetry in an executive modern slate aesthetic with surgical crimson indicators." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdxaLFzk5vvd4zeBWI8UjO08CTjGfBAg87Q9_-wHcnhkGPL9kG4yP8ogGt7om9HWZ4qsd76UQLl06UYVCzyJHlf7e1xu-AXCxQEEmiTHbwLzegRYTkqqHwusIhwwvWWZj6UhtruFn6xLMewzF9u-dHFnrgW6g2S3-rZxg55fYlo5YOe16U-H54OO9IHW6ikKDe5-PB52TlY9E8FnHxHd1Ex0FwqQZqc71-dKZs1Rt_"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-secondary">
+                  Complete Concept
+                </span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-primary font-semibold">
+                  Healthcare
+                </span>
+</div>
+</div>
+<!-- Details Frame -->
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                  Apex Health Telemed Suite
+                </h4>
+<p class="text-body-sm font-body-sm text-secondary line-clamp-2">
+                  Full patient-physician intake lifecycle, interactive video room layout, and real-time electronic health records synchronization.
+                </p>
+</div>
+<!-- Price & Quick Add -->
+<div class="pt-3 border-t border-surface-container-high flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-secondary block text-[11px] uppercase tracking-wider">Estimated Base</span>
+<span class="text-tabular-price font-tabular-price text-on-surface font-bold">₹85,000</span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-high border border-surface-container-highest hover:border-primary-container text-on-surface text-label-md font-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="add">add</span>
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Design Card 2: Kinetix D2C Luxury Storefront -->
+<div class="rounded-lg bg-surface-container border border-surface-container-highest hover:border-outline transition-all duration-200 overflow-hidden flex flex-col group">
+<!-- Media Viewport -->
+<div class="relative w-full aspect-[16/10] bg-surface-container-lowest overflow-hidden border-b border-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" data-alt="An editorial luxury fashion ecommerce homepage interface set against an architectural dark slate canvas featuring oversized typography, minimalist product carousels, and crimson checkout indicators." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbHEhTvzrpZqLxKPT6jKvl55k_SgmOPcQsIRJxowLcy8zA3RTHzXO1gwUN36N7IGbDTOSom7kKbbz7u71B55XUJ-WP3udyMLL2JMmDSKA_rQ-LyATiYeO_yBH1xaNFfM4UZxCY57tgTb10r82w-R-FVO919qHJXWRBDKet1s4Ps37s3LvVkjm0biej6eTgXuXMOEnSG72SOBRByg7Gx9xWtws_bzdWqur4g1zCcZBs"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-secondary">
+                  UI Screen &amp; Funnel
+                </span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-primary font-semibold">
+                  Ecommerce
+                </span>
+</div>
+</div>
+<!-- Details Frame -->
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                  Kinetix D2C Luxury Storefront
+                </h4>
+<p class="text-body-sm font-body-sm text-secondary line-clamp-2">
+                  High-ticket apparel storefront featuring micro-interactions, floating bag drawer, and seamless Stripe/Razorpay headless checkout.
+                </p>
+</div>
+<!-- Price & Quick Add -->
+<div class="pt-3 border-t border-surface-container-high flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-secondary block text-[11px] uppercase tracking-wider">Estimated Base</span>
+<span class="text-tabular-price font-tabular-price text-on-surface font-bold">₹72,000</span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-high border border-surface-container-highest hover:border-primary-container text-on-surface text-label-md font-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="add">add</span>
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Design Card 3: Vertex B2B SaaS Dashboard -->
+<div class="rounded-lg bg-surface-container border border-surface-container-highest hover:border-outline transition-all duration-200 overflow-hidden flex flex-col group">
+<!-- Media Viewport -->
+<div class="relative w-full aspect-[16/10] bg-surface-container-lowest overflow-hidden border-b border-surface-container-highest">
+<img class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" data-alt="An enterprise B2B SaaS software analytics command center interface displayed in technical dark slate, depicting real-time server telemetry, automated pipeline logs, and red alert triggers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiNAfeRSjx1DJjl1ltisXaAVFZU0n3depmTKKCnlC4yK-CzlfbW0HoyHeIag-Tp5ZsNUcOq65nxxSXaqirnGRmPecxhw4DAhbafOMZXMqOSUnnMHOLO_1fFtLR20ycLGJrkXw-soTnnPvOcVZZ_kOSKFCH-Tm9bVenITymEGvd3oq8ukCjGl7h2Jo5tLi07rfeUYXASNWQzlMql9gaU_Yr2au-0fcmmCWa_EfOU8nl"/>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-secondary">
+                  Functional Module
+                </span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm uppercase bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-primary font-semibold">
+                  SaaS &amp; Cloud
+                </span>
+</div>
+</div>
+<!-- Details Frame -->
+<div class="p-5 flex-1 flex flex-col justify-between gap-4">
+<div class="space-y-1.5">
+<h4 class="text-headline-sm font-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                  Vertex B2B SaaS Dashboard
+                </h4>
+<p class="text-body-sm font-body-sm text-secondary line-clamp-2">
+                  Unified analytics control center equipped with multi-tenant role provisioning, automated usage metering, and query visualizers.
+                </p>
+</div>
+<!-- Price & Quick Add -->
+<div class="pt-3 border-t border-surface-container-high flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-secondary block text-[11px] uppercase tracking-wider">Estimated Base</span>
+<span class="text-tabular-price font-tabular-price text-on-surface font-bold">₹88,000</span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-high border border-surface-container-highest hover:border-primary-container text-on-surface text-label-md font-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="add">add</span>
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BOTTOM LIVE STATUS BAR -->
+<footer class="pt-6 pb-4 border-t border-surface-container-highest flex flex-col sm:flex-row items-center justify-between gap-4 text-secondary text-body-sm font-body-sm">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Showroom Server Connected
+          </span>
+<span class="text-surface-container-highest">|</span>
+<span>Catalog Version 4.8.2</span>
+</div>
+<div class="flex items-center gap-6">
+<span>Client Meeting: Confidential Pitch</span>
+<span class="font-mono text-on-surface">REDHEIR STUDIO ENGINE</span>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

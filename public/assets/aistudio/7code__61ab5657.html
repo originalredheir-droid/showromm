@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>REDHEIR Showroom — Catalogue &amp; Showroom Administration</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#ffb3b1",
+            "outline-variant": "#5b403f",
+            "error": "#ffb4ab",
+            "primary-container": "#ff535b",
+            "on-tertiary-fixed-variant": "#41474f",
+            "surface-bright": "#353940",
+            "on-error-container": "#ffdad6",
+            "on-secondary-fixed": "#171c23",
+            "error-container": "#93000a",
+            "on-secondary-container": "#b1b5be",
+            "primary-fixed-dim": "#ffb3b1",
+            "on-error": "#690005",
+            "tertiary-container": "#8b9199",
+            "on-tertiary": "#2b3138",
+            "secondary-container": "#42474f",
+            "on-background": "#dfe2eb",
+            "inverse-surface": "#dfe2eb",
+            "surface-container-lowest": "#0a0e14",
+            "tertiary-fixed": "#dde3ec",
+            "secondary-fixed-dim": "#c2c7d0",
+            "inverse-primary": "#bb152c",
+            "surface-dim": "#10141a",
+            "on-primary-fixed": "#410007",
+            "outline": "#ab8987",
+            "on-surface-variant": "#e4bebc",
+            "on-tertiary-container": "#242a31",
+            "secondary": "#c2c7d0",
+            "secondary-fixed": "#dee2ec",
+            "surface-container": "#1c2026",
+            "surface": "#10141a",
+            "background": "#10141a",
+            "surface-container-high": "#262a31",
+            "on-secondary": "#2c3138",
+            "on-tertiary-fixed": "#161c23",
+            "primary-fixed": "#ffdad8",
+            "surface-variant": "#31353c",
+            "surface-container-low": "#181c22",
+            "inverse-on-surface": "#2d3137",
+            "surface-container-highest": "#31353c",
+            "primary": "#ffb3b1",
+            "tertiary": "#c1c7d0",
+            "on-secondary-fixed-variant": "#42474f",
+            "on-primary": "#680011",
+            "on-primary-container": "#5b000e",
+            "on-surface": "#dfe2eb",
+            "tertiary-fixed-dim": "#c1c7d0",
+            "on-primary-fixed-variant": "#92001c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "margin-sm": "1rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem",
+            "gutter-sm": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "display-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "tabular-price": ["Inter"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "display-sm": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "tabular-price": ["15px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Custom Scrollbar for dense studio workspaces */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #10141a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #31353c;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #42474f;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-hidden font-body-md text-body-md select-none">
+<div class="flex h-screen w-screen overflow-hidden">
+<!-- PERSISTENT LEFT DESKTOP SIDEBAR (SideNavBar Shared Component Specification) -->
+<aside class="fixed top-0 left-0 h-screen w-[280px] flex flex-col justify-between p-4 bg-surface border-r border-surface-container-highest z-40">
+<!-- Top Brand Header & Main Destination Nav -->
+<div class="flex flex-col gap-6">
+<!-- Brand Mark & Mode -->
+<div class="flex items-center gap-3 px-2 pt-1">
+<div class="w-9 h-9 rounded bg-[#E63946] flex items-center justify-center text-white font-headline-md font-bold tracking-tight shadow-sm">
+            R
+          </div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface leading-tight">REDHEIR</span>
+<span class="text-label-sm font-label-sm text-secondary tracking-wider">Showroom Mode</span>
+</div>
+</div>
+<!-- Primary Destination Navigation List -->
+<nav class="flex flex-col gap-1">
+<!-- Home -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">home</span>
+<span>Home</span>
+</a>
+<!-- Catalogue -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+<span>Catalogue</span>
+</a>
+<!-- Selection Cart -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span>Selection Cart</span>
+</div>
+<span class="bg-[#E63946] text-white text-[11px] font-bold px-1.5 py-0.5 rounded-sm">3</span>
+</a>
+<!-- Quotations -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">request_quote</span>
+<span>Quotations</span>
+</a>
+<!-- Invoices -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+<span>Invoices</span>
+</a>
+</nav>
+</div>
+<!-- Footer Cluster & Presenter Controls -->
+<div class="flex flex-col gap-4 border-t border-surface-container-highest pt-4">
+<!-- Presenter In-Room Controls -->
+<div class="flex flex-col gap-2.5 px-3 py-2.5 bg-surface-container-low rounded border border-surface-container-highest">
+<div class="text-[10px] font-bold tracking-wider text-secondary uppercase">Presenter Controls</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface">Show Pricing</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-8 h-4 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-[#E63946]"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface">Show Internal Details</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-8 h-4 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-[#E63946]"></div>
+</label>
+</div>
+</div>
+<!-- System Administration Footer Links -->
+<div class="flex flex-col gap-1">
+<!-- Admin Panel (ACTIVE SCREEN) -->
+<a class="flex items-center gap-3 px-3 py-2 rounded bg-surface-container-high text-primary font-headline-sm text-headline-sm border-l-2 border-primary" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="font-semibold text-on-surface text-label-md">Admin Panel</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span>Settings</span>
+</a>
+<!-- Operator Profile -->
+<div class="flex items-center justify-between px-3 py-2 rounded text-secondary hover:bg-surface-container-low transition-colors mt-1">
+<div class="flex items-center gap-2.5">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-xs font-semibold text-on-surface">
+                V
+              </div>
+<div class="flex flex-col leading-tight">
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Vikram</span>
+<span class="text-[10px] text-secondary">Lead Architect</span>
+</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+</div>
+</div>
+<!-- Present Pitch Primary CTA -->
+<button class="w-full py-2.5 px-4 bg-[#E63946] hover:bg-[#D62839] text-white font-headline-sm text-headline-sm rounded flex items-center justify-center gap-2 font-semibold transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">slideshow</span>
+<span>Present Pitch</span>
+</button>
+</div>
+</aside>
+<!-- MAIN STAGE / CONTENT AREA -->
+<div class="ml-[280px] flex-1 flex flex-col h-screen overflow-hidden bg-background">
+<!-- TOP NAVIGATION BAR (TopNavBar Shared Component Specification) -->
+<header class="flex items-center justify-between w-full h-16 px-6 bg-surface-dim border-b border-surface-container-highest z-30 shrink-0">
+<!-- Breadcrumb & System Context -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 text-label-md font-label-md text-secondary">
+<span>Showroom</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>System Architecture</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Catalogue Admin Console</span>
+</div>
+</div>
+<!-- Search Bar with Cmd+K and Fast Actions -->
+<div class="flex items-center gap-4">
+<!-- Search input box -->
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-12 text-body-sm font-body-sm bg-surface-container-low border border-surface-container-highest rounded text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary transition-colors" placeholder="Query master catalogue assets..." type="text"/>
+<kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 text-[10px] font-semibold text-secondary bg-surface-container rounded border border-surface-container-highest">⌘K</kbd>
+</div>
+<!-- Vertical Divider -->
+<div class="h-6 w-px bg-surface-container-highest"></div>
+<!-- Quick Action Buttons -->
+<div class="flex items-center gap-2.5">
+<button class="h-9 px-3.5 bg-surface-container border border-surface-container-highest hover:border-secondary text-on-surface text-label-sm font-label-sm font-semibold rounded flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Sync Changes</span>
+</button>
+<button class="h-9 px-3.5 bg-surface-container border border-surface-container-highest hover:border-secondary text-on-surface text-label-sm font-label-sm font-semibold rounded flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Live Showroom Preview</span>
+</button>
+<button class="h-9 px-4 bg-[#E63946] hover:bg-[#D62839] text-white text-label-sm font-label-sm font-semibold rounded flex items-center gap-2 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>+ Add Catalogue Item</span>
+</button>
+</div>
+</div>
+</header>
+<!-- WORKSPACE CONSOLE HEADER & INTERNAL TABS -->
+<section class="px-6 pt-5 pb-0 bg-surface-dim border-b border-surface-container-highest shrink-0">
+<!-- Title & Executive Stats Banner -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4">
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-headline-md font-headline-md text-on-surface font-bold tracking-tight">Catalogue &amp; Showroom Administration</h1>
+<span class="px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-label-sm font-label-sm rounded font-medium">Production Synced</span>
+</div>
+<p class="text-body-sm font-body-sm text-secondary mt-1 max-w-3xl">
+              Configure industry verticals, modular concepts, pricing models, preview media, and presentation metadata for client pitch sessions.
+            </p>
+</div>
+<!-- Quick Statistics & Primary Save Bar -->
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex items-center gap-4 px-4 py-2 bg-surface-container-low border border-surface-container-highest rounded text-label-sm font-label-sm">
+<div class="flex flex-col">
+<span class="text-secondary text-[10px] tracking-wider uppercase font-semibold">Industries</span>
+<span class="font-bold text-on-surface text-body-md font-body-md">10</span>
+</div>
+<div class="h-7 w-px bg-surface-container-highest"></div>
+<div class="flex flex-col">
+<span class="text-secondary text-[10px] tracking-wider uppercase font-semibold">Categories</span>
+<span class="font-bold text-on-surface text-body-md font-body-md">34</span>
+</div>
+<div class="h-7 w-px bg-surface-container-highest"></div>
+<div class="flex flex-col">
+<span class="text-secondary text-[10px] tracking-wider uppercase font-semibold">Screens &amp; Modules</span>
+<span class="font-bold text-on-surface text-body-md font-body-md">128</span>
+</div>
+<div class="h-7 w-px bg-surface-container-highest"></div>
+<div class="flex flex-col">
+<span class="text-secondary text-[10px] tracking-wider uppercase font-semibold">Managed Value</span>
+<span class="font-bold text-primary font-tabular-price text-tabular-price">₹48.2L</span>
+</div>
+</div>
+<button class="h-10 px-5 bg-[#E63946] hover:bg-[#D62839] text-white font-label-md font-label-md font-semibold rounded flex items-center gap-2 shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span>Publish All Changes</span>
+</button>
+</div>
+</div>
+<!-- Comprehensive Internal Sub-Navigation Tabs -->
+<div class="flex items-center gap-8 overflow-x-auto no-scrollbar pt-2">
+<button class="text-secondary hover:text-on-surface pb-3 font-label-md text-label-md transition-colors whitespace-nowrap">
+            Industries
+          </button>
+<button class="text-secondary hover:text-on-surface pb-3 font-label-md text-label-md transition-colors whitespace-nowrap">
+            Categories
+          </button>
+<!-- Active Tab: Designs & Concepts -->
+<button class="text-on-surface border-b-2 border-primary pb-3 font-label-md text-label-md font-semibold whitespace-nowrap flex items-center gap-2">
+<span>Designs &amp; Concepts</span>
+<span class="px-1.5 py-0.2 bg-primary/20 text-primary text-[10px] rounded-full font-bold">42</span>
+</button>
+<button class="text-secondary hover:text-on-surface pb-3 font-label-md text-label-md transition-colors whitespace-nowrap">
+            Screens &amp; Sections
+          </button>
+<button class="text-secondary hover:text-on-surface pb-3 font-label-md text-label-md transition-colors whitespace-nowrap">
+            Features &amp; Modules
+          </button>
+<button class="text-secondary hover:text-on-surface pb-3 font-label-md text-label-md transition-colors whitespace-nowrap">
+            Pricing Matrix
+          </button>
+<button class="text-secondary hover:text-on-surface pb-3 font-label-md text-label-md transition-colors whitespace-nowrap">
+            Media &amp; CDN Library
+          </button>
+</div>
+</section>
+<!-- FILTER & CONTROL TOOLBAR -->
+<div class="px-6 py-3 bg-surface border-b border-surface-container-highest flex items-center justify-between gap-4 shrink-0">
+<div class="flex items-center gap-3 flex-1 max-w-4xl">
+<!-- Text filter -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[16px]">filter_list</span>
+<input class="w-full h-8 pl-8 pr-3 text-body-sm font-body-sm bg-surface-container-low border border-surface-container-highest rounded text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary" placeholder="Search concepts by name, slug, tag..." type="text" value="IIT-JEE"/>
+</div>
+<!-- Industry Dropdown -->
+<div class="relative">
+<select class="h-8 pl-3 pr-8 text-body-sm font-body-sm bg-surface-container-low border border-surface-container-highest rounded text-on-surface appearance-none focus:outline-none focus:border-primary cursor-pointer">
+<option>Education &amp; EdTech</option>
+<option>All Industries</option>
+<option>Software &amp; SaaS</option>
+<option>Healthcare &amp; MedTech</option>
+<option>Fintech &amp; Banking</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-secondary text-[16px] pointer-events-none">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="relative">
+<select class="h-8 pl-3 pr-8 text-body-sm font-body-sm bg-surface-container-low border border-surface-container-highest rounded text-on-surface appearance-none focus:outline-none focus:border-primary cursor-pointer">
+<option>All Status</option>
+<option>Published</option>
+<option>Draft</option>
+<option>Archived</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-secondary text-[16px] pointer-events-none">expand_more</span>
+</div>
+<!-- Sort Selector -->
+<div class="relative">
+<select class="h-8 pl-3 pr-8 text-body-sm font-body-sm bg-surface-container-low border border-surface-container-highest rounded text-on-surface appearance-none focus:outline-none focus:border-primary cursor-pointer">
+<option>Sort: Last Updated</option>
+<option>Sort: Popularity</option>
+<option>Sort: Price: High to Low</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-secondary text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- View Toggles & Bulk Actions Indicator -->
+<div class="flex items-center gap-2">
+<div class="flex items-center bg-surface-container-low border border-surface-container-highest rounded p-0.5">
+<button class="px-2 py-1 rounded bg-surface-container-high text-on-surface text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">table_rows</span>
+<span>Table</span>
+</button>
+<button class="px-2 py-1 rounded text-secondary hover:text-on-surface text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span>Cards</span>
+</button>
+</div>
+</div>
+</div>
+<!-- TWO-PANEL SPLIT WORKSPACE BODY (60% List / 40% Interactive Quick Editor) -->
+<div class="flex-1 flex overflow-hidden">
+<!-- LEFT PANEL (60% Master Table of Catalogue Items) -->
+<section class="w-7/12 border-r border-surface-container-highest flex flex-col bg-surface-container-lowest overflow-hidden">
+<!-- Table Container with scrolling rows -->
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container border-b border-surface-container-highest text-secondary text-[11px] font-semibold uppercase tracking-wider z-10">
+<tr>
+<th class="py-2.5 px-3 w-8">
+<input class="rounded bg-surface-container-lowest border-surface-container-highest text-[#E63946] focus:ring-0" type="checkbox"/>
+</th>
+<th class="py-2.5 px-3">Catalogue Item &amp; Details</th>
+<th class="py-2.5 px-3">Classification</th>
+<th class="py-2.5 px-3 text-right">Dev Effort</th>
+<th class="py-2.5 px-3 text-right">Base License</th>
+<th class="py-2.5 px-3 text-center">Status</th>
+<th class="py-2.5 px-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-highest font-body-sm text-body-sm">
+<!-- Item 1: Selected Item -->
+<tr class="bg-surface-container-high/60 border-l-4 border-l-[#E63946] transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<input checked="" class="rounded bg-surface-container-lowest border-surface-container-highest text-[#E63946] focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Ultra-sleek dark mode dashboard mockups displaying real-time student test analytics and complex algorithmic charts with refined crimson and slate accents. The visual style embodies an executive technical software showcase illuminated by soft cool gallery lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWbkjdYtLzBMPRZOx8slN-qzsCZ-ULSxzDJi5C7NjOZcyD8uPUfCf4811qelXVNyp8joe0e9KYO3QCc-6ue_20zgy05iiP1q2EDCdzzce9rVgJGNy_PgkuQX81jRTI3EuoBBakrb9ipdw8pD0CGNF6DI_78Cj75szU7trbZFAZCEAuKiABJsbalE0DWcVt16vCZgHRbX2qnZfzYlYZIBId9PYioLjzAlJ-8NFjyhpi"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-on-surface text-label-md font-label-md">Pinnacle IIT–JEE Entrance Portal &amp; Ecosystem</span>
+<span class="px-1.5 py-0.2 bg-[#E63946]/10 text-primary text-[10px] font-bold rounded">Active Editor</span>
+</div>
+<span class="text-secondary text-body-sm font-body-sm">Education &gt; Coaching Institutes • <span class="text-secondary/70">Updated 14:20 by Vikram</span></span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 bg-surface-container border border-surface-container-highest text-on-surface text-[11px] font-medium rounded uppercase tracking-wider">
+                      Complete Concept
+                    </span>
+</td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-secondary">
+                    140 hrs
+                  </td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-on-surface font-semibold">
+                    ₹1,20,000
+                  </td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      Published
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded" title="Edit Item">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded" title="Duplicate">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded" title="Preview">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+<button class="p-1 hover:text-[#E63946] hover:bg-surface-container rounded" title="Archive">
+<span class="material-symbols-outlined text-[16px]">archive</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 2: Aura LMS -->
+<tr class="hover:bg-surface-container-low/80 transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<input class="rounded bg-surface-container-lowest border-surface-container-highest text-[#E63946] focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="High-density learning management dashboard wireframe featuring student progress metrics, cohort retention radar graphs, and sleek minimalist tabular cards. Highlighting a dark executive colorway of graphite, deep obsidian, and subtle red indicator lights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdY8hucC4-AuHZFBJqpiNsoTIeN1O6TbnPgONDQyH8gUnLeEAuwiUWmBFT9AxiKl4xu75qZbY_Kq_RGu8F2dk3yYlAILvudkv3WZ03yUiqBZZNPBv15eizsCbgB_Juk-sRphFE0UOerHZDgv2jNqIfOaMS2Veb3YcXXPWAyfpSbd5zJI8qPoNxUUCDes-9WI2psyMu8KKHM3dqWhzBKY1NqZGjGqCRSFiRpNZKyTp6"/>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface text-label-md font-label-md">Aura LMS Student Dashboard &amp; Analytics</span>
+<span class="text-secondary text-body-sm font-body-sm">Education &gt; Learning Modules • <span class="text-secondary/70">Oct 24, 2025</span></span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 bg-surface-container border border-surface-container-highest text-secondary text-[11px] font-medium rounded uppercase tracking-wider">
+                      Functional Module
+                    </span>
+</td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-secondary">
+                    65 hrs
+                  </td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-on-surface font-semibold">
+                    ₹45,000
+                  </td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      Published
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+<button class="p-1 hover:text-[#E63946] hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">archive</span></button>
+</div>
+</td>
+</tr>
+<!-- Item 3: Faculty Showcase -->
+<tr class="hover:bg-surface-container-low/80 transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<input class="rounded bg-surface-container-lowest border-surface-container-highest text-[#E63946] focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="Geometric bento grid section displaying elite professor profiles and department credentials for an academy website. Rendered in precision luxury dark slate interface style with micro-typography and fine hairline dividers in deep steel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCToIAdW0DBbDZVMFupBON0LdPDQ0Qjthr-LXPPMTH_ZkhhdXhsIyqSD9y-vH3sEyzZ_iMWfVL66m80Snr0UieYTugty0rwNd1tlcRZI5Trbv7PkEbA24EW1vpmbj4lSRfwdS8NiJz132kLZbUz2v3UgoW8CmEiOV4s5xjr-g8OuaxoEf0V27G0lKV7p9v-dy7fDEqKBZuIMocIClGbv9opuwtHdjLGdFq9shq0Tpzb"/>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface text-label-md font-label-md">Dynamic Faculty Showcase Grid Section</span>
+<span class="text-secondary text-body-sm font-body-sm">Education &gt; UI Sections • <span class="text-secondary/70">Oct 22, 2025</span></span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 bg-surface-container border border-surface-container-highest text-secondary text-[11px] font-medium rounded uppercase tracking-wider">
+                      Landing Section
+                    </span>
+</td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-secondary">
+                    22 hrs
+                  </td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-on-surface font-semibold">
+                    ₹18,000
+                  </td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      Published
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+<button class="p-1 hover:text-[#E63946] hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">archive</span></button>
+</div>
+</td>
+</tr>
+<!-- Item 4: Vertex B2B SaaS -->
+<tr class="hover:bg-surface-container-low/80 transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<input class="rounded bg-surface-container-lowest border-surface-container-highest text-[#E63946] focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="Enterprise multi-tenant cloud telemetry and permissions panel interface on dark slate backdrop. Precise tabular matrix layout with high-contrast indicator bars and clean typography with sophisticated enterprise aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyIS4-VIXy_PJ2L0PdgqXjqbfpcPPXbLqsRzvPV92USeHEXYgdylobQhfyhs6_11LWGHTiNbdqwW6DdyLsZ7-zgb2_pUWUbSsyDosq7BjidCt2D-IIljOB-zGj5TuRBUbqwWJBQubi-djJl8x9h0dWjqtBVQPcDXEyJwzqQBBSRZYRkSbeFqu9MaCVxEy4AsVkBEybwxKCedYav5thQjhG5SbOFzG4vV5XFqcV1wTc"/>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface text-label-md font-label-md">Vertex B2B Multi-Tenant SaaS Console</span>
+<span class="text-secondary text-body-sm font-body-sm">Software &amp; SaaS • <span class="text-secondary/70">Oct 19, 2025</span></span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 bg-surface-container border border-surface-container-highest text-secondary text-[11px] font-medium rounded uppercase tracking-wider">
+                      Complete Concept
+                    </span>
+</td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-secondary">
+                    110 hrs
+                  </td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-on-surface font-semibold">
+                    ₹88,000
+                  </td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                      Draft
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+<button class="p-1 hover:text-[#E63946] hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">archive</span></button>
+</div>
+</td>
+</tr>
+<!-- Item 5: Apex Health -->
+<tr class="hover:bg-surface-container-low/80 transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<input class="rounded bg-surface-container-lowest border-surface-container-highest text-[#E63946] focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="Digital clinic telemedicine triage console with electronic health record timeline, vital telemetry readings, and patient communication channel in modern dark theme UI with crimson priority triggers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaV6-QArRWyXnfCh9VlRpIpmMNiiJ02oCYHY-SYqgAL-KHXiFd2-KdoWs4TPyelPR5BRqgvNNh8Z5irvXDfhRW-e-pAC0vJGMQefBejn_B5zjZeYg5b-wHpZ_r8ikVD2DYS8FVjK55PgPJpTHqxXQXjgAhDbKLbudswGBVoqFLLldY__sMDg-LmiX_FB7ncf7uSZ9kLrPJj59dWcrEK3a9y0am_ZnbxxlpgFHlOHvb"/>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface text-label-md font-label-md">Apex Health Telemedicine Triage Suite</span>
+<span class="text-secondary text-body-sm font-body-sm">Healthcare • <span class="text-secondary/70">Oct 14, 2025</span></span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 bg-surface-container border border-surface-container-highest text-secondary text-[11px] font-medium rounded uppercase tracking-wider">
+                      Complete Concept
+                    </span>
+</td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-secondary">
+                    95 hrs
+                  </td>
+<td class="py-3 px-3 text-right font-tabular-price text-tabular-price text-on-surface font-semibold">
+                    ₹85,000
+                  </td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      Published
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">content_copy</span></button>
+<button class="p-1 hover:text-on-surface hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+<button class="p-1 hover:text-[#E63946] hover:bg-surface-container rounded"><span class="material-symbols-outlined text-[16px]">archive</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Master List Pagination & Batch Bar -->
+<div class="h-12 px-4 bg-surface-container border-t border-surface-container-highest flex items-center justify-between text-body-sm font-body-sm shrink-0">
+<div class="flex items-center gap-3">
+<span class="text-secondary text-label-sm font-label-sm">1 selected</span>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<button class="text-label-sm font-label-sm text-secondary hover:text-on-surface flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">toggle_on</span>
+<span>Bulk Status Update</span>
+</button>
+<button class="text-label-sm font-label-sm text-secondary hover:text-on-surface flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Batch Export</span>
+</button>
+</div>
+<!-- Page Numbering -->
+<div class="flex items-center gap-2">
+<span class="text-secondary text-label-sm font-label-sm">Showing 1–5 of 42 concepts</span>
+<div class="flex items-center gap-1 ml-2">
+<button class="p-1 text-secondary hover:text-on-surface rounded hover:bg-surface-container-high disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="p-1 text-secondary hover:text-on-surface rounded hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL (40% Interactive Quick Edit & Media Drawer for Selected Item) -->
+<section class="w-5/12 flex flex-col bg-surface-container-low overflow-hidden">
+<!-- Quick Editor Header & Live Switch -->
+<div class="px-5 py-3.5 bg-surface-container border-b border-surface-container-highest flex items-center justify-between shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#E63946] text-[20px]">edit_note</span>
+<span class="font-headline-sm font-headline-sm font-bold text-on-surface truncate max-w-[280px]">Quick Editor: Pinnacle IIT–JEE</span>
+</div>
+<div class="flex items-center gap-3">
+<!-- Draft/Published Toggle -->
+<div class="flex items-center gap-2 bg-surface-container-lowest px-2.5 py-1 rounded border border-surface-container-highest">
+<span class="text-[11px] font-semibold text-emerald-400">Published</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-7 h-3.5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1px] after:left-[1px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-emerald-500"></div>
+</label>
+</div>
+<!-- Quick Save -->
+<button class="px-3 py-1.5 bg-[#E63946] hover:bg-[#D62839] text-white text-label-sm font-label-sm font-semibold rounded transition-colors shadow-sm">
+                Save
+              </button>
+</div>
+</div>
+<!-- Quick Editor Scrollable Form Container -->
+<div class="flex-1 overflow-y-auto p-5 space-y-5 text-body-sm font-body-sm">
+<!-- Field: Title & Slug -->
+<div class="space-y-3">
+<div>
+<label class="block text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider mb-1">Item Title</label>
+<input class="w-full h-9 px-3 bg-surface-container border border-surface-container-highest rounded text-on-surface focus:outline-none focus:border-primary text-body-sm font-body-sm font-medium" type="text" value="Pinnacle IIT–JEE Entrance Portal &amp; Ecosystem"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider mb-1">Catalogue Slug</label>
+<div class="flex items-center bg-surface-container border border-surface-container-highest rounded overflow-hidden">
+<span class="px-2.5 text-secondary text-label-sm font-label-sm bg-surface-container-highest/40 border-r border-surface-container-highest">catalog/</span>
+<input class="w-full h-8 px-2.5 bg-transparent text-on-surface focus:outline-none text-body-sm font-body-sm font-mono text-[12px]" type="text" value="pinnacle-iitjee-entrance-portal"/>
+</div>
+</div>
+</div>
+<!-- Field: Industry & Category Dropdowns -->
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider mb-1">Industry Vertical</label>
+<div class="relative">
+<select class="w-full h-9 pl-3 pr-8 bg-surface-container border border-surface-container-highest rounded text-on-surface appearance-none focus:outline-none focus:border-primary cursor-pointer text-body-sm font-body-sm">
+<option>Education &amp; EdTech</option>
+<option>Software &amp; SaaS</option>
+<option>Healthcare &amp; MedTech</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider mb-1">Sub-Category</label>
+<div class="relative">
+<select class="w-full h-9 pl-3 pr-8 bg-surface-container border border-surface-container-highest rounded text-on-surface appearance-none focus:outline-none focus:border-primary cursor-pointer text-body-sm font-body-sm">
+<option>Coaching Institutes</option>
+<option>University Portals</option>
+<option>EdTech Apps</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-secondary text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Field: Catalogue Classification Type (Radio Pill Selector) -->
+<div>
+<label class="block text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider mb-1.5">Showroom Classification</label>
+<div class="grid grid-cols-4 gap-1.5 p-1 bg-surface-container rounded border border-surface-container-highest text-center">
+<label class="cursor-pointer">
+<input checked="" class="sr-only peer" name="item_type" type="radio"/>
+<div class="py-1.5 px-2 rounded text-label-sm font-label-sm text-secondary peer-checked:bg-[#E63946] peer-checked:text-white peer-checked:font-semibold transition-all">
+                    Concept
+                  </div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="item_type" type="radio"/>
+<div class="py-1.5 px-2 rounded text-label-sm font-label-sm text-secondary peer-checked:bg-[#E63946] peer-checked:text-white peer-checked:font-semibold transition-all">
+                    Page
+                  </div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="item_type" type="radio"/>
+<div class="py-1.5 px-2 rounded text-label-sm font-label-sm text-secondary peer-checked:bg-[#E63946] peer-checked:text-white peer-checked:font-semibold transition-all">
+                    Module
+                  </div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="item_type" type="radio"/>
+<div class="py-1.5 px-2 rounded text-label-sm font-label-sm text-secondary peer-checked:bg-[#E63946] peer-checked:text-white peer-checked:font-semibold transition-all">
+                    Section
+                  </div>
+</label>
+</div>
+</div>
+<!-- Field: Commercial Pricing & Effort Matrix -->
+<div class="p-3.5 bg-surface-container rounded border border-surface-container-highest space-y-3">
+<div class="flex items-center justify-between border-b border-surface-container-highest/60 pb-2">
+<span class="text-label-sm font-label-sm font-semibold text-on-surface uppercase tracking-wider">Commercial Pricing Matrix</span>
+<span class="text-[11px] text-secondary">INR Standard Format</span>
+</div>
+<div class="grid grid-cols-3 gap-2.5">
+<div>
+<label class="block text-[10px] text-secondary font-semibold uppercase tracking-wider mb-1">Base License</label>
+<div class="relative">
+<span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-secondary text-body-sm font-body-sm">₹</span>
+<input class="w-full h-8 pl-6 pr-2 bg-surface-container-low border border-surface-container-highest rounded text-on-surface font-tabular-price text-tabular-price font-semibold focus:outline-none focus:border-primary" type="text" value="1,20,000"/>
+</div>
+</div>
+<div>
+<label class="block text-[10px] text-secondary font-semibold uppercase tracking-wider mb-1">Dev Hours</label>
+<div class="relative">
+<input class="w-full h-8 px-2.5 bg-surface-container-low border border-surface-container-highest rounded text-on-surface font-tabular-price text-tabular-price font-semibold focus:outline-none focus:border-primary text-center" type="text" value="140"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-secondary text-[11px]">hrs</span>
+</div>
+</div>
+<div>
+<label class="block text-[10px] text-secondary font-semibold uppercase tracking-wider mb-1">Multiplier</label>
+<input class="w-full h-8 px-2.5 bg-surface-container-low border border-surface-container-highest rounded text-secondary font-tabular-price text-tabular-price text-center focus:outline-none" readonly="" type="text" value="1.25x Base"/>
+</div>
+</div>
+</div>
+<!-- Field: Media & Preview Image Reordering Area -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider">Showroom 4K Mockups &amp; Preview Assets</label>
+<span class="text-[11px] text-secondary">3 Assets Uploaded</span>
+</div>
+<!-- Visual Upload Dropzone -->
+<div class="border border-dashed border-surface-container-highest hover:border-secondary rounded-lg p-3 text-center bg-surface-container/40 transition-colors cursor-pointer group mb-2.5">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary text-[24px]">cloud_upload</span>
+<p class="text-[11px] text-on-surface font-medium mt-1">Drop 4K PNG/WebP mockups here or <span class="text-primary underline">browse</span></p>
+<p class="text-[10px] text-secondary mt-0.5">Recommended 3840×2160 (16:9) max 15MB each</p>
+</div>
+<!-- Ordered Thumbnails with Drag Handles -->
+<div class="space-y-1.5">
+<!-- Thumbnail 1 (Cover) -->
+<div class="flex items-center justify-between p-2 bg-surface-container rounded border border-surface-container-highest hover:border-secondary transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[18px] cursor-grab">drag_indicator</span>
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container-lowest shrink-0">
+<img class="w-full h-full object-cover" data-alt="Photorealistic 4K mockup of high-end coaching institute dashboard displayed on sleek borderless studio display. Atmospheric dark cinematic lighting with red ambient halo accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA740cfigzC-5QS4fiL_wB4qp-SLCwZBRCRI-Kqru33SKey_1ccxAsdUAqxLW30TvogXQ3raDhBaIYT8pQCJWwB5EdBu9FGs9GwLxvJqNdbUJ5EH_hhP6sy6RIb3L78iSCrN6dgK_yVxrZvDXUPKdc6QrvViZ988XLZjXSFncr3pHYYuVcWjjZVbDRQ7OsHCYf6RGU7fhW8id-4tAO3R4XzAKUhbLvG2BLE-c8fuRqw"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Hero_Mockup_Desktop_4k.webp</span>
+<span class="px-1.5 py-0.2 bg-[#E63946] text-white text-[9px] font-bold rounded">COVER</span>
+</div>
+<span class="text-[10px] text-secondary">3.4 MB • 3840 × 2160</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+<button class="p-1 hover:text-[#E63946]"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</div>
+</div>
+<!-- Thumbnail 2 -->
+<div class="flex items-center justify-between p-2 bg-surface-container rounded border border-surface-container-highest hover:border-secondary transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[18px] cursor-grab">drag_indicator</span>
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container-lowest shrink-0">
+<img class="w-full h-full object-cover" data-alt="Mobile smartphone viewport preview demonstrating mobile student timetable and interactive quiz interface in deep gray background with clean crimson highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaEPcxEf3V3jKKJ9YBJft3e94_GZqEZ8M4k6RYrx9qUNkclzICIJ_v3SGcpVd2bfCMQZ-bYVrTObUg4V51GfSgxxS-50qcnzLbdG_oBMy1EF0st5C7fLcJFoVYwrgcjemVL60F3dmJsGRZKejKhkvVojtAF-HQFYvdewaASXlPasBQMvAU0kYwUAIobxmshfM1uML9mskKnm8PVjQqEBwSV6ZmEG39g4pJsqhUGAry"/>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Mobile_Viewport_Adaptive.webp</span>
+<span class="text-[10px] text-secondary">1.8 MB • 1170 × 2532</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+<button class="p-1 hover:text-[#E63946]"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</div>
+</div>
+<!-- Thumbnail 3 -->
+<div class="flex items-center justify-between p-2 bg-surface-container rounded border border-surface-container-highest hover:border-secondary transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[18px] cursor-grab">drag_indicator</span>
+<div class="w-12 h-8 rounded border border-surface-container-highest overflow-hidden bg-surface-container-lowest shrink-0">
+<img class="w-full h-full object-cover" data-alt="Test engine radar analytical graph preview showcasing performance vector benchmarking against all-India student percentiles on slate background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT4BmfTTnEt-moJzQ4uq-QUFA-tadOZekqrWBX9AvVDcZDVJ5E58TzD3xU761OVmyyRFjRPm5ri9K8rMEpj_f_3DZ0imdv5DrpgllCUtanZoni34aU2Kn9uMmhv04B7TXhprM-0rV8scpFZlfPjwWPt4yKtULH44peEYOvQJhDrefbVMdSieefYH8xcsmavnDOFVTMOzUzd3ZrBQdjwi9nXskcJWGG6TLB1USwFAyF"/>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm font-semibold text-on-surface">Test_Engine_Radar_Analytics.webp</span>
+<span class="text-[10px] text-secondary">2.1 MB • 3840 × 2160</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<button class="p-1 hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">visibility</span></button>
+<button class="p-1 hover:text-[#E63946]"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Field: Interactive Prototype Link -->
+<div>
+<label class="block text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider mb-1">Interactive Sandbox &amp; Prototype URL</label>
+<div class="flex items-center bg-surface-container border border-surface-container-highest rounded overflow-hidden">
+<span class="material-symbols-outlined text-secondary px-2 text-[18px]">link</span>
+<input class="w-full h-8 px-1 bg-transparent text-on-surface focus:outline-none text-body-sm font-body-sm font-mono text-[12px]" type="text" value="stage.redheir.studio/pinnacle-iitjee"/>
+<button class="px-2.5 text-secondary hover:text-on-surface flex items-center" title="Open Stage">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Field: Presenter Talking Points & Pitch Notes -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider">In-Room Sales Script &amp; Pitch Notes</label>
+<span class="text-[10px] text-primary font-bold">Presenter Mode Only</span>
+</div>
+<textarea class="w-full p-2.5 bg-surface-container border border-surface-container-highest rounded text-on-surface text-body-sm font-body-sm focus:outline-none focus:border-primary resize-none" rows="3">Highlight automated student rank prediction algorithm and high-conversion WhatsApp lead capture flow during Phase 1 walkthrough. Mention 99.98% uptime under 50,000 simultaneous test takers.</textarea>
+</div>
+<!-- Field: Included Architectural Features Checklist -->
+<div>
+<label class="block text-label-sm font-label-sm text-secondary uppercase font-semibold tracking-wider mb-1.5">Architectural Modules Included</label>
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container border border-surface-container-highest rounded text-on-surface text-[12px] font-medium">
+<span class="material-symbols-outlined text-emerald-400 text-[14px]">check</span>
+                  Batch Timetable
+                  <button class="text-secondary hover:text-[#E63946]"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container border border-surface-container-highest rounded text-on-surface text-[12px] font-medium">
+<span class="material-symbols-outlined text-emerald-400 text-[14px]">check</span>
+                  Radar Analytics
+                  <button class="text-secondary hover:text-[#E63946]"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container border border-surface-container-highest rounded text-on-surface text-[12px] font-medium">
+<span class="material-symbols-outlined text-emerald-400 text-[14px]">check</span>
+                  WhatsApp Lead Dispatch
+                  <button class="text-secondary hover:text-[#E63946]"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 bg-surface-container-highest/60 hover:bg-surface-container-highest border border-surface-container-highest rounded text-secondary hover:text-on-surface text-[12px] transition-colors">
+<span class="material-symbols-outlined text-[14px]">add</span>
+                  Add Module
+                </button>
+</div>
+</div>
+</div>
+<!-- Quick Editor Sticky Bottom Actions Bar -->
+<div class="p-3.5 bg-surface-container border-t border-surface-container-highest flex items-center justify-between shrink-0">
+<button class="px-3 py-1.5 text-secondary hover:text-on-surface text-label-sm font-label-sm font-medium transition-colors">
+              Revert Changes
+            </button>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 bg-surface-container-high border border-surface-container-highest hover:border-secondary text-on-surface text-label-sm font-label-sm font-semibold rounded flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Preview in Showroom</span>
+</button>
+<button class="px-4 py-1.5 bg-[#E63946] hover:bg-[#D62839] text-white text-label-sm font-label-sm font-semibold rounded flex items-center gap-1.5 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">save</span>
+<span>Update Item (⌘S)</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<!-- Inline Micro-interactions for Keybinding & Row selection visual feedback -->
+<script>
+    document.addEventListener('keydown', (e) => {
+      // Cmd/Ctrl + S to trigger save visual indication
+      if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        e.preventDefault();
+        const saveBtn = document.querySelector('button[title*="Save"], button:has(span:contains("Update Item"))') || document.querySelector('button.bg-\\[\\#E63946\\]');
+        if (saveBtn) {
+          saveBtn.classList.add('ring-2', 'ring-white');
+          setTimeout(() => saveBtn.classList.remove('ring-2', 'ring-white'), 300);
+        }
+      }
+    });
+  </script>
+</body></html>

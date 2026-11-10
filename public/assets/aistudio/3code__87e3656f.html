@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>REDHEIR Showroom — Pinnacle IIT–JEE Entrance Portal</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim as required -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#2b3138",
+            "inverse-on-surface": "#2d3137",
+            "surface-container": "#1c2026",
+            "on-tertiary-fixed": "#161c23",
+            "outline": "#ab8987",
+            "tertiary-fixed": "#dde3ec",
+            "surface-dim": "#10141a",
+            "on-primary-fixed-variant": "#92001c",
+            "on-primary-fixed": "#410007",
+            "surface": "#10141a",
+            "on-secondary": "#2c3138",
+            "on-secondary-container": "#b1b5be",
+            "secondary-container": "#42474f",
+            "primary": "#ffb3b1",
+            "inverse-surface": "#dfe2eb",
+            "on-secondary-fixed": "#171c23",
+            "outline-variant": "#5b403f",
+            "surface-tint": "#ffb3b1",
+            "primary-container": "#ff535b",
+            "secondary-fixed": "#dee2ec",
+            "on-error-container": "#ffdad6",
+            "background": "#10141a",
+            "tertiary-fixed-dim": "#c1c7d0",
+            "on-surface-variant": "#e4bebc",
+            "surface-container-high": "#262a31",
+            "on-secondary-fixed-variant": "#42474f",
+            "surface-container-low": "#181c22",
+            "surface-bright": "#353940",
+            "secondary-fixed-dim": "#c2c7d0",
+            "surface-variant": "#31353c",
+            "on-background": "#dfe2eb",
+            "on-primary-container": "#5b000e",
+            "on-error": "#690005",
+            "primary-fixed-dim": "#ffb3b1",
+            "error-container": "#93000a",
+            "primary-fixed": "#ffdad8",
+            "surface-container-lowest": "#0a0e14",
+            "on-tertiary-fixed-variant": "#41474f",
+            "on-primary": "#680011",
+            "error": "#ffb4ab",
+            "inverse-primary": "#bb152c",
+            "tertiary-container": "#8b9199",
+            "on-surface": "#dfe2eb",
+            "tertiary": "#c1c7d0",
+            "on-tertiary-container": "#242a31",
+            "secondary": "#c2c7d0",
+            "surface-container-highest": "#31353c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin": "2rem",
+            "gutter": "1.5rem",
+            "margin-sm": "1rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "gutter-sm": "1rem"
+          },
+          "fontFamily": {
+            "display-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "tabular-price": ["Inter"],
+            "body-md": ["Inter"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-sm": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "tabular-price": ["15px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom scrollbar for dark studio view */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #10141a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #31353c;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #42474f;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 20;
+      font-size: 19px;
+      display: inline-flex;
+      vertical-align: middle;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md text-body-md min-h-screen flex selection:bg-primary-container selection:text-white">
+<!-- PERSISTENT LEFT DESKTOP SIDEBAR (SideNavBar Shared Component) -->
+<aside class="fixed top-0 left-0 h-screen w-[280px] flex flex-col justify-between p-4 bg-surface border-r border-surface-container-highest z-40 select-none">
+<!-- Top Section: Brand Identity -->
+<div>
+<div class="flex items-center justify-between pb-4 mb-3 border-b border-surface-container-highest">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high border border-surface-container-highest flex items-center justify-center font-headline-md font-bold text-primary tracking-tighter shadow-inner">
+<span class="text-primary-container text-headline-sm font-headline-sm font-extrabold tracking-tight">R</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">REDHEIR</div>
+<div class="font-label-sm text-label-sm text-secondary flex items-center gap-1.5">
+<span>Showroom Mode</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+</div>
+</div>
+</div>
+<div class="px-2 py-0.5 rounded text-[10px] font-label-sm font-semibold uppercase bg-surface-container-high text-primary border border-surface-container-highest">
+          LIVE
+        </div>
+</div>
+<!-- Primary Nav Items -->
+<nav class="space-y-1 mb-6">
+<!-- Home -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</a>
+<!-- Catalogue (Active context) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded bg-surface-container-high text-primary font-headline-sm text-headline-sm border-l-2 border-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-on-surface">Catalogue</span>
+</a>
+<!-- Selection Cart -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span>Selection Cart</span>
+</div>
+<span class="px-1.5 py-0.5 rounded-full text-[11px] font-label-sm font-bold bg-primary-container text-white">3</span>
+</a>
+<!-- Quotations -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+<span>Quotations</span>
+</a>
+<!-- Invoices -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>Invoices</span>
+</a>
+</nav>
+<!-- Presenter Controls Sub-module -->
+<div class="p-3 rounded-lg bg-surface-container-low border border-surface-container-highest mb-4 space-y-3">
+<div class="text-[10px] font-label-sm uppercase tracking-wider text-secondary flex items-center justify-between">
+<span>Presenter Controls</span>
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</div>
+<!-- Toggle: Show Pricing -->
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface">Show Pricing</span>
+<button class="w-8 h-4 rounded-full bg-primary-container p-0.5 transition-colors relative flex items-center justify-end" id="togglePricing">
+<span class="w-3 h-3 rounded-full bg-white shadow-sm"></span>
+</button>
+</div>
+<!-- Toggle: Show Internal Details -->
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface">Show Internal Details</span>
+<button class="w-8 h-4 rounded-full bg-primary-container p-0.5 transition-colors relative flex items-center justify-end" id="toggleInternal">
+<span class="w-3 h-3 rounded-full bg-white shadow-sm"></span>
+</button>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full py-2.5 px-4 rounded bg-primary-container hover:bg-[#d62839] text-white font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">co_present</span>
+<span>Present Pitch</span>
+</button>
+</div>
+<!-- Bottom Footer Navigation -->
+<div class="pt-4 border-t border-surface-container-highest space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span>Admin Panel</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined">tune</span>
+<span>Settings</span>
+</a>
+<!-- Operator Profile -->
+<div class="mt-2 pt-2 border-t border-surface-container-highest/60 flex items-center gap-3 px-2 py-1.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-surface-container-highest flex items-center justify-center text-primary font-headline-sm font-bold text-xs">
+          VA
+        </div>
+<div class="overflow-hidden">
+<div class="font-label-md text-label-md text-on-surface truncate font-medium">Vikram Lead Architect</div>
+<div class="font-label-sm text-label-sm text-secondary truncate">Operator Profile</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN VIEWPORT STAGE (Offset by sidebar width: 280px) -->
+<div class="ml-[280px] flex-1 flex flex-col min-w-0 bg-background min-h-screen">
+<!-- STICKY TOP NAV BAR (TopNavBar Shared Component) -->
+<header class="sticky top-0 w-full h-16 flex items-center justify-between px-6 bg-surface-dim border-b border-surface-container-highest z-30">
+<!-- Left side: Showroom Stage Identity & Fast Search -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 font-headline-sm text-headline-sm font-semibold text-on-surface tracking-tight">
+<span class="material-symbols-outlined text-primary">token</span>
+<span>Showroom Stage</span>
+</div>
+<!-- Global Search Bar -->
+<div class="relative w-80">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-[17px]">search</span>
+</span>
+<input class="w-full pl-9 pr-14 py-1.5 bg-surface-container-low border border-surface-container-highest rounded text-on-surface placeholder-secondary/60 font-body-sm text-body-sm focus:outline-none focus:border-primary-container transition-colors" placeholder="Search concept, UI pattern, component..." type="text"/>
+<span class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none">
+<kbd class="px-1.5 py-0.5 rounded text-[10px] font-label-sm font-semibold bg-surface-container text-secondary border border-surface-container-highest">⌘K</kbd>
+</span>
+</div>
+<!-- Filter Sub-Nav Links -->
+<nav class="hidden xl:flex items-center gap-5 ml-2">
+<a class="text-on-surface border-b-2 border-primary pb-1 font-label-md text-label-md" href="#">All</a>
+<a class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors" href="#">Concepts</a>
+<a class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors" href="#">Pages</a>
+<a class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors" href="#">Modules</a>
+<a class="text-secondary hover:text-on-surface pb-1 font-label-md text-label-md transition-colors" href="#">UI Screens</a>
+</nav>
+</div>
+<!-- Right Action Cluster -->
+<div class="flex items-center gap-3">
+<!-- Live Mode Badge -->
+<div class="flex items-center gap-2 px-2.5 py-1 rounded bg-surface-container border border-surface-container-highest text-secondary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>Live Mode</span>
+</div>
+<!-- Utility Action Icons -->
+<div class="flex items-center gap-1 border-x border-surface-container-highest px-2">
+<button class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors" title="Tune Settings">
+<span class="material-symbols-outlined">tune</span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors relative" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors" title="Fullscreen">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+<!-- Cart Quick Launcher Button -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-high border border-surface-container-highest hover:border-primary-container text-on-surface transition-all">
+<span class="material-symbols-outlined text-primary-container text-[18px]">shopping_bag</span>
+<span class="font-label-sm text-label-sm font-semibold">Selection Cart (3)</span>
+<span class="font-tabular-price text-tabular-price text-primary">₹1,95,000</span>
+</button>
+</div>
+</header>
+<!-- MAIN WORKSPACE CONTENT CANVAS -->
+<main class="p-6 space-y-6 max-w-[1680px] w-full mx-auto">
+<!-- BREADCRUMBS BAR -->
+<nav class="flex items-center gap-2 text-secondary font-label-sm text-label-sm overflow-x-auto whitespace-nowrap py-1">
+<span class="hover:text-on-surface cursor-pointer">Showroom</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+<span class="hover:text-on-surface cursor-pointer">Education</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+<span class="hover:text-on-surface cursor-pointer">Coaching Institutes</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+<span class="hover:text-on-surface cursor-pointer">Website Designs</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+<span class="text-on-surface font-medium truncate max-w-xs md:max-w-md lg:max-w-none">
+          Pinnacle IIT–JEE Entrance Portal &amp; Learning Ecosystem
+        </span>
+</nav>
+<!-- TWO-COLUMN PRESENTATION LAYOUT (70% Preview & Scope / 30% Commercial Dock) -->
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-6 items-start">
+<!-- LEFT / CENTRAL MAIN AREA (70% - 7 Cols) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- DISPLAY BEZEL PREVIEW CAROUSEL -->
+<div class="bg-surface-container-low border border-surface-container-highest rounded-xl overflow-hidden shadow-2xl relative">
+<!-- Studio Stage Top Bar / Viewport Switcher -->
+<div class="flex items-center justify-between px-4 py-2.5 bg-surface-container border-b border-surface-container-highest">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/40 inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/40 inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-emerald-500/20 border border-emerald-500/40 inline-block"></span>
+<span class="ml-2 font-label-sm text-label-sm text-secondary border-l border-surface-container-highest pl-3 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                  pinnacle-iitjee-stage.redheir.studio
+                </span>
+</div>
+<!-- Viewport Mode Switcher Buttons -->
+<div class="flex items-center gap-1 bg-surface-container-low p-0.5 rounded border border-surface-container-highest">
+<button class="flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm border border-surface-container-highest shadow-sm">
+<span class="material-symbols-outlined text-[14px]">desktop_windows</span>
+<span>Desktop View</span>
+</button>
+<button class="flex items-center gap-1 px-2.5 py-1 rounded text-secondary hover:text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[14px]">tablet_mac</span>
+<span>Tablet Preview</span>
+</button>
+<button class="flex items-center gap-1 px-2.5 py-1 rounded text-secondary hover:text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="material-symbols-outlined text-[14px]">smartphone</span>
+<span>Mobile Responsive</span>
+</button>
+<div class="h-3 w-px bg-surface-container-highest mx-1"></div>
+<button class="p-1 rounded text-secondary hover:text-on-surface transition-colors" title="Fullscreen Zoom">
+<span class="material-symbols-outlined text-[15px]">zoom_out_map</span>
+</button>
+</div>
+</div>
+<!-- High-Fidelity Interactive Showcase Screen Viewport -->
+<div class="relative bg-surface-container-lowest aspect-[16/10] overflow-hidden group">
+<!-- Placeholder Graphic / Showcase Display Mockup -->
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]" data-alt="Ultra high-definition executive desktop mockup of the Pinnacle IIT-JEE Entrance Portal and Learning Ecosystem website displayed on an architectural slate dark studio canvas. The user interface features sophisticated dark slate containers, crisp typography, a real-time student performance radar chart, interactive live batch countdown schedules, and subtle crimson accent highlights. Ambient architectural lighting casts soft cinematic reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLEJjKmOkt75Ud707ezN9foKnMHAKm2vTiAD1LKWpszIoVzIBzGNDegjbgtqfzoK6ALjHafG8qfvYliNIK2zDWr8-9aP1Ai_AnrTsPM151-2GmGBwGTSJSjDifb6FFaZSkuWY-VrxJnHf1KoBMYBZZ46-jCtN0NAw9Vkkg-hUrUnIGPPDvWOPri-1XUwomNBPocuMuTNFIgz0mAhyncTPM6AGDlq0Y6B18uydy6Beq"/>
+<!-- Live Interactive Overlay Badges -->
+<div class="absolute top-4 left-4 flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-white font-label-sm text-label-sm flex items-center gap-1.5 shadow-md">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  Interactive Prototype v2.4
+                </span>
+<span class="px-2.5 py-1 rounded bg-surface-dim/90 backdrop-blur border border-surface-container-highest text-secondary font-label-sm text-label-sm">
+                  Retina 4K Canvas
+                </span>
+</div>
+<!-- Quick Floating Live Interaction Trigger -->
+<div class="absolute bottom-4 right-4 flex items-center gap-2">
+<button class="px-3.5 py-1.5 rounded bg-surface-dim/90 hover:bg-surface-container border border-surface-container-highest text-on-surface font-label-sm text-label-sm backdrop-blur flex items-center gap-1.5 shadow-lg transition-all">
+<span class="material-symbols-outlined text-[15px] text-primary">play_circle</span>
+<span>Trigger Timetable Animation</span>
+</button>
+<button class="px-3.5 py-1.5 rounded bg-surface-dim/90 hover:bg-surface-container border border-surface-container-highest text-on-surface font-label-sm text-label-sm backdrop-blur flex items-center gap-1.5 shadow-lg transition-all">
+<span class="material-symbols-outlined text-[15px] text-primary">switch_access_shortcut</span>
+<span>Test Submission State</span>
+</button>
+</div>
+</div>
+<!-- Visual Design Variations Selector Strip -->
+<div class="p-3.5 bg-surface-container border-t border-surface-container-highest flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mr-2">Theme Variants:</span>
+<!-- Variation 1 (Active) -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-high border border-primary-container text-on-surface font-label-sm text-label-sm shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-[#10141a] border border-primary-container"></span>
+<span class="font-medium">Dark Enterprise Theme</span>
+<span class="text-[10px] text-primary bg-primary-container/20 px-1 py-0.2 rounded">Active</span>
+</button>
+<!-- Variation 2 -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-low hover:bg-surface-container-high border border-surface-container-highest text-secondary hover:text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-200 border border-slate-400"></span>
+<span>Academic Clean Light</span>
+</button>
+<!-- Variation 3 -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-low hover:bg-surface-container-high border border-surface-container-highest text-secondary hover:text-on-surface font-label-sm text-label-sm transition-colors">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ff535b] border border-red-300"></span>
+<span>High-Energy Crimson Neon</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-secondary font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">speed</span>
+                  120Hz Micro-Interactions
+                </span>
+<span class="text-surface-container-highest">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">aspect_ratio</span>
+                  1440 × 900 Canvas
+                </span>
+</div>
+</div>
+</div>
+<!-- DUAL TABBED SCOPE SECTION: Visual Scope vs. Functional Implementation -->
+<div class="bg-surface-container-low border border-surface-container-highest rounded-xl p-5 space-y-5">
+<div class="flex items-center justify-between border-b border-surface-container-highest pb-3">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 font-headline-sm text-headline-sm font-semibold text-on-surface border-b-2 border-primary-container pb-2 -mb-3.5">
+<span class="material-symbols-outlined text-primary-container">palette</span>
+<span>Visual &amp; Interactive Design Scope</span>
+<span class="ml-1 text-[11px] px-2 py-0.5 rounded-full bg-surface-container text-secondary">Figma Pro</span>
+</button>
+<button class="flex items-center gap-2 font-headline-sm text-headline-sm font-medium text-secondary hover:text-on-surface pb-2 -mb-3.5 transition-colors">
+<span class="material-symbols-outlined">terminal</span>
+<span>Functional Implementation &amp; Engineering Architecture</span>
+<span class="ml-1 text-[11px] px-2 py-0.5 rounded-full bg-surface-container text-secondary">Next.js 14</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Production Deliverables</span>
+</div>
+<!-- Structured Grid: Design Scope Breakdown -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+<div class="p-4 rounded-lg bg-surface-container border border-surface-container-highest space-y-2">
+<div class="flex items-center gap-2 text-on-surface font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">design_services</span>
+<span>Component System &amp; Tokens</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+                  Complete atomic Figma component library with 42 responsive modular components, auto-layout 5.0, dark/light token hierarchy, and rigid typographical scale calibrated for complex edtech tabular data.
+                </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container-high border border-surface-container-highest text-secondary">42 Components</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container-high border border-surface-container-highest text-secondary">Token System</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container-high border border-surface-container-highest text-secondary">WCAG AAA Contrast</span>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-surface-container border border-surface-container-highest space-y-2">
+<div class="flex items-center gap-2 text-on-surface font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">animation</span>
+<span>Motion &amp; Interaction Choreography</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+                  Physics-based Framer Motion transitions, live sticky batch timetable switching with kinetic pill indicators, interactive score rank estimators, and responsive bottom sheets for mobile parent inquiries.
+                </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container-high border border-surface-container-highest text-secondary">Framer Motion</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container-high border border-surface-container-highest text-secondary">Spring Dynamics</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container-high border border-surface-container-highest text-secondary">60FPS Canvas</span>
+</div>
+</div>
+</div>
+<!-- Engineering Architecture Summary Box -->
+<div class="p-4 rounded-lg bg-surface-container-high/60 border border-surface-container-highest space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 font-headline-sm text-headline-sm text-on-surface">
+<span class="material-symbols-outlined text-emerald-400 text-[18px]">check_circle</span>
+<span>Core Engineering &amp; Backend Capabilities</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Zero-Debt Monorepo Ready</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-secondary font-body-sm text-body-sm">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">verified_user</span>
+<span>Multi-tier RBAC for Student, Parent, Faculty &amp; Super-Admin.</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">timer</span>
+<span>Real-time test submission engine with anti-cheat tab telemetry.</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">payments</span>
+<span>Razorpay &amp; Cashfree split-fee installment gateway hooks.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- INCLUDED CORE FEATURES CHECKLIST -->
+<div class="bg-surface-container-low border border-surface-container-highest rounded-xl p-5 space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">
+                Included Core Features
+              </h3>
+<span class="font-label-sm text-label-sm text-secondary">5 Key Architectural Pillars Included</span>
+</div>
+<div class="divide-y divide-surface-container-highest">
+<!-- Feature 1 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-7 h-7 rounded bg-surface-container border border-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[17px]">calendar_month</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-medium">Batch Timetable &amp; Multi-Center Scheduling Engine</div>
+<div class="font-body-sm text-body-sm text-secondary">Dynamic filtering across branches (Kota, Hyderabad, Delhi NCR) with real-time class rescheduling SMS alert integration.</div>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">ACTIVE MODULE</span>
+</div>
+<!-- Feature 2 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-7 h-7 rounded bg-surface-container border border-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[17px]">calculate</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-medium">Automated Merit Scholarship &amp; EMI Installment Calculator</div>
+<div class="font-body-sm text-body-sm text-secondary">Instant rank-based fee discount breakdown with automated credit eligibility checks and zero-cost EMI financing hooks.</div>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">ACTIVE MODULE</span>
+</div>
+<!-- Feature 3 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-7 h-7 rounded bg-surface-container border border-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[17px]">query_stats</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-medium">Timed Mock Test Interface with Multi-Axis Radar Diagnostics</div>
+<div class="font-body-sm text-body-sm text-secondary">NTA-compliant testing environment with percentile projection, topic-wise accuracy matrices, and national peer comparison.</div>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">ACTIVE MODULE</span>
+</div>
+<!-- Feature 4 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-7 h-7 rounded bg-surface-container border border-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[17px]">badge</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-medium">Dynamic Faculty Profile Showcase with Alumni Pedigree Tags</div>
+<div class="font-body-sm text-body-sm text-secondary">Interactive mentor bios showing ex-IIT/AIIMS pedigree, years of experience, student AIR track records, and sample demo lectures.</div>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">ACTIVE MODULE</span>
+</div>
+<!-- Feature 5 -->
+<div class="py-3 flex items-start justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="w-7 h-7 rounded bg-surface-container border border-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[17px]">chat</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-medium">Instant Lead Capture &amp; WhatsApp Automated Counselor Dispatch</div>
+<div class="font-body-sm text-body-sm text-secondary">Sub-30-second lead routing via WhatsApp Cloud API with customized brochure PDFs matching student's chosen exam track.</div>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">ACTIVE MODULE</span>
+</div>
+</div>
+</div>
+<!-- RELATED PAGES & COMPLEMENTARY MODULES STRIP -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Complementary Showcase Modules</h3>
+<p class="font-body-sm text-body-sm text-secondary">Architecturally compatible with this entrance ecosystem.</p>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline flex items-center gap-1">
+<span>View Full Catalogue</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+<!-- Item 1 (In Cart) -->
+<div class="p-3 rounded-lg bg-surface-container border border-primary-container/60 hover:border-primary-container transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-label-sm text-primary uppercase font-bold tracking-wider">MODULE</span>
+<span class="px-1.5 py-0.2 rounded text-[9px] font-label-sm bg-primary-container text-white">IN CART</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface text-sm font-semibold">Aura LMS Student Dashboard</div>
+<div class="font-body-sm text-body-sm text-secondary text-xs mt-1">Live lecture rooms, quiz analytics &amp; assignment vault.</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container-highest flex items-center justify-between">
+<span class="font-tabular-price text-tabular-price text-on-surface text-xs font-semibold">₹45,000</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</div>
+</div>
+<!-- Item 2 (In Cart) -->
+<div class="p-3 rounded-lg bg-surface-container border border-primary-container/60 hover:border-primary-container transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-label-sm text-secondary uppercase font-bold tracking-wider">SECTION</span>
+<span class="px-1.5 py-0.2 rounded text-[9px] font-label-sm bg-primary-container text-white">IN CART</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface text-sm font-semibold">Dynamic Faculty Showcase Grid</div>
+<div class="font-body-sm text-body-sm text-secondary text-xs mt-1">Pedigree filter tags, subject reels &amp; alumni reviews.</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container-highest flex items-center justify-between">
+<span class="font-tabular-price text-tabular-price text-on-surface text-xs font-semibold">₹30,000</span>
+<span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-3 rounded-lg bg-surface-container border border-surface-container-highest hover:border-surface-bright transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-label-sm text-secondary uppercase font-bold tracking-wider">MODULE</span>
+<span class="text-[10px] font-label-sm text-secondary">OPTIONAL</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface text-sm font-semibold">Smart Fee &amp; EMI Planner</div>
+<div class="font-body-sm text-body-sm text-secondary text-xs mt-1">Direct banking integration with instant EMI disbursement.</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container-highest flex items-center justify-between">
+<span class="font-tabular-price text-tabular-price text-on-surface text-xs font-semibold">₹25,000</span>
+<button class="text-primary hover:text-white transition-colors" title="Add to Cart">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+</button>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-3 rounded-lg bg-surface-container border border-surface-container-highest hover:border-surface-bright transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-label-sm text-secondary uppercase font-bold tracking-wider">PAGE</span>
+<span class="text-[10px] font-label-sm text-secondary">COMPANION</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface text-sm font-semibold">Zenith Global Academy Landing</div>
+<div class="font-body-sm text-body-sm text-secondary text-xs mt-1">Flagship admission portal for international branches.</div>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container-highest flex items-center justify-between">
+<span class="font-tabular-price text-tabular-price text-on-surface text-xs font-semibold">₹40,000</span>
+<button class="text-primary hover:text-white transition-colors" title="Add to Cart">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT INSPECTOR / COMMERCIAL ACTION PANEL (30% - 3 Cols, Sticky Dock) -->
+<div class="lg:col-span-3 sticky top-20 space-y-4">
+<!-- MAIN COMMERCIAL CARD -->
+<div class="bg-surface-container-low border border-surface-container-highest rounded-xl p-5 space-y-5 shadow-xl">
+<!-- Badge Cluster -->
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-0.5 rounded text-[11px] font-label-sm font-semibold bg-primary-container/15 text-primary border border-primary-container/30">
+                COMPLETE CONCEPT
+              </span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm font-semibold bg-surface-container text-secondary border border-surface-container-highest">
+                EDUCATION / EDTECH
+              </span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-sm font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                PRODUCTION READY
+              </span>
+</div>
+<!-- Title & Pitch Subtitle -->
+<div class="space-y-1.5 border-b border-surface-container-highest pb-4">
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
+                Pinnacle IIT–JEE Entrance Portal
+              </h1>
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">
+                High-conversion admissions engine paired with an end-to-end student onboarding and batch timetable portal.
+              </p>
+</div>
+<!-- Commercial & Pricing Box (Controlled by 'Show Pricing' toggle) -->
+<div class="p-4 rounded-lg bg-surface-container border border-surface-container-highest space-y-3 transition-all" id="pricingBox">
+<div class="flex items-center justify-between text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<span>Commercial License</span>
+<span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 font-bold">100% OWNERSHIP</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-sm text-display-sm font-bold text-on-surface">₹1,20,000</span>
+<span class="font-label-sm text-label-sm text-secondary">INR excl. taxes</span>
+</div>
+<div class="font-body-sm text-body-sm text-secondary space-y-1 border-t border-surface-container-highest pt-2">
+<div class="flex items-center justify-between">
+<span>Scope:</span>
+<span class="text-on-surface font-medium">Enterprise Single-Client</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Source Deliverable:</span>
+<span class="text-on-surface font-medium">Full Next.js / TypeScript Repo</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Warranty:</span>
+<span class="text-on-surface font-medium">90 Days Priority Hotfix</span>
+</div>
+</div>
+</div>
+<!-- Internal Technical & Effort Box (Controlled by 'Show Internal Details' toggle) -->
+<div class="p-4 rounded-lg bg-surface-container-high/40 border border-surface-container-highest space-y-2.5 transition-all" id="internalDetailsBox">
+<div class="flex items-center justify-between text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+                  Internal Technical Breakdown
+                </span>
+<span class="font-tabular-price text-tabular-price text-on-surface font-semibold">140h Total</span>
+</div>
+<!-- Dev Hours Breakdown bar -->
+<div class="space-y-1">
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest flex overflow-hidden">
+<div class="bg-blue-400 h-full w-[25%]" title="Design 35h"></div>
+<div class="bg-primary-container h-full w-[46%]" title="Frontend 65h"></div>
+<div class="bg-emerald-400 h-full w-[29%]" title="Backend 40h"></div>
+</div>
+<div class="flex justify-between text-[11px] font-label-sm text-secondary">
+<span>UI/UX: 35h</span>
+<span>Frontend: 65h</span>
+<span>Backend/Integrations: 40h</span>
+</div>
+</div>
+<div class="pt-2 border-t border-surface-container-highest text-[12px] font-body-sm space-y-1">
+<div class="flex justify-between text-secondary">
+<span>Stack:</span>
+<span class="text-on-surface font-mono text-[11px]">React 19, Next.js 14, Tailwind, PG</span>
+</div>
+<div class="flex justify-between text-secondary">
+<span>Deployment:</span>
+<span class="text-on-surface">Vercel Enterprise / Docker Swarm</span>
+</div>
+</div>
+</div>
+<!-- Primary CTAs -->
+<div class="space-y-2.5 pt-1">
+<!-- Add to Cart (Active Toggle) -->
+<button class="w-full py-3 px-4 rounded bg-primary-container hover:bg-[#d62839] text-white font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.98]" id="cartButton">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span>Add Concept to Selection Cart</span>
+</button>
+<!-- Launch Prototype -->
+<button class="w-full py-2.5 px-4 rounded bg-surface-container hover:bg-surface-container-high border border-surface-container-highest text-on-surface font-headline-sm text-headline-sm font-medium flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+<span>Launch Live Interactive Prototype</span>
+</button>
+<!-- Add Custom Requirement Note -->
+<button class="w-full py-2 px-3 rounded hover:bg-surface-container text-secondary hover:text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span>Add Custom Note / Client Requirement</span>
+</button>
+</div>
+</div>
+<!-- PRESENTER PITCH SCRIPT DRAWER / SCRIPT HELPER -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-highest space-y-2">
+<div class="flex items-center gap-2 font-headline-sm text-headline-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]">psychology</span>
+<span>Executive Pitch Script Note</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary italic leading-relaxed">
+              "Key Pitch Points for EdTech Leadership: Emphasize the proven <strong class="text-on-surface not-italic">38% higher conversion</strong> on mobile mock-test registrations and <strong class="text-on-surface not-italic">zero server lag</strong> during peak results day announcements due to edge caching."
+            </p>
+<div class="pt-2 flex items-center justify-between text-[11px] font-label-sm text-secondary">
+<span class="flex items-center gap-1 text-emerald-400">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                High conversion talking point
+              </span>
+<span>Updated Today</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Interactive JavaScript for Presenter Controls & Cart State -->
+<script>
+    // Presenter Toggle: Show Pricing
+    const togglePricing = document.getElementById('togglePricing');
+    const pricingBox = document.getElementById('pricingBox');
+    let pricingVisible = true;
+
+    togglePricing.addEventListener('click', () => {
+      pricingVisible = !pricingVisible;
+      if (pricingVisible) {
+        pricingBox.classList.remove('opacity-25', 'grayscale', 'pointer-events-none');
+        togglePricing.className = "w-8 h-4 rounded-full bg-primary-container p-0.5 transition-colors relative flex items-center justify-end";
+      } else {
+        pricingBox.classList.add('opacity-25', 'grayscale', 'pointer-events-none');
+        togglePricing.className = "w-8 h-4 rounded-full bg-surface-container-highest p-0.5 transition-colors relative flex items-center justify-start";
+      }
+    });
+
+    // Presenter Toggle: Show Internal Details
+    const toggleInternal = document.getElementById('toggleInternal');
+    const internalDetailsBox = document.getElementById('internalDetailsBox');
+    let internalVisible = true;
+
+    toggleInternal.addEventListener('click', () => {
+      internalVisible = !internalVisible;
+      if (internalVisible) {
+        internalDetailsBox.classList.remove('hidden');
+        toggleInternal.className = "w-8 h-4 rounded-full bg-primary-container p-0.5 transition-colors relative flex items-center justify-end";
+      } else {
+        internalDetailsBox.classList.add('hidden');
+        toggleInternal.className = "w-8 h-4 rounded-full bg-surface-container-highest p-0.5 transition-colors relative flex items-center justify-start";
+      }
+    });
+
+    // Cart Button Add/Remove State
+    const cartButton = document.getElementById('cartButton');
+    let inCart = false;
+
+    cartButton.addEventListener('click', () => {
+      inCart = !inCart;
+      if (inCart) {
+        cartButton.innerHTML = `<span class="material-symbols-outlined text-[20px]">check</span><span>In Selection Cart (Included)</span>`;
+        cartButton.className = "w-full py-3 px-4 rounded bg-surface-container border border-primary-container text-on-surface font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-inner";
+      } else {
+        cartButton.innerHTML = `<span class="material-symbols-outlined text-[20px]">shopping_bag</span><span>Add Concept to Selection Cart</span>`;
+        cartButton.className = "w-full py-3 px-4 rounded bg-primary-container hover:bg-[#d62839] text-white font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.98]";
+      }
+    });
+  </script>
+</body></html>

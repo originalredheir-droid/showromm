@@ -1,0 +1,6 @@
+{
+  "name": "REDHEIR SHOWROOM",
+  "description": "Internal digital showroom for presenting bespoke website design concepts, modular architectures, and curated client selections.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

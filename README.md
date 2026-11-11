@@ -80,6 +80,8 @@ cd redheir-showroom
 npm install
 ```
 
+This repository is configured as the `redheir-showroom` frontend MVP and is intended to run independently with the standard Next.js scripts listed above.
+
 ### Development Server
 
 Run the development server:

@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Grid3X3, Layers, ShoppingBag, Sliders } from 'lucide-react';
+import { Home, Grid3X3, Layers, ShoppingBag, Settings, Sliders } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { usePresenter } from '@/context/PresenterContext';
 import { cn } from '@/lib/utils';
@@ -18,6 +18,7 @@ export function MobileNav() {
     { label: 'Home', href: '/', icon: Home, isActive: pathname === '/' },
     { label: 'Catalogue', href: '/catalogue', icon: Grid3X3, isActive: pathname.startsWith('/catalogue') || pathname.startsWith('/design') },
     { label: 'Categories', href: '/categories', icon: Layers, isActive: pathname.startsWith('/categories') },
+    { label: 'Admin', href: '/admin', icon: Settings, isActive: pathname.startsWith('/admin') },
     {
       label: 'Cart',
       href: '/selection',
@@ -79,7 +80,7 @@ export function MobileNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex flex-col items-center justify-center w-16 h-12 rounded-lg text-xs transition-colors relative',
+                'flex flex-1 max-w-20 flex-col items-center justify-center h-12 rounded-lg text-xs transition-colors relative',
                 item.isActive ? 'text-[#FF535B] font-semibold' : 'text-[#C2C7D0] hover:text-[#DFE2EB]'
               )}
             >

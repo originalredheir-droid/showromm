@@ -52,14 +52,16 @@ export function CategoryCard({ category, span, isFeatured }: CategoryCardProps) 
     >
       {/* Background Graphic Watermark */}
       <div className="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none group-hover:opacity-35 transition-opacity duration-300">
-        <Image
-          src={category.featuredImage}
-          alt={category.name}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover object-left"
-          referrerPolicy="no-referrer"
-        />
+        {category.featuredImage && (
+          <Image
+            src={category.featuredImage}
+            alt={category.name}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover object-left"
+            referrerPolicy="no-referrer"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-r from-[#181C22] via-[#181C22]/80 to-transparent" />
       </div>
 

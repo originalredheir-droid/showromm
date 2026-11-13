@@ -1,25 +1,18 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
-import {
-  ArrowRight,
-  Sparkles,
-  Grid3X3,
-  Layers,
-  ChevronRight,
-  ShieldCheck,
-  Check,
-} from 'lucide-react';
-import { CATEGORIES } from '@/data/categories';
-import { DESIGNS } from '@/data/designs';
+import { ArrowRight, Layers, ChevronRight } from 'lucide-react';
 import { CategoryCard } from '@/components/categories/CategoryCard';
 import { CatalogueCard } from '@/components/catalogue/CatalogueCard';
+import { PublicEmptyState } from '@/components/catalogue/PublicEmptyState';
+import { getPublicCatalog } from '@/lib/catalog';
 
-export default function HomePage() {
-  const featuredDesigns = DESIGNS.filter((d) => d.featured || d.popular).slice(0, 3);
-  const featuredCategory = CATEGORIES.find((c) => c.id === 'education') || CATEGORIES[0];
-  const regularCategories = CATEGORIES.filter((c) => c.id !== featuredCategory.id);
+export const dynamic = 'force-dynamic';
+
+export default async function HomePage() {
+  const { categories, designs } = await getPublicCatalog();
+  const featuredDesigns = designs.filter((design) => design.featured || design.popular).slice(0, 3);
+  const featuredCategory = categories[0];
+  const regularCategories = categories.slice(1);
 
   return (
     <div className="space-y-10">
@@ -70,7 +63,7 @@ export default function HomePage() {
               Quick Jump:
             </span>
             <div className="flex flex-wrap gap-1.5 max-w-xs">
-              {CATEGORIES.slice(0, 6).map((cat) => (
+              {categories.slice(0, 6).map((cat) => (
                 <Link
                   key={cat.id}
                   href={`/catalogue?category=${cat.id}`}
@@ -93,50 +86,38 @@ export default function HomePage() {
               Engineered web applications and modular UI components organized by commercial vertical
             </p>
           </div>
-          <Link
-            href="/categories"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#FF535B] hover:underline font-semibold"
-          >
-            <span>View All 10 Sectors</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        {/* 12-Column Responsive Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-          {/* Featured Large Bento Card (Education - 8 cols) */}
-          <CategoryCard
-            category={featuredCategory}
-            span="col-span-1 md:col-span-12 lg:col-span-8"
-            isFeatured
-          />
-
-          {/* First side card (Healthcare - 4 cols) */}
-          {regularCategories[0] && (
-            <CategoryCard
-              category={regularCategories[0]}
-              span="col-span-1 md:col-span-6 lg:col-span-4"
-            />
+          {categories.length > 0 && (
+            <Link
+              href="/categories"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#FF535B] hover:underline font-semibold"
+            >
+              <span>View All {categories.length} Sectors</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
           )}
-
-          {/* Next row of cards */}
-          {regularCategories.slice(1, 4).map((cat) => (
-            <CategoryCard
-              key={cat.id}
-              category={cat}
-              span="col-span-1 md:col-span-6 lg:col-span-4"
-            />
-          ))}
-
-          {/* E-commerce (6 cols) and Hospitality (6 cols) */}
-          {regularCategories.slice(4, 6).map((cat) => (
-            <CategoryCard
-              key={cat.id}
-              category={cat}
-              span="col-span-1 md:col-span-6 lg:col-span-6"
-            />
-          ))}
         </div>
+
+        {featuredCategory ? (
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
+            <CategoryCard
+              category={featuredCategory}
+              span="col-span-1 md:col-span-12 lg:col-span-8"
+              isFeatured
+            />
+            {regularCategories.map((cat) => (
+              <CategoryCard
+                key={cat.id}
+                category={cat}
+                span="col-span-1 md:col-span-6 lg:col-span-4"
+              />
+            ))}
+          </div>
+        ) : (
+          <PublicEmptyState
+            title="Industry categories are coming soon"
+            description="The showroom’s categories are being prepared. Please check back soon."
+          />
+        )}
       </section>
 
       {/* SECTION: FEATURED SHOWROOM DESIGNS */}
@@ -145,7 +126,7 @@ export default function HomePage() {
           <div>
             <h2 className="text-xl font-bold text-[#DFE2EB]">Featured Website Concepts</h2>
             <p className="text-xs text-[#C2C7D0] mt-0.5">
-              High-conversion assets verified across production deployments and interactive prototypes
+              Selected concepts and modules available for client review
             </p>
           </div>
           <Link
@@ -158,11 +139,22 @@ export default function HomePage() {
         </div>
 
         {/* 3-Column Showcase Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredDesigns.map((design) => (
-            <CatalogueCard key={design.id} design={design} />
-          ))}
-        </div>
+        {featuredDesigns.length ? (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {featuredDesigns.map((design) => (
+              <CatalogueCard key={design.id} design={design} />
+            ))}
+          </div>
+        ) : (
+          <PublicEmptyState
+            title={designs.length ? 'No featured designs yet' : 'Featured designs are coming soon'}
+            description={
+              designs.length
+                ? 'Published designs will appear here when they are marked as featured.'
+                : 'There are no published designs to showcase yet.'
+            }
+          />
+        )}
       </section>
 
       {/* BOTTOM SHOWROOM FOOTER STRIP */}

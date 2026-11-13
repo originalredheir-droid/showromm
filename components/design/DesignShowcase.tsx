@@ -17,7 +17,6 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Design } from '@/types';
-import { DESIGNS } from '@/data/designs';
 import { useCart } from '@/context/CartContext';
 import { usePresenter } from '@/context/PresenterContext';
 import { ViewportPreview } from './ViewportPreview';
@@ -26,15 +25,14 @@ import { formatINR, cn } from '@/lib/utils';
 
 interface DesignShowcaseProps {
   design: Design;
+  relatedDesigns: Design[];
 }
 
-export function DesignShowcase({ design }: DesignShowcaseProps) {
+export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) {
   const { isInCart, addToCart, removeFromCart } = useCart();
   const { showPricing, showInternalDetails } = usePresenter();
   const [activeScopeTab, setActiveScopeTab] = useState<'visual' | 'functional'>('visual');
   const inCart = isInCart(design.id);
-
-  const relatedDesigns = DESIGNS.filter((d) => design.relatedIds?.includes(d.id));
 
   const handleCartToggle = () => {
     if (inCart) {
@@ -149,27 +147,29 @@ export function DesignShowcase({ design }: DesignShowcaseProps) {
           <CapabilityNotice customNotice={design.functionalNotice} />
 
           {/* Included Features Checklist */}
-          <div className="rounded-xl bg-[#181C22] border border-[#31353C] p-5 space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-[#DFE2EB]">Included Core Features</h3>
-              <span className="text-xs text-[#8B9199]">{design.features.length} Features Included</span>
-            </div>
-            <div className="divide-y divide-[#262A31]">
-              {design.features.map((feat, i) => (
-                <div key={i} className="py-3 flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-xs font-semibold text-[#DFE2EB]">{feat.title}</div>
-                    <div className="text-xs text-[#C2C7D0] mt-0.5 leading-relaxed">{feat.description}</div>
+          {design.features.length > 0 && (
+            <div className="rounded-xl bg-[#181C22] border border-[#31353C] p-5 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-semibold text-[#DFE2EB]">Included Core Features</h3>
+                <span className="text-xs text-[#8B9199]">{design.features.length} Features Included</span>
+              </div>
+              <div className="divide-y divide-[#262A31]">
+                {design.features.map((feat, i) => (
+                  <div key={i} className="py-3 flex items-start justify-between gap-4">
+                    <div>
+                      <div className="text-xs font-semibold text-[#DFE2EB]">{feat.title}</div>
+                      <div className="text-xs text-[#C2C7D0] mt-0.5 leading-relaxed">{feat.description}</div>
+                    </div>
+                    {feat.status && (
+                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+                        {feat.status}
+                      </span>
+                    )}
                   </div>
-                  {feat.status && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
-                      {feat.status}
-                    </span>
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Related / Complementary Showcase Modules */}
           {relatedDesigns.length > 0 && (
@@ -248,7 +248,7 @@ export function DesignShowcase({ design }: DesignShowcaseProps) {
             </div>
 
             {/* Commercial Base Estimate (Shown when Show Pricing is ON) */}
-            {showPricing && (
+            {showPricing && design.commercial.estimatedBaseINR > 0 && (
               <div className="p-3.5 rounded-lg bg-[#10141A] border border-[#262A31] space-y-2">
                 <div className="flex items-center justify-between text-xs text-[#8B9199]">
                   <span>Commercial Base</span>
@@ -269,9 +269,16 @@ export function DesignShowcase({ design }: DesignShowcaseProps) {
                 </div>
               </div>
             )}
+            {showPricing && design.commercial.estimatedBaseINR <= 0 && (
+              <p className="text-xs text-[#8B9199]">Pricing available on request</p>
+            )}
 
             {/* Technical Specifications (Shown when Technical Specs is ON) */}
             {showInternalDetails && (
+              design.technicalSpecs.devHours > 0 ||
+              design.technicalSpecs.techStack.length > 0 ||
+              design.technicalSpecs.deliverables.length > 0
+            ) && (
               <div className="p-3.5 rounded-lg bg-[#10141A] border border-[#262A31] space-y-2">
                 <div className="flex items-center justify-between text-xs text-[#8B9199]">
                   <span className="flex items-center gap-1 text-[#FF535B]">

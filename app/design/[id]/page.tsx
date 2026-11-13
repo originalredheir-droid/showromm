@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { DESIGNS } from '@/data/designs';
 import { DesignShowcase } from '@/components/design/DesignShowcase';
+import { getPublicCatalog } from '@/lib/catalog';
 
 interface DesignDetailPageProps {
   params: Promise<{ id: string }>;
@@ -9,17 +9,15 @@ interface DesignDetailPageProps {
 
 export default async function DesignDetailPage({ params }: DesignDetailPageProps) {
   const { id } = await params;
-  const design = DESIGNS.find((d) => d.id === id || d.slug === id);
+  const { designs } = await getPublicCatalog();
+  const design = designs.find((item) => item.id === id || item.slug === id);
 
   if (!design) {
     notFound();
   }
 
-  return <DesignShowcase design={design} />;
+  const relatedDesigns = designs.filter((item) => design.relatedIds.includes(item.id));
+  return <DesignShowcase design={design} relatedDesigns={relatedDesigns} />;
 }
 
-export function generateStaticParams() {
-  return DESIGNS.map((d) => ({
-    id: d.id,
-  }));
-}
+export const dynamic = 'force-dynamic';

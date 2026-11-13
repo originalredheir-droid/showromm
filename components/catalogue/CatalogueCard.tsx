@@ -80,7 +80,7 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
                 {idx < Math.min(design.tags.length - 1, 2) && <span className="mx-1 text-[#42474F]">·</span>}
               </span>
             ))}
-            {showInternalDetails && (
+            {showInternalDetails && design.technicalSpecs.devHours > 0 && (
               <span className="ml-auto inline-flex items-center gap-1 text-[11px] text-[#FF535B] font-mono">
                 <Clock className="w-3 h-3" />
                 ~{design.technicalSpecs.devHours}h
@@ -92,17 +92,17 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
 
       {/* Footer Commercial Actions */}
       <div className="p-5 pt-3 border-t border-[#262A31] flex items-center justify-between gap-3">
-        {showPricing ? (
+        {showPricing && design.commercial.estimatedBaseINR > 0 ? (
           <div>
             <span className="text-[10px] text-[#8B9199] uppercase tracking-wider block">Estimated Base</span>
             <span className="text-sm font-bold text-[#DFE2EB] tabular-nums">
               {formatINR(design.commercial.estimatedBaseINR)}
             </span>
           </div>
+        ) : showPricing ? (
+          <div className="text-[11px] text-[#8B9199]">Custom estimate</div>
         ) : (
-          <div className="text-[11px] text-[#8B9199]">
-            {design.features.length} core features
-          </div>
+          <div className="text-[11px] text-[#8B9199]">{design.features.length ? `${design.features.length} core features` : 'View details'}</div>
         )}
 
         <div className="flex items-center gap-2">

@@ -32,7 +32,7 @@ export function Header() {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search 180+ websites, UI screens, modules..."
+          placeholder="Search designs by title, technology, or keywords..."
           className="w-full pl-10 pr-12 py-2 bg-[#1C2026] border border-[#31353C] rounded text-sm text-[#DFE2EB] placeholder-[#8B9199] focus:outline-none focus:border-[#FF535B] focus:ring-1 focus:ring-[#FF535B] transition-all"
         />
         <div className="absolute right-2.5 hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#31353C] text-[#C2C7D0] text-[10px] font-mono border border-[#353940]">

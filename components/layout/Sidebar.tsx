@@ -14,6 +14,7 @@ import {
   EyeOff,
   User,
   Sliders,
+  Settings,
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { usePresenter } from '@/context/PresenterContext';
@@ -171,6 +172,13 @@ export function Sidebar() {
 
       {/* Bottom Segment: Operator Status */}
       <div className="flex flex-col gap-3 pt-3 border-t border-[#262A31]">
+        <Link
+          href="/admin"
+          className="flex items-center gap-2 rounded px-2 py-2 text-xs text-[#8B9199] hover:bg-[#1C2026] hover:text-[#DFE2EB]"
+        >
+          <Settings className="w-3.5 h-3.5" />
+          <span>Admin</span>
+        </Link>
         <div className="flex items-center gap-3 p-2 rounded bg-[#10141A] border border-[#31353C]">
           <div className="w-8 h-8 rounded-full bg-[#262A31] border border-[#353940] flex items-center justify-center text-[#FF535B] font-bold text-xs">
             RH

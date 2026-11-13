@@ -1,12 +1,13 @@
-'use client';
-
-import React from 'react';
 import Link from 'next/link';
 import { Layers, ArrowRight } from 'lucide-react';
-import { CATEGORIES } from '@/data/categories';
 import { CategoryCard } from '@/components/categories/CategoryCard';
+import { PublicEmptyState } from '@/components/catalogue/PublicEmptyState';
+import { getPublicCatalog } from '@/lib/catalog';
 
-export default function CategoriesPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function CategoriesPage() {
+  const { categories } = await getPublicCatalog();
   return (
     <div className="space-y-8">
       {/* Page Header */}
@@ -36,16 +37,18 @@ export default function CategoriesPage() {
         </Link>
       </div>
 
-      {/* Grid of all 10 Industry Categories */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {CATEGORIES.map((category) => (
-          <CategoryCard
-            key={category.id}
-            category={category}
-            span="col-span-1"
-          />
-        ))}
-      </div>
+      {categories.length ? (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {categories.map((category) => (
+            <CategoryCard key={category.id} category={category} span="col-span-1" />
+          ))}
+        </div>
+      ) : (
+        <PublicEmptyState
+          title="No categories yet"
+          description="The showroom’s industry categories are being prepared. Please check back soon."
+        />
+      )}
     </div>
   );
 }

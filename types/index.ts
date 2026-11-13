@@ -36,6 +36,12 @@ export interface DesignTechnicalSpecs {
   architectureNotes?: string;
 }
 
+export interface DesignCommercial {
+  estimatedBaseINR: number;
+  licenseType: string;
+  warrantyDays: number;
+}
+
 export interface Design {
   id: string;
   slug: string;
@@ -50,17 +56,14 @@ export interface Design {
   screenPreviews: ScreenPreview[];
   features: DesignFeature[];
   technicalSpecs: DesignTechnicalSpecs;
-  commercial: {
-    estimatedBaseINR: number;
-    licenseType: string;
-    warrantyDays: number;
-  };
+  commercial: DesignCommercial;
   tags: string[];
   featured?: boolean;
   popular?: boolean;
   newAddition?: boolean;
   functionalNotice: string;
   relatedIds: string[];
+  status?: 'draft' | 'published' | 'archived';
 }
 
 export interface CartItem {

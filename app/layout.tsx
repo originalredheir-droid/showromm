@@ -3,9 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/context/CartContext';
 import { PresenterProvider } from '@/context/PresenterContext';
-import { Sidebar } from '@/components/layout/Sidebar';
-import { Header } from '@/components/layout/Header';
-import { MobileNav } from '@/components/layout/MobileNav';
+import { AppChrome } from '@/components/layout/AppChrome';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -47,19 +45,7 @@ export default function RootLayout({
       >
         <PresenterProvider>
           <CartProvider>
-            {/* Desktop Persistent Sidebar */}
-            <Sidebar />
-
-            {/* Main Application Viewport */}
-            <div className="flex-1 flex flex-col min-h-screen lg:ml-[280px] pb-16 lg:pb-0 overflow-x-hidden">
-              <Header />
-              <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto">
-                {children}
-              </main>
-            </div>
-
-            {/* Mobile & Tablet Bottom Navigation */}
-            <MobileNav />
+            <AppChrome>{children}</AppChrome>
           </CartProvider>
         </PresenterProvider>
       </body>

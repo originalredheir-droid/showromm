@@ -1,6 +1,6 @@
 import { CartItem, PresenterSettings } from '@/types';
 
-const CART_STORAGE_KEY = 'redheir_showroom_cart_v1';
+const CART_STORAGE_KEY = 'redheir_showroom_cart_v2';
 const PRESENTER_STORAGE_KEY = 'redheir_showroom_presenter_v1';
 
 export function getStoredCart(): CartItem[] {

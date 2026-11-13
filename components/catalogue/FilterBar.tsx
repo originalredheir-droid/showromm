@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { Search, X, SlidersHorizontal, ArrowUpDown } from 'lucide-react';
-import { CATEGORIES } from '@/data/categories';
-import { ConceptType } from '@/types';
+import type { Category } from '@/types';
 import { cn } from '@/lib/utils';
 
 interface FilterBarProps {
+  categories: Category[];
   searchQuery: string;
   onSearchChange: (query: string) => void;
   selectedCategory: string;
@@ -21,6 +21,7 @@ interface FilterBarProps {
 }
 
 export function FilterBar({
+  categories,
   searchQuery,
   onSearchChange,
   selectedCategory,
@@ -75,8 +76,8 @@ export function FilterBar({
               onChange={(e) => onCategoryChange(e.target.value)}
               className="h-10 pl-3 pr-8 bg-[#181C22] border border-[#31353C] rounded-lg text-xs font-medium text-[#DFE2EB] focus:outline-none focus:border-[#FF535B] cursor-pointer"
             >
-              <option value="all">All Industries (10)</option>
-              {CATEGORIES.map((cat) => (
+              <option value="all">All Industries ({categories.length})</option>
+              {categories.map((cat) => (
                 <option key={cat.id} value={cat.id}>
                   {cat.name}
                 </option>

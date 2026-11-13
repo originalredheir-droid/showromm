@@ -52,3 +52,18 @@
 .selection-glow {
   box-shadow: 0 0 20px rgba(255, 83, 91, 0.12);
 }
+
+.admin-input {
+  width: 100%;
+  border: 1px solid #31353c;
+  border-radius: 0.5rem;
+  background: #10141a;
+  padding: 0.625rem 0.75rem;
+  color: #dfe2eb;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: #ff535b;
+}

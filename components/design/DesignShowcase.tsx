@@ -72,11 +72,11 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
                   className={cn(
                     'flex items-center gap-2 text-sm font-semibold pb-2 -mb-3.5 transition-all',
                     activeScopeTab === 'visual'
-                      ? 'text-[#DFE2EB] border-b-2 border-[#FF535B]'
+                      ? 'text-[#DFE2EB] border-b-2 border-[#B9C9D5]'
                       : 'text-[#8B9199] hover:text-[#DFE2EB]'
                   )}
                 >
-                  <Palette className="w-4 h-4 text-[#FF535B]" />
+                  <Palette className="w-4 h-4 text-[#B9C9D5]" />
                   <span>Visual & Interactive Design</span>
                 </button>
                 <button
@@ -85,11 +85,11 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
                   className={cn(
                     'flex items-center gap-2 text-sm font-semibold pb-2 -mb-3.5 transition-all',
                     activeScopeTab === 'functional'
-                      ? 'text-[#DFE2EB] border-b-2 border-[#FF535B]'
+                      ? 'text-[#DFE2EB] border-b-2 border-[#B9C9D5]'
                       : 'text-[#8B9199] hover:text-[#DFE2EB]'
                   )}
                 >
-                  <Terminal className="w-4 h-4 text-[#FF535B]" />
+                  <Terminal className="w-4 h-4 text-[#B9C9D5]" />
                   <span>Functional Architecture</span>
                 </button>
               </div>
@@ -105,7 +105,7 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
                   <div className="p-3.5 rounded-lg bg-[#10141A] border border-[#262A31] space-y-1.5">
                     <div className="text-xs font-semibold text-[#DFE2EB] flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-[#FF535B]" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#B9C9D5]" />
                       <span>Component System & Responsive Scaling</span>
                     </div>
                     <p className="text-[11px] text-[#C2C7D0]">
@@ -114,7 +114,7 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
                   </div>
                   <div className="p-3.5 rounded-lg bg-[#10141A] border border-[#262A31] space-y-1.5">
                     <div className="text-xs font-semibold text-[#DFE2EB] flex items-center gap-1.5">
-                      <Layers className="w-3.5 h-3.5 text-[#FF535B]" />
+                      <Layers className="w-3.5 h-3.5 text-[#B9C9D5]" />
                       <span>Interaction Choreography</span>
                     </div>
                     <p className="text-[11px] text-[#C2C7D0]">
@@ -176,7 +176,7 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-[#DFE2EB]">Complementary Showcase Modules</h3>
-                <Link href="/catalogue" className="text-xs text-[#FF535B] hover:underline flex items-center gap-1">
+                <Link href="/catalogue" className="text-xs text-[#B9C9D5] hover:underline flex items-center gap-1">
                   <span>View All in Catalogue</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -187,15 +187,15 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
                   return (
                     <div
                       key={rel.id}
-                      className="p-3.5 rounded-lg bg-[#181C22] border border-[#31353C] hover:border-[#FF535B]/50 transition-all flex flex-col justify-between"
+                      className="p-3.5 rounded-lg bg-[#181C22] border border-[#31353C] hover:border-[#B9C9D5]/50 transition-all flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex items-center justify-between text-[10px] text-[#8B9199] uppercase font-semibold mb-1">
                           <span>{rel.conceptTypeLabel}</span>
-                          {relInCart && <span className="text-[#FF535B] font-bold">IN CART</span>}
+                          {relInCart && <span className="text-[#B9C9D5] font-bold">IN CART</span>}
                         </div>
                         <Link href={`/design/${rel.id}`} className="block">
-                          <h4 className="text-xs font-semibold text-[#DFE2EB] hover:text-[#FF535B] transition-colors line-clamp-1">
+                          <h4 className="text-xs font-semibold text-[#DFE2EB] hover:text-[#B9C9D5] transition-colors line-clamp-1">
                             {rel.title}
                           </h4>
                         </Link>
@@ -211,7 +211,7 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
                         )}
                         <Link
                           href={`/design/${rel.id}`}
-                          className="text-[11px] font-semibold text-[#FF535B] hover:underline ml-auto"
+                          className="text-[11px] font-semibold text-[#B9C9D5] hover:underline ml-auto"
                         >
                           View Details →
                         </Link>
@@ -229,7 +229,7 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
           <div className="rounded-xl bg-[#181C22] border border-[#31353C] p-5 space-y-5 shadow-xl">
             {/* Header Tags */}
             <div className="flex flex-wrap gap-1.5">
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-[#FF535B]/15 text-[#FF535B] border border-[#FF535B]/30">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-[#B9C9D5]/15 text-[#B9C9D5] border border-[#B9C9D5]/30">
                 {design.conceptTypeLabel}
               </span>
               <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#262A31] text-[#C2C7D0] border border-[#31353C]">
@@ -281,7 +281,7 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
             ) && (
               <div className="p-3.5 rounded-lg bg-[#10141A] border border-[#262A31] space-y-2">
                 <div className="flex items-center justify-between text-xs text-[#8B9199]">
-                  <span className="flex items-center gap-1 text-[#FF535B]">
+                  <span className="flex items-center gap-1 text-[#B9C9D5]">
                     <Clock className="w-3 h-3" />
                     <span>Technical Dev Specs</span>
                   </span>
@@ -305,8 +305,8 @@ export function DesignShowcase({ design, relatedDesigns }: DesignShowcaseProps) 
                 className={cn(
                   'w-full py-3 px-4 rounded text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.98]',
                   inCart
-                    ? 'bg-[#1C2026] border border-[#FF535B] text-[#FF535B] hover:bg-[#262A31]'
-                    : 'bg-[#FF535B] text-white hover:bg-[#bb152c]'
+                    ? 'bg-[#1C2026] border border-[#B9C9D5] text-[#B9C9D5] hover:bg-[#262A31]'
+                    : 'bg-[#B9C9D5] text-[#10141A] hover:bg-[#DDE5EA]'
                 )}
               >
                 {inCart ? (

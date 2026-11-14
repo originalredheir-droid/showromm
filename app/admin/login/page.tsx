@@ -11,7 +11,7 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
   return (
     <div className="mx-auto max-w-md space-y-6">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#FF535B]">Showroom management</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-[#B9C9D5]">Showroom management</p>
         <h1 className="mt-2 text-2xl font-bold">Admin sign in</h1>
         <p className="mt-2 text-sm text-[#C2C7D0]">Use an administrator account to manage categories, catalog items, and images.</p>
       </div>

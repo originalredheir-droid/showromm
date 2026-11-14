@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   Home,
@@ -60,15 +61,13 @@ export function Sidebar() {
         {/* Brand Header */}
         <div className="flex items-center justify-between px-2 pt-1 pb-3 border-b border-[#262A31]">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded bg-[#FF535B] text-white flex items-center justify-center font-bold tracking-tight shadow-sm text-sm group-hover:bg-[#bb152c] transition-colors">
-              R
-            </div>
+            <Image src="/icon.png" alt="REDHEIR logo" width={36} height={36} className="rounded-lg" />
             <div className="flex flex-col">
               <span className="font-bold tracking-tight text-[#DFE2EB] text-base leading-tight">REDHEIR</span>
               <span className="text-[11px] text-[#C2C7D0] tracking-wide">Showroom Stage</span>
             </div>
           </Link>
-          <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider bg-[#262A31] border border-[#31353C] text-[#FF535B]">
+          <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider bg-[#262A31] border border-[#31353C] text-[#B9C9D5]">
             Live
           </span>
         </div>
@@ -84,7 +83,7 @@ export function Sidebar() {
                 className={cn(
                   'flex items-center justify-between px-3 py-2.5 rounded transition-all duration-150 text-sm font-medium',
                   item.isActive
-                    ? 'bg-[#262A31] text-[#FF535B] font-semibold border-l-2 border-[#FF535B]'
+                    ? 'bg-[#262A31] text-[#B9C9D5] font-semibold border-l-2 border-[#B9C9D5]'
                     : 'text-[#C2C7D0] hover:text-[#DFE2EB] hover:bg-[#1C2026]'
                 )}
               >
@@ -93,7 +92,7 @@ export function Sidebar() {
                   <span>{item.label}</span>
                 </div>
                 {item.badge !== undefined && (
-                  <span className="w-5 h-5 rounded-full bg-[#FF535B] text-white text-[11px] font-bold flex items-center justify-center shadow-sm">
+                  <span className="w-5 h-5 rounded-full bg-[#B9C9D5] text-[#10141A] text-[11px] font-bold flex items-center justify-center shadow-sm">
                     {item.badge}
                   </span>
                 )}
@@ -111,7 +110,7 @@ export function Sidebar() {
               'w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded transition-all text-xs font-semibold tracking-wide shadow-sm',
               pitchMode
                 ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                : 'bg-[#FF535B] text-white hover:bg-[#bb152c]'
+                : 'bg-[#B9C9D5] text-[#10141A] hover:bg-[#DDE5EA]'
             )}
           >
             <Tv className="w-4 h-4" />
@@ -135,7 +134,7 @@ export function Sidebar() {
               aria-label="Toggle Pricing"
               className={cn(
                 'w-8 h-4 rounded-full relative flex items-center px-0.5 transition-colors focus:outline-none',
-                showPricing ? 'bg-[#FF535B]' : 'bg-[#31353C]'
+                showPricing ? 'bg-[#B9C9D5]' : 'bg-[#31353C]'
               )}
             >
               <span
@@ -156,7 +155,7 @@ export function Sidebar() {
               aria-label="Toggle Technical Specs"
               className={cn(
                 'w-8 h-4 rounded-full relative flex items-center px-0.5 transition-colors focus:outline-none',
-                showInternalDetails ? 'bg-[#FF535B]' : 'bg-[#31353C]'
+                showInternalDetails ? 'bg-[#B9C9D5]' : 'bg-[#31353C]'
               )}
             >
               <span
@@ -180,9 +179,7 @@ export function Sidebar() {
           <span>Admin</span>
         </Link>
         <div className="flex items-center gap-3 p-2 rounded bg-[#10141A] border border-[#31353C]">
-          <div className="w-8 h-8 rounded-full bg-[#262A31] border border-[#353940] flex items-center justify-center text-[#FF535B] font-bold text-xs">
-            RH
-          </div>
+          <Image src="/icon.png" alt="REDHEIR logo" width={36} height={36} className="rounded-full border border-[#353940]" />
           <div className="flex flex-col truncate">
             <span className="text-xs font-semibold text-[#DFE2EB] truncate">Showroom Operator</span>
             <span className="text-[10px] text-[#C2C7D0] truncate">Internal Presentation Mode</span>

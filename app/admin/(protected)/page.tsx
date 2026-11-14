@@ -9,7 +9,7 @@ export default async function AdminOverviewPage() {
   return (
     <div className="space-y-8">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#FF535B]">Admin overview</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-[#B9C9D5]">Admin overview</p>
         <h1 className="mt-2 text-2xl font-bold">Manage your showroom</h1>
         <p className="mt-2 text-sm text-[#C2C7D0]">Create categories and catalog items. Draft items stay hidden from visitors.</p>
       </div>
@@ -26,11 +26,11 @@ export default async function AdminOverviewPage() {
         ))}
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <Link href="/admin/categories/new" className="rounded-xl border border-[#31353C] bg-[#181C22] p-5 hover:border-[#FF535B]">
+        <Link href="/admin/categories/new" className="rounded-xl border border-[#31353C] bg-[#181C22] p-5 hover:border-[#B9C9D5]">
           <h2 className="font-semibold">Create a category</h2>
           <p className="mt-1 text-sm text-[#C2C7D0]">Set up a category before adding items.</p>
         </Link>
-        <Link href="/admin/designs/new" className="rounded-xl border border-[#31353C] bg-[#181C22] p-5 hover:border-[#FF535B]">
+        <Link href="/admin/designs/new" className="rounded-xl border border-[#31353C] bg-[#181C22] p-5 hover:border-[#B9C9D5]">
           <h2 className="font-semibold">Create a catalog item</h2>
           <p className="mt-1 text-sm text-[#C2C7D0]">Add a design, descriptions, and images.</p>
         </Link>

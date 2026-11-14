@@ -29,7 +29,7 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
   };
 
   return (
-    <article className="group rounded-lg bg-[#181C22] border border-[#31353C] hover:border-[#FF535B]/70 transition-all duration-200 overflow-hidden flex flex-col justify-between">
+    <article className="group rounded-lg bg-[#181C22] border border-[#31353C] hover:border-[#B9C9D5]/70 transition-all duration-200 overflow-hidden flex flex-col justify-between">
       <div>
         {/* Media Viewport */}
         <Link href={`/design/${design.id}`} className="block relative w-full aspect-[16/10] bg-[#0A0E14] overflow-hidden border-b border-[#31353C]">
@@ -46,13 +46,13 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
             <span className="px-2 py-0.5 rounded text-[11px] font-semibold uppercase bg-[#10141A]/90 backdrop-blur border border-[#31353C] text-[#C2C7D0]">
               {design.conceptTypeLabel}
             </span>
-            <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#10141A]/90 backdrop-blur border border-[#31353C] text-[#FF535B]">
+            <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#10141A]/90 backdrop-blur border border-[#31353C] text-[#B9C9D5]">
               {design.categoryName.split('&')[0].trim()}
             </span>
           </div>
 
           {inCart && (
-            <div className="absolute top-3 right-3 px-2 py-0.5 rounded text-[11px] font-bold bg-[#FF535B] text-white shadow-md flex items-center gap-1">
+            <div className="absolute top-3 right-3 px-2 py-0.5 rounded text-[11px] font-bold bg-[#B9C9D5] text-[#10141A] shadow-md flex items-center gap-1">
               <Check className="w-3 h-3 stroke-[3]" />
               <span>Selected</span>
             </div>
@@ -63,7 +63,7 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
         <div className="p-5 space-y-3">
           <div>
             <Link href={`/design/${design.id}`} className="block">
-              <h3 className="text-base font-semibold text-[#DFE2EB] group-hover:text-[#FF535B] transition-colors line-clamp-1">
+              <h3 className="text-base font-semibold text-[#DFE2EB] group-hover:text-[#B9C9D5] transition-colors line-clamp-1">
                 {design.title}
               </h3>
             </Link>
@@ -81,7 +81,7 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
               </span>
             ))}
             {showInternalDetails && design.technicalSpecs.devHours > 0 && (
-              <span className="ml-auto inline-flex items-center gap-1 text-[11px] text-[#FF535B] font-mono">
+              <span className="ml-auto inline-flex items-center gap-1 text-[11px] text-[#B9C9D5] font-mono">
                 <Clock className="w-3 h-3" />
                 ~{design.technicalSpecs.devHours}h
               </span>
@@ -120,8 +120,8 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
             className={cn(
               'inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold transition-all shadow-sm',
               inCart
-                ? 'bg-[#1C2026] border border-[#FF535B] text-[#FF535B] hover:bg-[#262A31]'
-                : 'bg-[#FF535B] text-white hover:bg-[#bb152c]'
+                ? 'bg-[#1C2026] border border-[#B9C9D5] text-[#B9C9D5] hover:bg-[#262A31]'
+                : 'bg-[#B9C9D5] text-[#10141A] hover:bg-[#DDE5EA]'
             )}
           >
             {inCart ? (

@@ -13,7 +13,7 @@ export default async function AdminDesignsPage() {
           <p className="mt-1 text-sm text-[#C2C7D0]">Create, edit, publish, or archive showroom designs.</p>
         </div>
         {categories.length ? (
-          <Link href="/admin/designs/new" className="rounded-lg bg-[#FF535B] px-4 py-2 text-sm font-semibold">
+          <Link href="/admin/designs/new" className="rounded-lg bg-[#B9C9D5] px-4 py-2 text-sm font-semibold text-[#10141A]">
             Add item
           </Link>
         ) : (
@@ -24,7 +24,7 @@ export default async function AdminDesignsPage() {
       </div>
       {!categories.length && (
         <p className="rounded-lg border border-dashed border-[#4B515B] p-5 text-sm text-[#C2C7D0]">
-          Create a category before adding catalog items. <Link href="/admin/categories/new" className="text-[#FF535B] hover:underline">Add a category</Link>
+          Create a category before adding catalog items. <Link href="/admin/categories/new" className="text-[#B9C9D5] hover:underline">Add a category</Link>
         </p>
       )}
       {designs.length ? (
@@ -37,7 +37,7 @@ export default async function AdminDesignsPage() {
                   {categoryNames.get(design.category_id) ?? 'Unavailable category'} · {design.status}
                 </p>
               </div>
-              <Link href={`/admin/designs/${design.id}`} className="shrink-0 text-sm text-[#FF535B] hover:underline">Edit</Link>
+              <Link href={`/admin/designs/${design.id}`} className="shrink-0 text-sm text-[#B9C9D5] hover:underline">Edit</Link>
             </div>
           ))}
         </div>

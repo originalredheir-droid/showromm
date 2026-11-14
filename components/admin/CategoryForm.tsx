@@ -118,7 +118,7 @@ export function CategoryForm({ category }: CategoryFormProps) {
         Show this category on the public showroom
       </label>
       {errorMessage && <p role="alert" className="text-sm text-red-400">{errorMessage}</p>}
-      <button disabled={isSaving} className="rounded-lg bg-[#FF535B] px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-60">
+      <button disabled={isSaving} className="rounded-lg bg-[#B9C9D5] px-4 py-2.5 text-sm font-semibold text-[#10141A] disabled:opacity-60">
         {isSaving ? 'Saving…' : category ? 'Save category' : 'Create category'}
       </button>
     </form>

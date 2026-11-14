@@ -141,7 +141,7 @@ export function ViewportPreview({ design }: ViewportPreviewProps) {
               className={cn(
                 'flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs transition-all shrink-0',
                 selectedScreenId === screen.id
-                  ? 'bg-[#262A31] border-[#FF535B] text-[#DFE2EB] font-semibold'
+                  ? 'bg-[#262A31] border-[#B9C9D5] text-[#DFE2EB] font-semibold'
                   : 'bg-[#10141A] border-[#31353C] text-[#C2C7D0] hover:text-[#DFE2EB]'
               )}
             >

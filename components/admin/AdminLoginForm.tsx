@@ -37,7 +37,7 @@ export function AdminLoginForm() {
           autoComplete="username"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="w-full rounded-lg border border-[#31353C] bg-[#10141A] px-3 py-2.5 text-sm outline-none focus:border-[#FF535B]"
+          className="w-full rounded-lg border border-[#31353C] bg-[#10141A] px-3 py-2.5 text-sm outline-none focus:border-[#B9C9D5]"
         />
       </label>
       <label className="block space-y-1.5">
@@ -48,7 +48,7 @@ export function AdminLoginForm() {
           autoComplete="current-password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="w-full rounded-lg border border-[#31353C] bg-[#10141A] px-3 py-2.5 text-sm outline-none focus:border-[#FF535B]"
+          className="w-full rounded-lg border border-[#31353C] bg-[#10141A] px-3 py-2.5 text-sm outline-none focus:border-[#B9C9D5]"
         />
       </label>
       {errorMessage && (
@@ -58,7 +58,7 @@ export function AdminLoginForm() {
       )}
       <button
         disabled={isSubmitting}
-        className="w-full rounded-lg bg-[#FF535B] px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-60"
+        className="w-full rounded-lg bg-[#B9C9D5] px-4 py-2.5 text-sm font-semibold text-[#10141A] disabled:opacity-60"
       >
         {isSubmitting ? 'Signing in…' : 'Sign in'}
       </button>

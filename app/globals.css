@@ -10,9 +10,9 @@
     --surface-lowest: #0a0e14;
     --border: #31353c;
     --border-subtle: #262a31;
-    --primary: #ff535b;
-    --primary-light: #ffb3b1;
-    --primary-dark: #bb152c;
+    --primary: #B9C9D5;
+    --primary-light: #DDE5EA;
+    --primary-dark: #A8B9C6;
     --text-primary: #dfe2eb;
     --text-secondary: #c2c7d0;
     --text-muted: #8b9199;
@@ -65,5 +65,5 @@
 }
 
 .admin-input:focus {
-  border-color: #ff535b;
+  border-color: #B9C9D5;
 }

@@ -93,7 +93,7 @@ export function AssetPicker({
             </div>
           );
         })}
-        <label className="flex h-28 w-40 cursor-pointer items-center justify-center rounded border border-dashed border-[#4B515B] bg-[#10141A] px-3 text-center text-xs text-[#C2C7D0] hover:border-[#FF535B]">
+        <label className="flex h-28 w-40 cursor-pointer items-center justify-center rounded border border-dashed border-[#4B515B] bg-[#10141A] px-3 text-center text-xs text-[#C2C7D0] hover:border-[#B9C9D5]">
           {isUploading ? 'Uploading…' : multiple ? 'Add image(s)' : 'Choose image'}
           <input
             type="file"

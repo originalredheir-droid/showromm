@@ -13,7 +13,7 @@ export default async function NewDesignPage() {
         <DesignForm categories={categories} />
       ) : (
         <p className="rounded-lg border border-dashed border-[#4B515B] p-6 text-sm text-[#C2C7D0]">
-          Add a category first. <Link href="/admin/categories/new" className="text-[#FF535B] hover:underline">Create category</Link>
+          Add a category first. <Link href="/admin/categories/new" className="text-[#B9C9D5] hover:underline">Create category</Link>
         </p>
       )}
     </div>

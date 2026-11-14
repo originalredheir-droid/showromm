@@ -14,8 +14,8 @@ export default async function CategoriesPage() {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#31353C]">
         <div>
           <div className="inline-flex items-center gap-2 mb-2">
-            <Layers className="w-4 h-4 text-[#FF535B]" />
-            <span className="text-xs uppercase tracking-wider text-[#FF535B] font-semibold">
+            <Layers className="w-4 h-4 text-[#B9C9D5]" />
+            <span className="text-xs uppercase tracking-wider text-[#B9C9D5] font-semibold">
               Taxonomy & Vertical Engines
             </span>
           </div>

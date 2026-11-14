@@ -11,7 +11,7 @@ export default async function AdminCategoriesPage() {
           <h1 className="text-2xl font-bold">Categories</h1>
           <p className="mt-1 text-sm text-[#C2C7D0]">Organize the public showroom. Inactive categories are hidden.</p>
         </div>
-        <Link href="/admin/categories/new" className="rounded-lg bg-[#FF535B] px-4 py-2 text-sm font-semibold">Add category</Link>
+        <Link href="/admin/categories/new" className="rounded-lg bg-[#B9C9D5] px-4 py-2 text-sm font-semibold text-[#10141A]">Add category</Link>
       </div>
       {categories.length ? (
         <div className="overflow-hidden rounded-xl border border-[#31353C]">
@@ -21,7 +21,7 @@ export default async function AdminCategoriesPage() {
                 <h2 className="font-medium">{category.name}</h2>
                 <p className="mt-1 text-xs text-[#8B9199]">/{category.slug} · {category.is_active ? 'Active' : 'Hidden'}</p>
               </div>
-              <Link href={`/admin/categories/${category.id}`} className="text-sm text-[#FF535B] hover:underline">Edit</Link>
+              <Link href={`/admin/categories/${category.id}`} className="text-sm text-[#B9C9D5] hover:underline">Edit</Link>
             </div>
           ))}
         </div>

@@ -254,7 +254,7 @@ export function DesignForm({ categories, design }: DesignFormProps) {
 
       {errorMessage && <p role="alert" className="text-sm text-red-400">{errorMessage}</p>}
       {notice && <p role="status" className="text-sm text-amber-300">{notice}</p>}
-      <button disabled={isSaving} className="rounded-lg bg-[#FF535B] px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-60">
+      <button disabled={isSaving} className="rounded-lg bg-[#B9C9D5] px-5 py-2.5 text-sm font-semibold text-[#10141A] disabled:opacity-60">
         {isSaving ? 'Saving…' : design ? 'Save catalog item' : 'Create catalog item'}
       </button>
     </form>

@@ -19,12 +19,12 @@ export default async function HomePage() {
       {/* Hero Welcome Banner */}
       <section className="relative rounded-2xl p-6 sm:p-8 bg-[#181C22] border border-[#31353C] overflow-hidden">
         {/* Soft Crimson Glow */}
-        <div className="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-[#FF535B] opacity-5 blur-3xl pointer-events-none" />
+        <div className="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-[#B9C9D5] opacity-5 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
           <div className="space-y-3 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#10141A] border border-[#31353C]">
-              <span className="w-2 h-2 rounded-full bg-[#FF535B] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#B9C9D5] animate-pulse" />
               <span className="text-[11px] font-semibold text-[#C2C7D0] uppercase tracking-wider">
                 Digital Showroom Stage
               </span>
@@ -42,7 +42,7 @@ export default async function HomePage() {
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <Link
                 href="/catalogue"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FF535B] hover:bg-[#bb152c] text-white text-xs font-semibold tracking-wide transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#B9C9D5] hover:bg-[#DDE5EA] text-[#10141A] text-xs font-semibold tracking-wide transition-colors shadow-sm"
               >
                 <span>Browse Full Catalogue</span>
                 <ArrowRight className="w-4 h-4" />
@@ -89,7 +89,7 @@ export default async function HomePage() {
           {categories.length > 0 && (
             <Link
               href="/categories"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#FF535B] hover:underline font-semibold"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#B9C9D5] hover:underline font-semibold"
             >
               <span>View All {categories.length} Sectors</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -131,10 +131,10 @@ export default async function HomePage() {
           </div>
           <Link
             href="/catalogue"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#181C22] border border-[#31353C] hover:border-[#FF535B] text-xs font-semibold text-[#DFE2EB] transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#181C22] border border-[#31353C] hover:border-[#B9C9D5] text-xs font-semibold text-[#DFE2EB] transition-colors"
           >
             <span>Explore All Concepts</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#FF535B]" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#B9C9D5]" />
           </Link>
         </div>
 

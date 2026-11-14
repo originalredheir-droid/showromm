@@ -33,7 +33,7 @@ export function Header() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search designs by title, technology, or keywords..."
-          className="w-full pl-10 pr-12 py-2 bg-[#1C2026] border border-[#31353C] rounded text-sm text-[#DFE2EB] placeholder-[#8B9199] focus:outline-none focus:border-[#FF535B] focus:ring-1 focus:ring-[#FF535B] transition-all"
+          className="w-full pl-10 pr-12 py-2 bg-[#1C2026] border border-[#31353C] rounded text-sm text-[#DFE2EB] placeholder-[#8B9199] focus:outline-none focus:border-[#B9C9D5] focus:ring-1 focus:ring-[#B9C9D5] transition-all"
         />
         <div className="absolute right-2.5 hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#31353C] text-[#C2C7D0] text-[10px] font-mono border border-[#353940]">
           <span>⌘</span>K
@@ -47,19 +47,19 @@ export function Header() {
           onClick={togglePitchMode}
           type="button"
           title="Toggle Presenter Pitch Mode"
-          className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#1C2026] border border-[#31353C] text-xs font-medium text-[#C2C7D0] hover:text-[#DFE2EB] hover:border-[#FF535B] transition-colors"
+          className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#1C2026] border border-[#31353C] text-xs font-medium text-[#C2C7D0] hover:text-[#DFE2EB] hover:border-[#B9C9D5] transition-colors"
         >
-          <Tv className="w-3.5 h-3.5 text-[#FF535B]" />
+          <Tv className="w-3.5 h-3.5 text-[#B9C9D5]" />
           <span>{pitchMode ? 'Exit Pitch' : 'Pitch Mode'}</span>
         </button>
 
         {/* Selection Cart Launcher Badge */}
         <Link
           href="/selection"
-          className="flex items-center gap-2 px-3 py-1.5 rounded bg-[#1C2026] border border-[#31353C] hover:border-[#FF535B] text-[#DFE2EB] transition-all group"
+          className="flex items-center gap-2 px-3 py-1.5 rounded bg-[#1C2026] border border-[#31353C] hover:border-[#B9C9D5] text-[#DFE2EB] transition-all group"
         >
-          <ShoppingBag className="w-4 h-4 text-[#FF535B] group-hover:scale-110 transition-transform" />
-          <span className="text-xs font-semibold text-[#FF535B]">Cart:</span>
+          <ShoppingBag className="w-4 h-4 text-[#B9C9D5] group-hover:scale-110 transition-transform" />
+          <span className="text-xs font-semibold text-[#B9C9D5]">Cart:</span>
           <span className="text-xs text-[#DFE2EB]">
             {totalCount} {totalCount === 1 ? 'item' : 'items'}
             {showPricing && totalEstimatedBaseINR > 0 && ` (${formatINR(totalEstimatedBaseINR)})`}

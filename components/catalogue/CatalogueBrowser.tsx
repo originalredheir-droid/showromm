@@ -73,7 +73,7 @@ function CatalogueContent({ designs, categories }: { designs: Design[]; categori
           </p>
         </div>
         {selectedCategory !== 'all' && (
-          <button onClick={() => setSelectedCategory('all')} className="self-start rounded-lg border border-[#31353C] bg-[#181C22] px-3 py-1.5 text-xs font-semibold text-[#FF535B] sm:self-auto">
+          <button onClick={() => setSelectedCategory('all')} className="self-start rounded-lg border border-[#31353C] bg-[#181C22] px-3 py-1.5 text-xs font-semibold text-[#B9C9D5] sm:self-auto">
             Show All Categories
           </button>
         )}

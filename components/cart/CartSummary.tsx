@@ -54,7 +54,7 @@ export function CartSummary() {
   return (
     <div className="rounded-xl bg-[#181C22] border border-[#31353C] p-6 space-y-6 shadow-xl relative overflow-hidden">
       {/* Top Accent line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-[#FF535B]" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-[#B9C9D5]" />
 
       {/* Header */}
       <div className="flex items-start justify-between pb-4 border-b border-[#31353C]">
@@ -62,7 +62,7 @@ export function CartSummary() {
           <h3 className="text-base font-bold text-[#DFE2EB]">Selection Summary</h3>
           <span className="text-xs text-[#8B9199]">Client Meeting Shortlist</span>
         </div>
-        <span className="px-2.5 py-0.5 rounded text-xs font-semibold bg-[#262A31] text-[#FF535B] border border-[#31353C]">
+        <span className="px-2.5 py-0.5 rounded text-xs font-semibold bg-[#262A31] text-[#B9C9D5] border border-[#31353C]">
           {totalCount} {totalCount === 1 ? 'Deliverable' : 'Deliverables'}
         </span>
       </div>
@@ -86,7 +86,7 @@ export function CartSummary() {
       {showInternalDetails && (
         <div className="p-3.5 rounded-lg bg-[#10141A] border border-[#262A31] space-y-1">
           <div className="flex items-center justify-between text-xs text-[#8B9199]">
-            <span className="flex items-center gap-1.5 text-[#FF535B]">
+            <span className="flex items-center gap-1.5 text-[#B9C9D5]">
               <Clock className="w-3.5 h-3.5" />
               <span>Total Engineering Scope</span>
             </span>
@@ -139,7 +139,7 @@ export function CartSummary() {
         {/* Continue Browsing */}
         <Link
           href="/catalogue"
-          className="w-full py-2.5 px-4 rounded-lg bg-[#FF535B] hover:bg-[#bb152c] text-xs font-semibold text-white flex items-center justify-center gap-2 transition-colors shadow-sm"
+          className="w-full py-2.5 px-4 rounded-lg bg-[#B9C9D5] hover:bg-[#DDE5EA] text-xs font-semibold text-[#10141A] flex items-center justify-center gap-2 transition-colors shadow-sm"
         >
           <span>Continue Browsing Catalogue</span>
           <ArrowRight className="w-4 h-4" />
@@ -171,7 +171,7 @@ export function CartSummary() {
           <button
             onClick={() => setShowClearConfirm(true)}
             type="button"
-            className="w-full py-2 px-3 rounded text-xs text-[#8B9199] hover:text-[#FF535B] hover:bg-[#1C2026] transition-colors flex items-center justify-center gap-1.5"
+            className="w-full py-2 px-3 rounded text-xs text-[#8B9199] hover:text-[#B9C9D5] hover:bg-[#1C2026] transition-colors flex items-center justify-center gap-1.5"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>Empty Selection Cart</span>

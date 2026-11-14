@@ -31,8 +31,8 @@ export default function SelectionCartPage() {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#31353C]">
         <div>
           <div className="inline-flex items-center gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-[#FF535B]" />
-            <span className="text-xs uppercase tracking-wider text-[#FF535B] font-semibold">
+            <span className="w-2 h-2 rounded-full bg-[#B9C9D5]" />
+            <span className="text-xs uppercase tracking-wider text-[#B9C9D5] font-semibold">
               Client Project Scope
             </span>
           </div>
@@ -79,7 +79,7 @@ export default function SelectionCartPage() {
       ) : (
         /* Empty Cart State */
         <div className="py-20 px-6 text-center rounded-2xl bg-[#181C22] border border-[#31353C] max-w-lg mx-auto space-y-5">
-          <div className="w-16 h-16 rounded-full bg-[#262A31] border border-[#353940] flex items-center justify-center text-[#FF535B] mx-auto shadow-inner">
+          <div className="w-16 h-16 rounded-full bg-[#262A31] border border-[#353940] flex items-center justify-center text-[#B9C9D5] mx-auto shadow-inner">
             <ShoppingBag className="w-7 h-7" />
           </div>
           <div className="space-y-2">
@@ -91,7 +91,7 @@ export default function SelectionCartPage() {
           <div className="pt-2">
             <Link
               href="/catalogue"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FF535B] hover:bg-[#bb152c] text-white text-xs font-semibold tracking-wide transition-colors shadow-md"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#B9C9D5] hover:bg-[#DDE5EA] text-[#10141A] text-xs font-semibold tracking-wide transition-colors shadow-md"
             >
               <span>Explore Showroom Catalogue</span>
               <ArrowRight className="w-4 h-4" />

@@ -10,7 +10,7 @@ interface CapabilityNoticeProps {
 export function CapabilityNotice({ customNotice }: CapabilityNoticeProps) {
   return (
     <div className="p-4 rounded-xl bg-[#181C22] border border-[#31353C] space-y-3">
-      <div className="flex items-center gap-2.5 text-[#FF535B]">
+      <div className="flex items-center gap-2.5 text-[#B9C9D5]">
         <ShieldCheck className="w-5 h-5 shrink-0" />
         <span className="text-xs font-semibold uppercase tracking-wider">
           Production Scope Transparency
@@ -30,7 +30,7 @@ export function CapabilityNotice({ customNotice }: CapabilityNoticeProps) {
 
         <div className="p-3 rounded-lg bg-[#10141A] border border-[#262A31] space-y-1">
           <div className="font-semibold text-[#DFE2EB] flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF535B]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B9C9D5]" />
             <span>2. Functional & Backend Architecture</span>
           </div>
           <p className="text-[#C2C7D0] leading-relaxed">

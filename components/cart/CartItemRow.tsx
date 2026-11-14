@@ -38,14 +38,14 @@ export function CartItemRow({ item }: CartItemRowProps) {
 
         <div className="space-y-1 min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.2 rounded text-[10px] font-semibold uppercase bg-[#262A31] text-[#FF535B] border border-[#31353C]">
+            <span className="px-2 py-0.2 rounded text-[10px] font-semibold uppercase bg-[#262A31] text-[#B9C9D5] border border-[#31353C]">
               {design.conceptTypeLabel}
             </span>
             <span className="text-xs text-[#8B9199] truncate">{design.categoryName}</span>
           </div>
 
           <Link href={`/design/${design.id}`} className="block">
-            <h4 className="text-sm font-semibold text-[#DFE2EB] hover:text-[#FF535B] transition-colors truncate">
+            <h4 className="text-sm font-semibold text-[#DFE2EB] hover:text-[#B9C9D5] transition-colors truncate">
               {design.title}
             </h4>
           </Link>
@@ -56,7 +56,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
 
           {showInternalDetails && (
             <div className="flex items-center gap-2 text-[11px] text-[#8B9199] pt-1">
-              <span className="inline-flex items-center gap-1 text-[#FF535B] font-mono">
+              <span className="inline-flex items-center gap-1 text-[#B9C9D5] font-mono">
                 <Clock className="w-3 h-3" />
                 ~{design.technicalSpecs.devHours * quantity}h total
               </span>
@@ -118,7 +118,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
           <button
             onClick={() => removeFromCart(design.id)}
             type="button"
-            className="p-1.5 rounded text-[#8B9199] hover:text-[#FF535B] hover:bg-[#262A31] transition-colors"
+            className="p-1.5 rounded text-[#8B9199] hover:text-[#B9C9D5] hover:bg-[#262A31] transition-colors"
             title="Remove from selection"
           >
             <Trash2 className="w-4 h-4" />

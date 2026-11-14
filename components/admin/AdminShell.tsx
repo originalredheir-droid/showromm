@@ -32,7 +32,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <header className="border-b border-[#31353C] bg-[#181C22]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
           <Link href="/admin" className="font-bold tracking-tight">
-            REDHEIR <span className="text-[#FF535B]">ADMIN</span>
+            REDHEIR <span className="text-[#B9C9D5]">ADMIN</span>
           </Link>
           <nav aria-label="Admin navigation" className="flex items-center gap-2 sm:gap-4">
             {links.map((link) => (
@@ -40,7 +40,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 key={link.href}
                 href={link.href}
                 className={`text-xs sm:text-sm ${
-                  pathname === link.href ? 'text-[#FF535B] font-semibold' : 'text-[#C2C7D0] hover:text-white'
+                  pathname === link.href ? 'text-[#B9C9D5] font-semibold' : 'text-[#C2C7D0] hover:text-white'
                 }`}
               >
                 {link.label}

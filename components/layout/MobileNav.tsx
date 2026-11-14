@@ -49,7 +49,7 @@ export function MobileNav() {
               className={cn(
                 'p-2.5 rounded border text-xs font-semibold text-center transition-colors',
                 showPricing
-                  ? 'bg-[#FF535B]/15 border-[#FF535B] text-[#FF535B]'
+                  ? 'bg-[#B9C9D5]/15 border-[#B9C9D5] text-[#B9C9D5]'
                   : 'bg-[#1C2026] border-[#31353C] text-[#C2C7D0]'
               )}
             >
@@ -61,7 +61,7 @@ export function MobileNav() {
               className={cn(
                 'p-2.5 rounded border text-xs font-semibold text-center transition-colors',
                 showInternalDetails
-                  ? 'bg-[#FF535B]/15 border-[#FF535B] text-[#FF535B]'
+                  ? 'bg-[#B9C9D5]/15 border-[#B9C9D5] text-[#B9C9D5]'
                   : 'bg-[#1C2026] border-[#31353C] text-[#C2C7D0]'
               )}
             >
@@ -81,13 +81,13 @@ export function MobileNav() {
               href={item.href}
               className={cn(
                 'flex flex-1 max-w-20 flex-col items-center justify-center h-12 rounded-lg text-xs transition-colors relative',
-                item.isActive ? 'text-[#FF535B] font-semibold' : 'text-[#C2C7D0] hover:text-[#DFE2EB]'
+                item.isActive ? 'text-[#B9C9D5] font-semibold' : 'text-[#C2C7D0] hover:text-[#DFE2EB]'
               )}
             >
               <Icon className="w-5 h-5 mb-0.5" />
               <span className="text-[10px] tracking-tight">{item.label}</span>
               {item.badge !== undefined && (
-                <span className="absolute top-1 right-2 w-4 h-4 rounded-full bg-[#FF535B] text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                <span className="absolute top-1 right-2 w-4 h-4 rounded-full bg-[#B9C9D5] text-[#10141A] text-[10px] font-bold flex items-center justify-center shadow-sm">
                   {item.badge}
                 </span>
               )}
@@ -101,7 +101,7 @@ export function MobileNav() {
           onClick={() => setShowControls(!showControls)}
           className={cn(
             'flex flex-col items-center justify-center w-16 h-12 rounded-lg text-xs transition-colors',
-            showControls ? 'text-[#FF535B]' : 'text-[#C2C7D0]'
+            showControls ? 'text-[#B9C9D5]' : 'text-[#C2C7D0]'
           )}
         >
           <Sliders className="w-5 h-5 mb-0.5" />

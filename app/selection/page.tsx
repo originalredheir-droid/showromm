@@ -40,8 +40,7 @@ export default function SelectionCartPage() {
             Selection Cart
           </h1>
           <p className="text-sm text-[#C2C7D0] mt-1 max-w-2xl">
-            Shortlisted website designs, functional modules, and screens curated for the proposed project.
-            Selections persist in your browser for upcoming client presentations.
+            Your project shortlist. Saved in this browser.
           </p>
         </div>
 

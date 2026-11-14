@@ -23,8 +23,7 @@ export default async function CategoriesPage() {
             Industry Domain Categories
           </h1>
           <p className="text-sm text-[#C2C7D0] mt-1 max-w-2xl">
-            Pre-architected industry engines engineered for rapid tailored deployment.
-            Click any sector to explore its associated website designs, modules, and screens.
+            Choose a category to explore its designs.
           </p>
         </div>
 

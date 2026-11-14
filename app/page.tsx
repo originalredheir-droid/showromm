@@ -35,8 +35,7 @@ export default async function HomePage() {
             </h1>
 
             <p className="text-sm text-[#C2C7D0] leading-relaxed max-w-2xl">
-              Presenting bespoke digital experiences, modular architectures, and conversion-focused web applications.
-              Browse live during client consultations and curate project selections seamlessly.
+              Explore designs. Build client selections.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-3">

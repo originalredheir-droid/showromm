@@ -16,12 +16,19 @@ import {
   User,
   Sliders,
   Settings,
+  PanelLeftClose,
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { usePresenter } from '@/context/PresenterContext';
 import { cn } from '@/lib/utils';
 
-export function Sidebar() {
+export function Sidebar({
+  isOpen,
+  onCollapse,
+}: {
+  isOpen: boolean;
+  onCollapse: () => void;
+}) {
   const pathname = usePathname();
   const { totalCount } = useCart();
   const { showPricing, showInternalDetails, togglePricing, toggleInternalDetails, togglePitchMode, pitchMode } = usePresenter();
@@ -55,7 +62,14 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="hidden lg:flex fixed top-0 left-0 h-screen w-[280px] flex-col justify-between p-4 bg-[#181C22] border-r border-[#31353C] z-40 select-none">
+    <aside
+      aria-hidden={!isOpen}
+      inert={!isOpen}
+      className={cn(
+        'hidden lg:flex fixed top-0 left-0 h-screen w-[280px] flex-col justify-between p-4 bg-[#181C22] border-r border-[#31353C] z-40 select-none transition-transform duration-300 ease-in-out',
+        isOpen ? 'translate-x-0' : '-translate-x-full pointer-events-none'
+      )}
+    >
       {/* Top Segment: Brand & Navigation */}
       <div className="flex flex-col gap-6">
         {/* Brand Header */}
@@ -67,9 +81,20 @@ export function Sidebar() {
               <span className="text-[11px] text-[#C2C7D0] tracking-wide">Showroom Stage</span>
             </div>
           </Link>
-          <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider bg-[#262A31] border border-[#31353C] text-[#B9C9D5]">
-            Live
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider bg-[#262A31] border border-[#31353C] text-[#B9C9D5]">
+              Live
+            </span>
+            <button
+              type="button"
+              onClick={onCollapse}
+              aria-label="Hide sidebar"
+              title="Hide sidebar"
+              className="rounded p-1.5 text-[#C2C7D0] transition-colors hover:bg-[#262A31] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B9C9D5]"
+            >
+              <PanelLeftClose className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
         {/* Navigation Links */}

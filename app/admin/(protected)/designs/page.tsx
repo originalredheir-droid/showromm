@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getAdminCategories, getAdminDesigns } from '@/lib/catalog';
+import { DeleteCatalogItemButton } from '@/components/admin/DeleteCatalogItemButton';
 
 export default async function AdminDesignsPage() {
   const [categories, designs] = await Promise.all([getAdminCategories(), getAdminDesigns()]);
@@ -37,7 +38,18 @@ export default async function AdminDesignsPage() {
                   {categoryNames.get(design.category_id) ?? 'Unavailable category'} · {design.status}
                 </p>
               </div>
-              <Link href={`/admin/designs/${design.id}`} className="shrink-0 text-sm text-[#B9C9D5] hover:underline">Edit</Link>
+              <div className="flex shrink-0 items-center gap-4">
+                <Link href={`/admin/designs/${design.id}`} className="text-sm text-[#B9C9D5] hover:underline">Edit</Link>
+                <DeleteCatalogItemButton
+                  table="designs"
+                  id={design.id}
+                  name={design.title}
+                  assetPaths={[
+                    design.visual_preview_image,
+                    ...design.screen_previews.map((screen) => screen.image),
+                  ]}
+                />
+              </div>
             </div>
           ))}
         </div>

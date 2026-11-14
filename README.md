@@ -106,7 +106,7 @@ npm install
    ```
 
    Replace the example email with the user you created. Do not enable public signup for this internal admin console.
-4. Open `/admin` to create categories and designs. Published catalog images are publicly viewable; uploads and content edits require an authorized admin.
+4. Open `/admin` to create categories and designs. Lists include confirmed deletion actions that also remove uploaded images. A category cannot be deleted while designs reference it; hide it instead or remove its designs first. Published catalog images are publicly viewable; uploads and content edits require an authorized admin.
 
 ### Development Server
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getAdminCategories } from '@/lib/catalog';
+import { DeleteCatalogItemButton } from '@/components/admin/DeleteCatalogItemButton';
 
 export default async function AdminCategoriesPage() {
   const categories = await getAdminCategories();
@@ -9,7 +10,7 @@ export default async function AdminCategoriesPage() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">Categories</h1>
-          <p className="mt-1 text-sm text-[#C2C7D0]">Organize the public showroom. Inactive categories are hidden.</p>
+          <p className="mt-1 text-sm text-[#C2C7D0]">Organize the public showroom. Hide categories with designs; only empty categories can be deleted.</p>
         </div>
         <Link href="/admin/categories/new" className="rounded-lg bg-[#B9C9D5] px-4 py-2 text-sm font-semibold text-[#10141A]">Add category</Link>
       </div>
@@ -21,7 +22,15 @@ export default async function AdminCategoriesPage() {
                 <h2 className="font-medium">{category.name}</h2>
                 <p className="mt-1 text-xs text-[#8B9199]">/{category.slug} · {category.is_active ? 'Active' : 'Hidden'}</p>
               </div>
-              <Link href={`/admin/categories/${category.id}`} className="text-sm text-[#B9C9D5] hover:underline">Edit</Link>
+              <div className="flex items-center gap-4">
+                <Link href={`/admin/categories/${category.id}`} className="text-sm text-[#B9C9D5] hover:underline">Edit</Link>
+                <DeleteCatalogItemButton
+                  table="categories"
+                  id={category.id}
+                  name={category.name}
+                  assetPaths={[category.featured_image]}
+                />
+              </div>
             </div>
           ))}
         </div>

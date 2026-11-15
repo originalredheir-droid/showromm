@@ -67,3 +67,69 @@
 .admin-input:focus {
   border-color: #B9C9D5;
 }
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  body.printing-selection {
+    display: block !important;
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body.printing-selection * {
+    visibility: hidden !important;
+  }
+
+  body.printing-selection .print-selection,
+  body.printing-selection .print-selection * {
+    visibility: visible !important;
+  }
+
+  body.printing-selection .print-hide {
+    display: none !important;
+  }
+
+  body.printing-selection .print-selection {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #111 !important;
+  }
+
+  body.printing-selection .print-selection .grid {
+    display: block !important;
+  }
+
+  body.printing-selection .print-selection .sticky {
+    position: static !important;
+    top: auto !important;
+  }
+
+  body.printing-selection .print-card > article,
+  body.printing-selection .print-summary,
+  body.printing-selection .print-total {
+    border-color: #ccc !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #111 !important;
+  }
+
+  body.printing-selection .print-selection * {
+    border-color: #ccc !important;
+    color: #111 !important;
+  }
+
+  body.printing-selection .print-summary > .absolute {
+    display: none !important;
+  }
+
+  body.printing-selection .print-card {
+    break-inside: avoid;
+    margin-bottom: 8mm;
+  }
+}

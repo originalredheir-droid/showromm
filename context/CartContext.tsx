@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState, useMemo, useSyncExternalStore } from 'react';
-import { CartItem, Design } from '@/types';
+import { CartItem, Design, ScreenPreview } from '@/types';
 import { getStoredCart, saveStoredCart } from '@/lib/storage';
 
 interface CartContextType {
@@ -9,11 +9,10 @@ interface CartContextType {
   totalCount: number;
   totalEstimatedHours: number;
   totalEstimatedBaseINR: number;
-  addToCart: (design: Design, notes?: string) => void;
-  removeFromCart: (designId: string) => void;
-  updateQuantity: (designId: string, quantity: number) => void;
+  addToCart: (design: Design, screen: ScreenPreview) => void;
+  removeFromCart: (offerId: string) => void;
   clearCart: () => void;
-  isInCart: (designId: string) => boolean;
+  isInCart: (offerId: string) => boolean;
   isLoaded: boolean;
 }
 
@@ -37,70 +36,47 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [items, isLoaded]);
 
-  const addToCart = (design: Design, notes?: string) => {
+  const addToCart = (design: Design, screen: ScreenPreview) => {
+    const id = `${design.id}:${screen.id}`;
     setItems((prev) => {
-      const existingIndex = prev.findIndex((item) => item.design.id === design.id);
-      if (existingIndex > -1) {
-        const updated = [...prev];
-        updated[existingIndex] = {
-          ...updated[existingIndex],
-          quantity: updated[existingIndex].quantity + 1,
-          notes: notes || updated[existingIndex].notes,
-        };
-        return updated;
-      }
+      if (prev.some((item) => item.id === id)) return prev;
       return [
         ...prev,
         {
-          id: `item-${design.id}-${Date.now()}`,
+          id,
           design,
-          quantity: 1,
+          screen,
           addedAt: Date.now(),
-          notes,
         },
       ];
     });
   };
 
-  const removeFromCart = (designId: string) => {
-    setItems((prev) => prev.filter((item) => item.design.id !== designId));
-  };
-
-  const updateQuantity = (designId: string, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(designId);
-      return;
-    }
-    setItems((prev) =>
-      prev.map((item) =>
-        item.design.id === designId ? { ...item, quantity } : item
-      )
-    );
+  const removeFromCart = (offerId: string) => {
+    setItems((prev) => prev.filter((item) => item.id !== offerId));
   };
 
   const clearCart = () => {
     setItems([]);
   };
 
-  const isInCart = (designId: string) => {
-    return items.some((item) => item.design.id === designId);
+  const isInCart = (offerId: string) => {
+    return items.some((item) => item.id === offerId);
   };
 
   const totalCount = useMemo(() => {
-    return items.reduce((sum, item) => sum + item.quantity, 0);
+    return items.length;
   }, [items]);
 
   const totalEstimatedHours = useMemo(() => {
     return items.reduce((sum, item) => {
-      const hours = item.design.technicalSpecs.devHours || 0;
-      return sum + hours * item.quantity;
+      return sum + (item.screen.devHours ?? 0);
     }, 0);
   }, [items]);
 
   const totalEstimatedBaseINR = useMemo(() => {
     return items.reduce((sum, item) => {
-      const base = item.design.commercial?.estimatedBaseINR || 0;
-      return sum + base * item.quantity;
+      return sum + (item.screen.estimatedPriceINR ?? 0);
     }, 0);
   }, [items]);
 
@@ -113,7 +89,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         totalEstimatedBaseINR,
         addToCart,
         removeFromCart,
-        updateQuantity,
         clearCart,
         isInCart,
         isLoaded,

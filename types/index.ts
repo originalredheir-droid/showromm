@@ -19,6 +19,9 @@ export interface ScreenPreview {
   viewport: 'desktop' | 'tablet' | 'mobile';
   image: string;
   description: string;
+  sortOrder?: number;
+  estimatedPriceINR?: number;
+  devHours?: number;
 }
 
 export interface DesignFeature {
@@ -69,9 +72,10 @@ export interface Design {
 export interface CartItem {
   id: string;
   design: Design;
-  quantity: number;
+  screen: ScreenPreview;
   addedAt: number;
   notes?: string;
+  legacySelection?: boolean;
 }
 
 export interface PresenterSettings {

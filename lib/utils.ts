@@ -22,3 +22,9 @@ export function formatINR(amount: number): string {
 export function formatNumber(num: number): string {
   return new Intl.NumberFormat('en-IN').format(num);
 }
+
+export function isFilenameDerivedScreenTitle(title: string, image: string): boolean {
+  const filename = image.split(/[?#]/, 1)[0].split('/').pop() ?? '';
+  const generatedTitle = filename.replace(/^[^-]+-/, '').replace(/\.[^.]+$/, '') || 'Screenshot';
+  return title === generatedTitle;
+}

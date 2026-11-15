@@ -26,7 +26,7 @@ export default function SelectionCartPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="print-selection space-y-8">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#31353C]">
         <div>
@@ -46,7 +46,7 @@ export default function SelectionCartPage() {
 
         <Link
           href="/catalogue"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#262A31] hover:bg-[#31353C] text-xs font-semibold text-[#DFE2EB] border border-[#31353C] transition-colors self-start sm:self-auto"
+          className="print-hide inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#262A31] hover:bg-[#31353C] text-xs font-semibold text-[#DFE2EB] border border-[#31353C] transition-colors self-start sm:self-auto"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Continue Browsing</span>
@@ -59,13 +59,15 @@ export default function SelectionCartPage() {
           {/* Left Column: List of Selected Items (8 Cols) */}
           <div className="lg:col-span-8 space-y-4">
             <div className="flex items-center justify-between text-xs text-[#C2C7D0] pb-1">
-              <span>{totalCount} {totalCount === 1 ? 'item' : 'items'} in current project scope</span>
-              <span className="text-[#8B9199]">Operator: Review with client</span>
+              <span>{totalCount} {totalCount === 1 ? 'image offer' : 'image offers'} in current project scope</span>
+              <span className="print-hide text-[#8B9199]">Operator: Review with client</span>
             </div>
 
             <div className="space-y-3">
               {items.map((item) => (
-                <CartItemRow key={item.id} item={item} />
+                <div key={item.id} className="print-card">
+                  <CartItemRow item={item} />
+                </div>
               ))}
             </div>
           </div>
@@ -77,7 +79,7 @@ export default function SelectionCartPage() {
         </div>
       ) : (
         /* Empty Cart State */
-        <div className="py-20 px-6 text-center rounded-2xl bg-[#181C22] border border-[#31353C] max-w-lg mx-auto space-y-5">
+        <div className="print-hide py-20 px-6 text-center rounded-2xl bg-[#181C22] border border-[#31353C] max-w-lg mx-auto space-y-5">
           <div className="w-16 h-16 rounded-full bg-[#262A31] border border-[#353940] flex items-center justify-center text-[#B9C9D5] mx-auto shadow-inner">
             <ShoppingBag className="w-7 h-7" />
           </div>

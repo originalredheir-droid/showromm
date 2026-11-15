@@ -34,9 +34,17 @@ function CatalogueContent({ designs, categories }: { designs: Design[]; categori
   }).sort((a, b) => {
     if (sortBy === 'featured') return Number(Boolean(b.featured)) - Number(Boolean(a.featured));
     if (sortBy === 'popular') return Number(Boolean(b.popular)) - Number(Boolean(a.popular));
-    if (sortBy === 'price-asc') return a.commercial.estimatedBaseINR - b.commercial.estimatedBaseINR;
-    if (sortBy === 'price-desc') return b.commercial.estimatedBaseINR - a.commercial.estimatedBaseINR;
-    if (sortBy === 'hours') return b.technicalSpecs.devHours - a.technicalSpecs.devHours;
+    const priceTotal = (design: Design) => design.screenPreviews.reduce(
+      (sum, screen) => sum + (screen.estimatedPriceINR ?? 0),
+      0
+    );
+    const hoursTotal = (design: Design) => design.screenPreviews.reduce(
+      (sum, screen) => sum + (screen.devHours ?? 0),
+      0
+    );
+    if (sortBy === 'price-asc') return priceTotal(a) - priceTotal(b);
+    if (sortBy === 'price-desc') return priceTotal(b) - priceTotal(a);
+    if (sortBy === 'hours') return hoursTotal(b) - hoursTotal(a);
     return 0;
   }), [designs, searchQuery, selectedCategory, selectedType, sortBy]);
 

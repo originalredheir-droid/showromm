@@ -1,10 +1,12 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { CategoryRow, DesignRow } from '@/types/database';
 import type { ScreenPreview } from '@/types';
 import { createClient } from '@/lib/supabase/client';
+import { isFilenameDerivedScreenTitle } from '@/lib/utils';
 import { AssetPicker } from './AssetPicker';
 
 interface DesignFormProps {
@@ -39,17 +41,24 @@ export function DesignForm({ categories, design }: DesignFormProps) {
   const [slug, setSlug] = useState(design?.slug ?? '');
   const [categoryId, setCategoryId] = useState(design?.category_id ?? categories[0]?.id ?? '');
   const [conceptType, setConceptType] = useState<DesignRow['concept_type']>(design?.concept_type ?? 'concept');
-  const [shortDescription, setShortDescription] = useState(design?.short_description ?? '');
-  const [fullDescription, setFullDescription] = useState(design?.full_description ?? '');
   const [coverImage, setCoverImage] = useState(design?.visual_preview_image ?? '');
-  const [screens, setScreens] = useState<ScreenPreview[]>(design?.screen_previews ?? []);
+  const [screens, setScreens] = useState<ScreenPreview[]>(() =>
+    (design?.screen_previews ?? []).map((screen, index) => ({
+      ...screen,
+      title: screen.title && !isFilenameDerivedScreenTitle(screen.title, screen.image)
+        ? screen.title
+        : '',
+      description: screen.description ?? '',
+      sortOrder: screen.sortOrder ?? index + 1,
+    }))
+  );
   const [tags, setTags] = useState(design?.tags.join(', ') ?? '');
-  const [price, setPrice] = useState(design?.commercial.estimatedBaseINR ?? 0);
   const [featured, setFeatured] = useState(design?.featured ?? false);
   const [status, setStatus] = useState<DesignRow['status']>(design?.status ?? 'draft');
   const [errorMessage, setErrorMessage] = useState('');
   const [notice, setNotice] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const supabase = createClient();
 
   const save = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,8 +69,8 @@ export function DesignForm({ categories, design }: DesignFormProps) {
       setErrorMessage('Create a category before adding a catalog item.');
       return;
     }
-    if (status === 'published' && (!shortDescription.trim() || !coverImage)) {
-      setErrorMessage('Published items need a short description and a cover image.');
+    if (status === 'published' && (!coverImage || screens.length === 0)) {
+      setErrorMessage('Published items need a cover image and at least one image offer.');
       return;
     }
     if (status === 'published' && !categories.find((category) => category.id === categoryId)?.is_active) {
@@ -82,10 +91,13 @@ export function DesignForm({ categories, design }: DesignFormProps) {
       category_id: categoryId,
       concept_type: conceptType,
       concept_type_label: TYPE_LABELS[conceptType],
-      short_description: shortDescription.trim(),
-      full_description: fullDescription.trim(),
+      short_description: '',
+      full_description: '',
       visual_preview_image: coverImage,
-      screen_previews: screens,
+      screen_previews: screens
+        .map((screen, index) => ({ screen, fallbackOrder: index + 1 }))
+        .sort((a, b) => (a.screen.sortOrder ?? a.fallbackOrder) - (b.screen.sortOrder ?? b.fallbackOrder))
+        .map(({ screen }, index) => ({ ...screen, sortOrder: index + 1 })),
       features: design?.features ?? [],
       technical_specs: design?.technical_specs ?? {
         devHours: 0,
@@ -95,7 +107,7 @@ export function DesignForm({ categories, design }: DesignFormProps) {
       },
       commercial: {
         ...(design?.commercial ?? { estimatedBaseINR: 0, licenseType: 'Custom', warrantyDays: 0 }),
-        estimatedBaseINR: Number(price),
+        estimatedBaseINR: design?.commercial.estimatedBaseINR ?? 0,
       },
       tags: tags.split(',').map((tag) => tag.trim()).filter(Boolean),
       featured,
@@ -135,10 +147,11 @@ export function DesignForm({ categories, design }: DesignFormProps) {
     const existing = new Map(screens.map((screen) => [screen.image, screen]));
     setScreens(paths.map((path) => existing.get(path) ?? {
       id: crypto.randomUUID(),
-      title: path.split('/').pop()?.replace(/^[^-]+-/, '').replace(/\.[^.]+$/, '') ?? 'Screenshot',
+      title: '',
       viewport: 'desktop',
       image: path,
       description: '',
+      sortOrder: Math.max(0, ...screens.map((screen) => screen.sortOrder ?? 0)) + 1,
     }));
   };
 
@@ -170,22 +183,10 @@ export function DesignForm({ categories, design }: DesignFormProps) {
           </label>
         </div>
         <label className="block space-y-1.5">
-          <span className="text-xs font-medium text-[#C2C7D0]">Short description *</span>
-          <textarea required value={shortDescription} onChange={(event) => setShortDescription(event.target.value)} rows={2} className="admin-input" />
-        </label>
-        <label className="block space-y-1.5">
-          <span className="text-xs font-medium text-[#C2C7D0]">Full description</span>
-          <textarea value={fullDescription} onChange={(event) => setFullDescription(event.target.value)} rows={5} className="admin-input" />
-        </label>
-        <label className="block space-y-1.5">
           <span className="text-xs font-medium text-[#C2C7D0]">Tags (comma-separated)</span>
           <input value={tags} onChange={(event) => setTags(event.target.value)} className="admin-input" />
         </label>
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="space-y-1.5">
-            <span className="text-xs font-medium text-[#C2C7D0]">Estimated base price (INR)</span>
-            <input type="number" min="0" step="1" value={price} onChange={(event) => setPrice(Number(event.target.value))} className="admin-input" />
-          </label>
           <label className="space-y-1.5">
             <span className="text-xs font-medium text-[#C2C7D0]">Visibility</span>
             <select value={status} onChange={(event) => setStatus(event.target.value as DesignRow['status'])} className="admin-input">
@@ -217,37 +218,109 @@ export function DesignForm({ categories, design }: DesignFormProps) {
           onChange={updateScreenPaths}
         />
         {screens.length > 0 && (
-          <div className="grid gap-3 sm:grid-cols-2">
-            {screens.map((screen) => (
-              <div key={screen.id} className="grid gap-3 sm:grid-cols-2">
-                <label className="space-y-1.5">
-                  <span className="text-xs text-[#C2C7D0]">Screenshot label</span>
-                  <input
-                    value={screen.title}
-                    onChange={(event) => setScreens((current) => current.map((item) =>
-                      item.id === screen.id ? { ...item, title: event.target.value } : item
-                    ))}
-                    className="admin-input"
-                  />
-                </label>
-                <label className="space-y-1.5">
-                  <span className="text-xs text-[#C2C7D0]">Viewport</span>
-                  <select
-                    value={screen.viewport}
-                    onChange={(event) => setScreens((current) => current.map((item) =>
-                      item.id === screen.id
-                        ? { ...item, viewport: event.target.value as ScreenPreview['viewport'] }
-                        : item
-                    ))}
-                    className="admin-input"
-                  >
-                    <option value="desktop">Desktop</option>
-                    <option value="tablet">Tablet</option>
-                    <option value="mobile">Mobile</option>
-                  </select>
-                </label>
-              </div>
-            ))}
+          <div className="grid gap-4">
+            {screens
+              .map((screen, index) => ({ screen, fallbackOrder: index + 1 }))
+              .sort((a, b) => (a.screen.sortOrder ?? a.fallbackOrder) - (b.screen.sortOrder ?? b.fallbackOrder))
+              .map(({ screen, fallbackOrder }) => (
+                <article key={screen.id} className="grid gap-4 rounded-lg border border-[#31353C] bg-[#10141A] p-4 sm:grid-cols-[160px_1fr]">
+                  <div className="relative h-28 w-full overflow-hidden rounded-md bg-[#181C22] sm:h-full">
+                    <Image
+                      src={/^https?:\/\//i.test(screen.image)
+                        ? screen.image
+                        : supabase.storage.from('catalog-assets').getPublicUrl(screen.image).data.publicUrl}
+                      alt=""
+                      fill
+                      sizes="160px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <label className="space-y-1.5">
+                      <span className="text-xs text-[#C2C7D0]">Display order</span>
+                      <input
+                        type="number"
+                        min="1"
+                        step="1"
+                        value={screen.sortOrder ?? fallbackOrder}
+                        onChange={(event) => setScreens((current) => current.map((item) =>
+                          item.id === screen.id
+                            ? { ...item, sortOrder: event.target.value === '' ? undefined : Number(event.target.value) }
+                            : item
+                        ))}
+                        className="admin-input"
+                      />
+                    </label>
+                    <label className="space-y-1.5">
+                      <span className="text-xs text-[#C2C7D0]">Card title</span>
+                      <input
+                        value={screen.title}
+                        onChange={(event) => setScreens((current) => current.map((item) =>
+                          item.id === screen.id ? { ...item, title: event.target.value } : item
+                        ))}
+                        className="admin-input"
+                      />
+                    </label>
+                    <label className="space-y-1.5">
+                      <span className="text-xs text-[#C2C7D0]">Short description (optional)</span>
+                      <textarea
+                        value={screen.description}
+                        onChange={(event) => setScreens((current) => current.map((item) =>
+                          item.id === screen.id ? { ...item, description: event.target.value } : item
+                        ))}
+                        rows={2}
+                        className="admin-input"
+                      />
+                    </label>
+                    <label className="space-y-1.5">
+                      <span className="text-xs text-[#C2C7D0]">Price (INR)</span>
+                      <input
+                        type="number"
+                        min="0"
+                        step="1"
+                        value={screen.estimatedPriceINR ?? ''}
+                        onChange={(event) => setScreens((current) => current.map((item) =>
+                          item.id === screen.id
+                            ? { ...item, estimatedPriceINR: event.target.value === '' ? undefined : Number(event.target.value) }
+                            : item
+                        ))}
+                        className="admin-input"
+                      />
+                    </label>
+                    <label className="space-y-1.5">
+                      <span className="text-xs text-[#C2C7D0]">Development time (hours)</span>
+                      <input
+                        type="number"
+                        min="0"
+                        step="1"
+                        value={screen.devHours ?? ''}
+                        onChange={(event) => setScreens((current) => current.map((item) =>
+                          item.id === screen.id
+                            ? { ...item, devHours: event.target.value === '' ? undefined : Number(event.target.value) }
+                            : item
+                        ))}
+                        className="admin-input"
+                      />
+                    </label>
+                    <label className="space-y-1.5">
+                      <span className="text-xs text-[#C2C7D0]">Viewport</span>
+                      <select
+                        value={screen.viewport}
+                        onChange={(event) => setScreens((current) => current.map((item) =>
+                          item.id === screen.id
+                            ? { ...item, viewport: event.target.value as ScreenPreview['viewport'] }
+                            : item
+                        ))}
+                        className="admin-input"
+                      >
+                        <option value="desktop">Desktop</option>
+                        <option value="tablet">Tablet</option>
+                        <option value="mobile">Mobile</option>
+                      </select>
+                    </label>
+                  </div>
+                </article>
+              ))}
           </div>
         )}
       </section>

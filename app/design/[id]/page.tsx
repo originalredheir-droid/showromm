@@ -16,8 +16,7 @@ export default async function DesignDetailPage({ params }: DesignDetailPageProps
     notFound();
   }
 
-  const relatedDesigns = designs.filter((item) => design.relatedIds.includes(item.id));
-  return <DesignShowcase design={design} relatedDesigns={relatedDesigns} />;
+  return <DesignShowcase design={design} />;
 }
 
 export const dynamic = 'force-dynamic';

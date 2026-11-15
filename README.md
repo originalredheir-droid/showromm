@@ -10,12 +10,12 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 
 - **Home / Showroom:** Executive overview, specialized industry domains bento grid, and featured website concepts.
 - **Industry Categories:** Database-managed industry verticals with deep-linking to filtered views.
-- **Website Catalogue:** Primary browsing module with keyword search, category filters, concept type tabs (Complete Concepts, Functional Modules, Individual Pages, UI Sections), sorting, and instant cart selection.
-- **Design Details / Showcase:** Interactive multi-viewport previewer (Desktop 1440px, Tablet 768px, Mobile 375px), dual-tabbed visual vs. functional capability breakdown, core architectural features checklist, and related modules.
-- **Selection Cart & Scope Estimator:** Add/remove items, adjust quantities, review scope descriptions, view basic summary metrics (deliverable counts, estimated engineering hours, and base commercial license values), copy project briefs to clipboard, with full browser `localStorage` persistence.
+- **Website Catalogue:** Primary browsing module with keyword search, category filters, concept type tabs (Complete Concepts, Functional Modules, Individual Pages, UI Sections), and sorting. Catalogs link to their individual image offers; the catalog itself is not a cart item.
+- **Design Details / Image Offers:** Each catalog presents its images as independent, vertically ordered cards with optional titles and descriptions, individual prices, development-time estimates, and add/remove actions.
+- **Selection Cart & Proposal:** Review selected image offers and their estimates, see aggregate price and development-time totals, copy a project brief, or use browser Print / Save as PDF. Cart state persists in browser `localStorage`.
 - **Meeting Presenter Controls:** Client-facing in-room switches to toggle commercial pricing and internal technical dev hours on the fly.
 - **Fully Responsive:** Optimized for mobile phones, tablets, and desktop workstations during in-person and screen-shared meetings.
-- **Admin Console:** Email/password protected category and design management, drafts and publishing, plus public catalog-image uploads to Supabase Storage.
+- **Admin Console:** Email/password protected category and design management, drafts and publishing, plus catalog-image uploads to Supabase Storage. Each image offer has editable display order, optional title/description, price, and development time.
 
 ---
 
@@ -40,15 +40,15 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 │   ├── catalogue/          # Website catalogue with search & filters
 │   ├── categories/         # Industry domain overview
 │   ├── admin/              # Protected content management
-│   ├── design/[id]/        # Design Details & Viewport Showcase
-│   ├── selection/          # Selection Cart & Scope Estimator
+│   ├── design/[id]/        # Ordered independent image offers
+│   ├── selection/          # Image-offer cart and print-ready proposal
 │   └── showroom/           # Route alias to /catalogue
 ├── components/
 │   ├── layout/             # Sidebar, Header, MobileNav
 │   ├── catalogue/          # CatalogueCard, FilterBar, EmptyState
 │   ├── admin/              # Admin sign-in, forms, and image uploads
 │   ├── categories/         # CategoryCard
-│   ├── design/             # ViewportPreview, CapabilityNotice, DesignShowcase
+│   ├── design/             # DesignShowcase image-offer cards
 │   └── cart/               # CartItemRow, CartSummary
 ├── context/
 │   ├── CartContext.tsx     # LocalStorage-backed cart state
@@ -130,5 +130,5 @@ npm run start
 ## 🔒 Future Roadmap
 
 The initial Supabase-backed admin and public catalogue are in place. Future milestones may introduce:
-- Automated quotation PDF generation and invoice milestone billing
+- Automated branded quotation PDF generation and invoice milestone billing
 - Internal pricing intelligence engine

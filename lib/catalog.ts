@@ -1,6 +1,7 @@
 import type { Category, Design } from '@/types';
 import type { CategoryRow, DesignRow } from '@/types/database';
 import { createClient } from '@/lib/supabase/server';
+import { isFilenameDerivedScreenTitle } from '@/lib/utils';
 
 const STORAGE_BUCKET = 'catalog-assets';
 
@@ -51,10 +52,17 @@ export function mapDesign(row: DesignRow, category: CategoryRow): Design {
     shortDescription: row.short_description,
     fullDescription: row.full_description,
     visualPreviewImage: getAssetUrl(row.visual_preview_image),
-    screenPreviews: row.screen_previews.map((screen) => ({
-      ...screen,
-      image: getAssetUrl(screen.image),
-    })),
+    screenPreviews: row.screen_previews
+      .map((screen, index) => ({
+        ...screen,
+        title: screen.title && !isFilenameDerivedScreenTitle(screen.title, screen.image)
+          ? screen.title
+          : '',
+        description: screen.description ?? '',
+        sortOrder: Number.isFinite(screen.sortOrder) ? screen.sortOrder : index + 1,
+        image: getAssetUrl(screen.image),
+      }))
+      .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)),
     features: row.features,
     technicalSpecs: row.technical_specs,
     commercial: row.commercial,

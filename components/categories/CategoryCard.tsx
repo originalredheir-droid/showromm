@@ -1,36 +1,8 @@
-'use client';
-
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  GraduationCap,
-  Activity,
-  Cpu,
-  ShoppingBag,
-  Building2,
-  Scale,
-  Utensils,
-  Compass,
-  HeartHandshake,
-  Layers,
-  ArrowRight,
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Category } from '@/types';
 import { cn } from '@/lib/utils';
-
-const ICON_MAP: Record<string, React.ElementType> = {
-  GraduationCap,
-  Activity,
-  Cpu,
-  ShoppingBag,
-  Building2,
-  Scale,
-  Utensils,
-  Compass,
-  HeartHandshake,
-  Layers,
-};
 
 interface CategoryCardProps {
   category: Category;
@@ -39,8 +11,6 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category, span, isFeatured }: CategoryCardProps) {
-  const Icon = ICON_MAP[category.iconName] || Layers;
-
   return (
     <Link
       href={`/catalogue?category=${category.id}`}
@@ -61,16 +31,11 @@ export function CategoryCard({ category, span, isFeatured }: CategoryCardProps) 
             referrerPolicy="no-referrer"
           />
         )}
-        <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between gap-3 p-4 sm:p-5">
-          <span className="inline-flex items-center justify-center rounded-lg border border-[#31353C] bg-[#10141A]/90 p-2.5 text-[#C2C7D0]">
-            <Icon className="h-5 w-5" />
+        {category.accentBadge && (
+          <span className="absolute right-4 top-4 z-10 rounded border border-[#31353C] bg-[#10141A]/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#DFE2EB] sm:right-5 sm:top-5">
+            {category.accentBadge}
           </span>
-          {category.accentBadge && (
-            <span className="rounded border border-[#31353C] bg-[#10141A]/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#DFE2EB]">
-              {category.accentBadge}
-            </span>
-          )}
-        </div>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">

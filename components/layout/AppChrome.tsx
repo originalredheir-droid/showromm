@@ -26,9 +26,9 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
           <PanelLeftOpen className="h-5 w-5" />
         </button>
       )}
-      <div className={`flex-1 flex flex-col min-h-screen pb-16 lg:pb-0 overflow-x-hidden transition-[margin] duration-300 ${sidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-0'}`}>
+      <div className={`flex-1 flex flex-col min-h-screen pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0 overflow-x-hidden transition-[margin] duration-300 ${sidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-0'}`}>
         <Header />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto">{children}</main>
+        <main className="flex-1 p-3 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto">{children}</main>
       </div>
       <MobileNav />
     </>

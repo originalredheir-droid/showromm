@@ -13,9 +13,10 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 - **Website Catalogue:** Primary browsing module with keyword search, category filters, concept type tabs (Complete Concepts, Functional Modules, Individual Pages, UI Sections), and sorting. Catalogs link to their individual image offers; the catalog itself is not a cart item.
 - **Design Details / Image Offers:** Each catalog presents its images as independent, vertically ordered cards with optional titles and descriptions, individual prices, development-time estimates, and add/remove actions.
 - **Selection Cart & Proposal:** Review selected image offers and their estimates, see aggregate price and development-time totals, copy a project brief, or use browser Print / Save as PDF. Cart state persists in browser `localStorage`.
+- **Saved Client Proposals:** Add client and project details to create a year-numbered proposal, print a branded image-led proposal, and reopen admin-only saved records.
 - **Meeting Presenter Controls:** Client-facing in-room switches to toggle commercial pricing and internal technical dev hours on the fly.
 - **Fully Responsive:** Optimized for mobile phones, tablets, and desktop workstations during in-person and screen-shared meetings.
-- **Admin Console:** Email/password protected category and design management, drafts and publishing, plus catalog-image uploads to Supabase Storage. Each image offer has editable display order, optional title/description, price, and development time.
+- **Admin Console:** Email/password protected category and design management, drafts and publishing, catalog-image uploads, business profile settings, and saved proposal records. Each image offer has editable display order, optional title/description, price, and development time.
 
 ---
 
@@ -42,6 +43,7 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 │   ├── admin/              # Protected content management
 │   ├── design/[id]/        # Ordered independent image offers
 │   ├── selection/          # Image-offer cart and print-ready proposal
+│   ├── api/proposals/      # Admin-checked proposal creation endpoint
 │   └── showroom/           # Route alias to /catalogue
 ├── components/
 │   ├── layout/             # Sidebar, Header, MobileNav
@@ -49,6 +51,7 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 │   ├── admin/              # Admin sign-in, forms, and image uploads
 │   ├── categories/         # CategoryCard
 │   ├── design/             # DesignShowcase image-offer cards
+│   ├── proposals/          # Saved branded proposal and print view
 │   └── cart/               # CartItemRow, CartSummary
 ├── context/
 │   ├── CartContext.tsx     # LocalStorage-backed cart state
@@ -63,7 +66,8 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 ├── supabase/
 │   └── migrations/         # Database schema, RLS, and Storage policies
 └── types/
-    └── index.ts            # TypeScript interfaces
+    ├── database.ts         # Supabase table and RPC types
+    └── index.ts            # Shared application interfaces
 ```
 
 ---
@@ -89,7 +93,7 @@ npm install
 ### Supabase setup
 
 1. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` from Supabase project settings. Never put a service-role key in browser environment variables.
-2. Link this repository to the project and apply the migration:
+2. Link this repository to the project and apply all migrations (including the admin-only proposal tables and numbering function):
 
    ```bash
    npx supabase link --project-ref YOUR_PROJECT_REF
@@ -107,6 +111,8 @@ npm install
 
    Replace the example email with the user you created. Do not enable public signup for this internal admin console.
 4. Open `/admin` to create categories and designs. Lists include confirmed deletion actions that also remove uploaded images. A category cannot be deleted while designs reference it; hide it instead or remove its designs first. Published catalog images are publicly viewable; uploads and content edits require an authorized admin.
+
+Saved proposals contain client contact and project information. Access is restricted to authorized admins. Business identity fields can be configured at `/admin/settings`; proposal numbering is allocated server-side by proposal year.
 
 ### Development Server
 

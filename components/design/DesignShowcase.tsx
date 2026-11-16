@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight, Clock, Plus, Trash2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ChevronRight, Clock, Plus, Trash2, X } from 'lucide-react';
 import { Design } from '@/types';
 import { useCart } from '@/context/CartContext';
 import { formatINR, cn } from '@/lib/utils';
@@ -13,10 +14,20 @@ interface DesignShowcaseProps {
 
 export function DesignShowcase({ design }: DesignShowcaseProps) {
   const { addToCart, removeFromCart, isInCart } = useCart();
+  const [zoomedImage, setZoomedImage] = useState<{ src: string; alt: string } | null>(null);
 
   const offers = [...design.screenPreviews].sort(
     (a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)
   );
+
+  useEffect(() => {
+    if (!zoomedImage) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setZoomedImage(null);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [zoomedImage]);
 
   return (
     <div className="space-y-6">
@@ -44,7 +55,12 @@ export function DesignShowcase({ design }: DesignShowcaseProps) {
                 key={offer.id}
                 className="flex flex-col overflow-hidden rounded-xl border border-[#31353C] bg-[#181C22] sm:flex-row"
               >
-                <div className="relative aspect-[4/3] bg-[#0A0E14] sm:aspect-auto sm:min-h-[280px] sm:w-1/2">
+                <button
+                  type="button"
+                  onClick={() => setZoomedImage({ src: offer.image, alt: offer.title || design.title })}
+                  aria-label={`Enlarge image: ${offer.title || design.title}`}
+                  className="relative aspect-[4/3] w-full bg-[#0A0E14] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B9C9D5] sm:aspect-auto sm:min-h-[280px] sm:w-1/2"
+                >
                   <Image
                     src={offer.image}
                     alt={offer.title || design.title}
@@ -53,7 +69,7 @@ export function DesignShowcase({ design }: DesignShowcaseProps) {
                     className="object-contain"
                     referrerPolicy="no-referrer"
                   />
-                </div>
+                </button>
                 <div className="flex flex-1 flex-col justify-between gap-4 p-4 sm:p-6">
                   <div className="min-h-12">
                     {offer.title && <h2 className="text-sm font-semibold text-[#DFE2EB]">{offer.title}</h2>}
@@ -78,7 +94,7 @@ export function DesignShowcase({ design }: DesignShowcaseProps) {
                       ? removeFromCart(cartId)
                       : addToCart(design, offer)}
                     className={cn(
-                      'flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-semibold transition-colors',
+                      'flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-semibold transition-colors',
                       inCart
                         ? 'border border-[#B9C9D5] bg-[#1C2026] text-[#B9C9D5] hover:bg-[#262A31]'
                         : 'bg-[#B9C9D5] text-[#10141A] hover:bg-[#DDE5EA]'
@@ -105,6 +121,35 @@ export function DesignShowcase({ design }: DesignShowcaseProps) {
         <p className="rounded-xl border border-dashed border-[#31353C] p-8 text-center text-sm text-[#8B9199]">
           No image offers are available in this catalog yet.
         </p>
+      )}
+      {zoomedImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged image preview"
+          onClick={() => setZoomedImage(null)}
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 p-3 sm:p-8"
+        >
+          <button
+            type="button"
+            autoFocus
+            onClick={() => setZoomedImage(null)}
+            aria-label="Close enlarged image"
+            className="absolute right-3 top-3 z-10 flex min-h-12 min-w-12 items-center justify-center rounded-full bg-[#181C22] text-white"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <div className="relative h-[85dvh] w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+            <Image
+              src={zoomedImage.src}
+              alt={zoomedImage.alt}
+              fill
+              sizes="100vw"
+              className="object-contain"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </div>
       )}
     </div>
   );

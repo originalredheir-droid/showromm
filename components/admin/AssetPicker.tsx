@@ -85,7 +85,7 @@ export function AssetPicker({
               <button
                 type="button"
                 onClick={() => removeAsset(path)}
-                className="absolute right-1 top-1 rounded bg-black/80 px-2 py-1 text-[10px] text-white"
+                className="absolute right-1 top-1 flex min-h-11 min-w-11 items-center justify-center rounded bg-black/80 px-2 py-1 text-[10px] text-white"
                 aria-label={`Remove ${label}`}
               >
                 Remove

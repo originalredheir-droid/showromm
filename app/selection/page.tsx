@@ -2,14 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import {
-  ShoppingBag,
-  ArrowRight,
-  Trash2,
-  Layers,
-  ArrowLeft,
-  CheckCircle,
-} from 'lucide-react';
+import { ShoppingBag, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { CartItemRow } from '@/components/cart/CartItemRow';
 import { CartSummary } from '@/components/cart/CartSummary';
@@ -73,7 +66,7 @@ export default function SelectionCartPage() {
           </div>
 
           {/* Right Column: Sticky Summary & Actions (4 Cols) */}
-          <div className="lg:col-span-4 sticky top-24">
+          <div className="lg:col-span-4 lg:sticky lg:top-24">
             <CartSummary />
           </div>
         </div>

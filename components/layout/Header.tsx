@@ -26,14 +26,14 @@ export function Header() {
   return (
     <header className="sticky top-0 w-full h-16 flex items-center justify-between px-4 sm:px-8 bg-[#10141A]/95 border-b border-[#31353C] z-30 backdrop-blur-md">
       {/* Search Input with ⌘K */}
-      <form onSubmit={handleSearchSubmit} className="flex items-center w-full max-w-xs sm:max-w-md relative">
+      <form onSubmit={handleSearchSubmit} className="relative flex w-full max-w-[min(58vw,24rem)] items-center sm:max-w-md">
         <Search className="w-4 h-4 absolute left-3.5 text-[#C2C7D0]" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search designs by title, technology, or keywords..."
-          className="w-full pl-10 pr-12 py-2 bg-[#1C2026] border border-[#31353C] rounded text-sm text-[#DFE2EB] placeholder-[#8B9199] focus:outline-none focus:border-[#B9C9D5] focus:ring-1 focus:ring-[#B9C9D5] transition-all"
+          placeholder="Search catalogue..."
+          className="min-h-11 w-full pl-10 pr-3 py-2 bg-[#1C2026] border border-[#31353C] rounded text-base sm:text-sm text-[#DFE2EB] placeholder-[#8B9199] focus:outline-none focus:border-[#B9C9D5] focus:ring-1 focus:ring-[#B9C9D5] transition-all"
         />
         <div className="absolute right-2.5 hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-[#31353C] text-[#C2C7D0] text-[10px] font-mono border border-[#353940]">
           <span>⌘</span>K
@@ -59,10 +59,10 @@ export function Header() {
           className="flex items-center gap-2 px-3 py-1.5 rounded bg-[#1C2026] border border-[#31353C] hover:border-[#B9C9D5] text-[#DFE2EB] transition-all group"
         >
           <ShoppingBag className="w-4 h-4 text-[#B9C9D5] group-hover:scale-110 transition-transform" />
-          <span className="text-xs font-semibold text-[#B9C9D5]">Cart:</span>
-          <span className="text-xs text-[#DFE2EB]">
+          <span className="hidden text-xs font-semibold text-[#B9C9D5] sm:inline">Cart:</span>
+          <span className="text-[11px] text-[#DFE2EB] sm:text-xs">
             {totalCount} {totalCount === 1 ? 'item' : 'items'}
-            {showPricing && totalEstimatedBaseINR > 0 && ` (${formatINR(totalEstimatedBaseINR)})`}
+            {showPricing && totalEstimatedBaseINR > 0 && <span className="hidden sm:inline">{` (${formatINR(totalEstimatedBaseINR)})`}</span>}
           </span>
         </Link>
       </div>

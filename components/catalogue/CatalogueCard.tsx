@@ -110,7 +110,7 @@ export function CatalogueCard({ design }: CatalogueCardProps) {
 
           <Link
             href={`/design/${design.id}`}
-            className="inline-flex items-center gap-1.5 rounded bg-[#B9C9D5] px-3 py-1.5 text-xs font-semibold text-[#10141A] transition-colors hover:bg-[#DDE5EA]"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded bg-[#B9C9D5] px-3 py-1.5 text-xs font-semibold text-[#10141A] transition-colors hover:bg-[#DDE5EA]"
           >
             <span>View image offers</span>
           </Link>

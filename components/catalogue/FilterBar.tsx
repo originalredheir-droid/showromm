@@ -53,8 +53,8 @@ export function FilterBar({
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search concepts by title, technology, or keywords..."
-            className="w-full pl-10 pr-9 py-2.5 bg-[#181C22] border border-[#31353C] rounded-lg text-sm text-[#DFE2EB] placeholder-[#8B9199] focus:outline-none focus:border-[#B9C9D5] transition-colors"
+            placeholder="Search catalogue..."
+            className="min-h-11 w-full pl-10 pr-9 py-2.5 bg-[#181C22] border border-[#31353C] rounded-lg text-base md:text-sm text-[#DFE2EB] placeholder-[#8B9199] focus:outline-none focus:border-[#B9C9D5] transition-colors"
           />
           {searchQuery && (
             <button
@@ -74,7 +74,7 @@ export function FilterBar({
             <select
               value={selectedCategory}
               onChange={(e) => onCategoryChange(e.target.value)}
-              className="h-10 pl-3 pr-8 bg-[#181C22] border border-[#31353C] rounded-lg text-xs font-medium text-[#DFE2EB] focus:outline-none focus:border-[#B9C9D5] cursor-pointer"
+              className="h-11 pl-3 pr-8 bg-[#181C22] border border-[#31353C] rounded-lg text-sm md:text-xs font-medium text-[#DFE2EB] focus:outline-none focus:border-[#B9C9D5] cursor-pointer"
             >
               <option value="all">All Industries ({categories.length})</option>
               {categories.map((cat) => (
@@ -90,7 +90,7 @@ export function FilterBar({
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value)}
-              className="h-10 pl-3 pr-8 bg-[#181C22] border border-[#31353C] rounded-lg text-xs font-medium text-[#DFE2EB] focus:outline-none focus:border-[#B9C9D5] cursor-pointer"
+              className="h-11 pl-3 pr-8 bg-[#181C22] border border-[#31353C] rounded-lg text-sm md:text-xs font-medium text-[#DFE2EB] focus:outline-none focus:border-[#B9C9D5] cursor-pointer"
             >
               <option value="featured">Sort: Featured First</option>
               <option value="popular">Sort: Most Popular</option>
@@ -105,7 +105,7 @@ export function FilterBar({
             <button
               onClick={onClearFilters}
               type="button"
-              className="h-10 px-3 flex items-center gap-1.5 rounded-lg bg-[#262A31] border border-[#31353C] text-xs font-medium text-[#B9C9D5] hover:bg-[#31353C] transition-colors"
+              className="min-h-11 px-3 flex items-center gap-1.5 rounded-lg bg-[#262A31] border border-[#31353C] text-xs font-medium text-[#B9C9D5] hover:bg-[#31353C] transition-colors"
             >
               <X className="w-3.5 h-3.5" />
               <span>Reset Filters</span>
@@ -125,7 +125,7 @@ export function FilterBar({
                 onClick={() => onTypeChange(type.id)}
                 type="button"
                 className={cn(
-                  'px-3.5 py-1.5 rounded-md text-xs font-medium transition-all whitespace-nowrap',
+                  'min-h-11 px-3.5 py-2 rounded-md text-xs font-medium transition-all whitespace-nowrap',
                   isSelected
                     ? 'bg-[#B9C9D5] text-[#10141A] shadow-sm font-semibold'
                     : 'text-[#C2C7D0] hover:text-[#DFE2EB] hover:bg-[#181C22]'

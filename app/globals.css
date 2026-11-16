@@ -58,14 +58,20 @@
   border: 1px solid #31353c;
   border-radius: 0.5rem;
   background: #10141a;
-  padding: 0.625rem 0.75rem;
+  padding: 0.75rem;
   color: #dfe2eb;
-  font-size: 0.875rem;
+  font-size: 16px;
   outline: none;
 }
 
 .admin-input:focus {
   border-color: #B9C9D5;
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    scroll-padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
 }
 
 @media print {
@@ -131,5 +137,99 @@
   body.printing-selection .print-card {
     break-inside: avoid;
     margin-bottom: 8mm;
+  }
+
+  body.printing-selection .print-offer {
+    display: block !important;
+    padding: 4mm !important;
+  }
+
+  body.printing-selection .print-offer-content {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 5mm !important;
+  }
+
+  body.printing-selection .print-offer-image {
+    position: relative !important;
+    display: block !important;
+    width: 58mm !important;
+    max-width: 58mm !important;
+    height: 44mm !important;
+    flex: none !important;
+  }
+
+  body.printing-selection .print-offer-image img {
+    object-fit: contain !important;
+  }
+
+  body.printing-selection .print-summary {
+    margin-top: 6mm;
+    padding: 4mm !important;
+  }
+}
+
+@media print {
+  body.printing-proposal {
+    display: block !important;
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body.printing-proposal * {
+    visibility: hidden !important;
+  }
+
+  body.printing-proposal .proposal-document,
+  body.printing-proposal .proposal-document * {
+    visibility: visible !important;
+  }
+
+  body.printing-proposal .print-hide {
+    display: none !important;
+  }
+
+  body.printing-proposal .proposal-document {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #111 !important;
+  }
+
+  body.printing-proposal .proposal-document > article {
+    padding: 0 !important;
+  }
+
+  body.printing-proposal .proposal-image {
+    height: 88mm !important;
+    max-height: 88mm !important;
+    aspect-ratio: auto !important;
+  }
+
+  body.printing-proposal .proposal-image img {
+    object-fit: contain !important;
+  }
+
+  body.printing-proposal .proposal-offer {
+    break-inside: avoid-page;
+    margin-bottom: 7mm;
+    border-color: #cbd5e1 !important;
+  }
+
+  body.printing-proposal .proposal-document header,
+  body.printing-proposal .proposal-document footer {
+    break-inside: avoid-page;
+  }
+
+  body.printing-proposal .proposal-document * {
+    color: #111 !important;
+  }
+
+  body.printing-proposal .proposal-document .text-\[\#64748B\],
+  body.printing-proposal .proposal-document .text-\[\#475569\] {
+    color: #475569 !important;
   }
 }

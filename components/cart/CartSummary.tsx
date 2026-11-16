@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Trash2,
   ArrowRight,
@@ -9,47 +10,114 @@ import {
   Copy,
   Clock,
   Printer,
+  FileText,
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
-import { usePresenter } from '@/context/PresenterContext';
 import { formatINR } from '@/lib/utils';
 
+function localDateValue() {
+  const date = new Date();
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
 export function CartSummary() {
+  const router = useRouter();
   const { items, totalCount, totalEstimatedHours, totalEstimatedBaseINR, clearCart } = useCart();
-  const { showPricing, showInternalDetails } = usePresenter();
   const [copied, setCopied] = useState(false);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [needsAdminSignIn, setNeedsAdminSignIn] = useState(false);
+  const [clientName, setClientName] = useState('');
+  const [clientCompany, setClientCompany] = useState('');
+  const [clientEmail, setClientEmail] = useState('');
+  const [clientPhone, setClientPhone] = useState('');
+  const [projectName, setProjectName] = useState('');
+  const [projectBrief, setProjectBrief] = useState('');
+  const [proposalDate, setProposalDate] = useState(localDateValue);
+  const [validUntil, setValidUntil] = useState('');
+  const [notes, setNotes] = useState('');
 
-  const handleCopySummary = () => {
+  const handleCopySummary = async () => {
     const summaryText = [
-      `REDHEIR SHOWROOM — CLIENT PROJECT SELECTION SUMMARY`,
-      `Date: ${new Date().toLocaleDateString('en-IN', { dateStyle: 'medium' })}`,
+      'REDHEIR SHOWROOM — CLIENT PROJECT PROPOSAL',
+      `Date: ${proposalDate}`,
+      `Client: ${clientName}${clientCompany ? ` (${clientCompany})` : ''}`,
+      `Project: ${projectName}`,
       `Total Image Offers: ${totalCount}`,
-      showInternalDetails ? `Estimated Engineering Effort: ~${totalEstimatedHours} hours` : '',
-      showPricing ? `Estimated Base Total: ${formatINR(totalEstimatedBaseINR)}` : '',
+      `Estimated Development Time: ~${totalEstimatedHours} hours`,
+      `Estimated Total: ${formatINR(totalEstimatedBaseINR)}`,
       '',
-      `SELECTED SCOPE DELIVERABLES:`,
-      ...items.map((item, idx) => {
-        const parts = [
-          `${idx + 1}. ${item.design.title}${item.screen.title ? ` — ${item.screen.title}` : ''}`,
+      'SELECTED IMAGE OFFERS:',
+      ...items.map((item, index) => {
+        const detail = [
+          `${index + 1}. ${item.design.title}${item.screen.title ? ` — ${item.screen.title}` : ''}`,
           item.screen.description,
           item.screen.estimatedPriceINR === undefined ? 'Price on request' : formatINR(item.screen.estimatedPriceINR),
           item.screen.devHours === undefined ? 'Time not estimated' : `~${item.screen.devHours} hours`,
         ];
-        return parts.filter(Boolean).join(' · ');
+        return detail.filter(Boolean).join(' · ');
       }),
-      '',
-      `Generated via REDHEIR Interactive Showroom`,
-    ]
-      .filter(Boolean)
-      .join('\n');
+    ].filter(Boolean).join('\n');
 
-    navigator.clipboard.writeText(summaryText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    try {
+      await navigator.clipboard.writeText(summaryText);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2500);
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? `Could not copy brief: ${error.message}` : 'Could not copy the proposal brief.');
+    }
   };
 
-  const handlePrint = () => {
+  const handleSaveProposal = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setErrorMessage('');
+    setNeedsAdminSignIn(false);
+    setIsSaving(true);
+    try {
+      const response = await fetch('/api/proposals', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientName,
+          clientCompany,
+          clientEmail,
+          clientPhone,
+          projectName,
+          projectBrief,
+          proposalDate,
+          validUntil,
+          notes,
+          items: items.map(({ design, screen }) => ({
+            catalogTitle: design.title,
+            title: screen.title || '',
+            description: screen.description || '',
+            image: screen.image,
+            estimatedPriceINR: screen.estimatedPriceINR ?? null,
+            devHours: screen.devHours ?? null,
+          })),
+        }),
+      });
+      const result: unknown = await response.json();
+      if (response.status === 401) {
+        setNeedsAdminSignIn(true);
+        throw new Error('Sign in as an admin to save this proposal.');
+      }
+      if (!response.ok || !result || typeof result !== 'object' || !('proposal_id' in result)) {
+        const message = result && typeof result === 'object' && 'error' in result && typeof result.error === 'string'
+          ? result.error
+          : 'Could not save this proposal.';
+        throw new Error(message);
+      }
+      router.push(`/admin/proposals/${result.proposal_id}`);
+      router.refresh();
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Could not save this proposal.');
+      setIsSaving(false);
+    }
+  };
+
+  const handlePrintCurrentSelection = () => {
     document.body.classList.add('printing-selection');
     window.addEventListener('afterprint', () => {
       document.body.classList.remove('printing-selection');
@@ -58,94 +126,121 @@ export function CartSummary() {
   };
 
   return (
-    <div className="print-summary rounded-xl bg-[#181C22] border border-[#31353C] p-6 space-y-6 shadow-xl relative overflow-hidden">
-      {/* Top Accent line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-[#B9C9D5]" />
-
-      {/* Header */}
-      <div className="flex items-start justify-between pb-4 border-b border-[#31353C]">
-        <div>
-          <h3 className="text-base font-bold text-[#DFE2EB]">Selection Summary</h3>
-          <span className="text-xs text-[#8B9199]">Selected image offers</span>
-        </div>
-        <span className="px-2.5 py-0.5 rounded text-xs font-semibold bg-[#262A31] text-[#B9C9D5] border border-[#31353C]">
-          {totalCount} {totalCount === 1 ? 'Deliverable' : 'Deliverables'}
-        </span>
+    <div className="print-summary space-y-5 rounded-xl border border-[#31353C] bg-[#181C22] p-4 shadow-xl sm:p-6">
+      <div className="print-hide space-y-2 border-b border-[#31353C] pb-4">
+        <h2 className="text-base font-bold text-[#DFE2EB]">Proposal details</h2>
+        <p className="text-xs leading-relaxed text-[#8B9199]">
+          Add client and project information, then save an admin-only proposal with a unique number.
+        </p>
       </div>
+
+      <form onSubmit={handleSaveProposal} className="print-hide space-y-4">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="space-y-1">
+            <span className="text-xs font-medium text-[#C2C7D0]">Client name *</span>
+            <input required maxLength={200} value={clientName} onChange={(event) => setClientName(event.target.value)} className="admin-input min-h-11" />
+          </label>
+          <label className="space-y-1">
+            <span className="text-xs font-medium text-[#C2C7D0]">Company</span>
+            <input maxLength={200} value={clientCompany} onChange={(event) => setClientCompany(event.target.value)} className="admin-input min-h-11" />
+          </label>
+          <label className="space-y-1">
+            <span className="text-xs font-medium text-[#C2C7D0]">Email</span>
+            <input type="email" maxLength={200} value={clientEmail} onChange={(event) => setClientEmail(event.target.value)} className="admin-input min-h-11" />
+          </label>
+          <label className="space-y-1">
+            <span className="text-xs font-medium text-[#C2C7D0]">Phone</span>
+            <input type="tel" maxLength={50} value={clientPhone} onChange={(event) => setClientPhone(event.target.value)} className="admin-input min-h-11" />
+          </label>
+          <label className="space-y-1 sm:col-span-2">
+            <span className="text-xs font-medium text-[#C2C7D0]">Project name *</span>
+            <input required maxLength={200} value={projectName} onChange={(event) => setProjectName(event.target.value)} className="admin-input min-h-11" />
+          </label>
+          <label className="space-y-1">
+            <span className="text-xs font-medium text-[#C2C7D0]">Proposal date</span>
+            <input type="date" required value={proposalDate} onChange={(event) => setProposalDate(event.target.value)} className="admin-input min-h-11" />
+          </label>
+          <label className="space-y-1">
+            <span className="text-xs font-medium text-[#C2C7D0]">Valid until (optional)</span>
+            <input type="date" min={proposalDate} value={validUntil} onChange={(event) => setValidUntil(event.target.value)} className="admin-input min-h-11" />
+          </label>
+          <label className="space-y-1 sm:col-span-2">
+            <span className="text-xs font-medium text-[#C2C7D0]">Project specification / brief</span>
+            <textarea maxLength={10000} rows={4} value={projectBrief} onChange={(event) => setProjectBrief(event.target.value)} className="admin-input" />
+          </label>
+          <label className="space-y-1 sm:col-span-2">
+            <span className="text-xs font-medium text-[#C2C7D0]">Notes and assumptions</span>
+            <textarea maxLength={10000} rows={3} value={notes} onChange={(event) => setNotes(event.target.value)} className="admin-input" />
+          </label>
+        </div>
+        {errorMessage && (
+          <div role="alert" className="space-y-2 text-sm text-red-400">
+            <p>{errorMessage}</p>
+            {needsAdminSignIn && (
+              <p className="text-xs text-[#C2C7D0]">
+                Open <Link href="/admin/login" target="_blank" rel="noreferrer" className="font-semibold text-[#B9C9D5] underline">admin sign-in</Link> in another tab, then return here and save again. Your form details stay on this page.
+              </p>
+            )}
+          </div>
+        )}
+        <button
+          disabled={isSaving || items.length === 0}
+          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#B9C9D5] px-4 py-3 text-sm font-semibold text-[#10141A] transition-colors hover:bg-[#DDE5EA] disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          <FileText className="h-4 w-4" />
+          <span>{isSaving ? 'Saving proposal…' : 'Save proposal & open print view'}</span>
+        </button>
+        <button
+          type="button"
+          onClick={handleCopySummary}
+          className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#31353C] bg-[#262A31] px-4 py-2.5 text-xs font-semibold text-[#DFE2EB] transition-colors hover:bg-[#31353C]"
+        >
+          {copied ? <ClipboardCheck className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+          <span>{copied ? 'Brief copied' : 'Copy proposal summary'}</span>
+        </button>
+      </form>
 
       <div className="print-total space-y-2 rounded-lg border border-[#262A31] bg-[#10141A] p-3.5">
         <div className="flex items-center justify-between text-xs text-[#8B9199]">
-          <span className="flex items-center gap-1.5 text-[#B9C9D5]">
-            <Clock className="w-3.5 h-3.5" />
-            <span>Total development time</span>
+          <span className="inline-flex items-center gap-1.5 text-[#B9C9D5]">
+            <Clock className="h-3.5 w-3.5" />
+            Total development time
           </span>
-          <span className="font-mono text-sm font-bold text-[#DFE2EB]">
-            ~{totalEstimatedHours} hrs
-          </span>
+          <span className="font-mono text-sm font-bold text-[#DFE2EB]">~{totalEstimatedHours} hrs</span>
         </div>
         <div className="flex items-baseline justify-between border-t border-[#262A31] pt-2">
           <span className="text-xs uppercase tracking-wider text-[#8B9199]">Estimated total</span>
-          <span className="text-xl font-bold tabular-nums text-[#DFE2EB]">
-            {formatINR(totalEstimatedBaseINR)}
-          </span>
+          <span className="text-xl font-bold tabular-nums text-[#DFE2EB]">{formatINR(totalEstimatedBaseINR)}</span>
         </div>
         <p className="text-[10px] text-[#8B9199]">
           Totals include entered estimates only. Offers without a price or time estimate are marked individually.
         </p>
       </div>
 
-      <div className="print-hide space-y-3 pt-2">
+      <div className="print-hide space-y-3 border-t border-[#31353C] pt-4">
         <button
-          onClick={handlePrint}
+          onClick={handlePrintCurrentSelection}
           type="button"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#B9C9D5] px-4 py-2.5 text-xs font-semibold text-[#10141A] transition-colors hover:bg-[#DDE5EA]"
+          className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#31353C] bg-[#1C2026] px-4 py-2.5 text-xs font-semibold text-[#DFE2EB] transition-colors hover:border-[#B9C9D5]"
         >
           <Printer className="h-4 w-4" />
-          <span>Print / Save as PDF</span>
+          <span>Print current selection</span>
         </button>
-        <button
-          onClick={handleCopySummary}
-          type="button"
-          className="flex w-full items-center justify-center gap-2 rounded-lg border border-[#31353C] bg-[#262A31] px-4 py-2.5 text-xs font-semibold text-[#DFE2EB] transition-colors hover:bg-[#31353C]"
-        >
-          {copied ? (
-            <>
-              <ClipboardCheck className="h-4 w-4 text-emerald-400" />
-              <span className="text-emerald-400">Selection Brief Copied!</span>
-            </>
-          ) : (
-            <>
-              <Copy className="h-4 w-4 text-[#C2C7D0]" />
-              <span>Copy Selection Brief</span>
-            </>
-          )}
-        </button>
-
         <Link
           href="/catalogue"
-          className="flex w-full items-center justify-center gap-2 rounded-lg border border-[#31353C] bg-[#1C2026] px-4 py-2.5 text-xs font-semibold text-[#DFE2EB] transition-colors hover:border-[#DFE2EB]"
+          className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#31353C] bg-[#1C2026] px-4 py-2.5 text-xs font-semibold text-[#DFE2EB] transition-colors hover:border-[#DFE2EB]"
         >
           <span>Continue Browsing Catalogue</span>
           <ArrowRight className="h-4 w-4" />
         </Link>
-
         {showClearConfirm ? (
           <div className="space-y-2 rounded-lg border border-red-500/40 bg-[#10141A] p-3 text-center">
             <p className="text-xs text-[#DFE2EB]">Empty all selected image offers?</p>
             <div className="flex items-center justify-center gap-2">
-              <button
-                onClick={() => {
-                  clearCart();
-                  setShowClearConfirm(false);
-                }}
-                className="rounded bg-red-600 px-3 py-1 text-xs font-semibold text-white hover:bg-red-700"
-              >
+              <button onClick={() => { clearCart(); setShowClearConfirm(false); }} className="min-h-10 rounded bg-red-600 px-4 py-2 text-xs font-semibold text-white hover:bg-red-700">
                 Yes, Empty
               </button>
-              <button
-                onClick={() => setShowClearConfirm(false)}
-                className="rounded bg-[#262A31] px-3 py-1 text-xs text-[#C2C7D0]"
-              >
+              <button onClick={() => setShowClearConfirm(false)} className="min-h-10 rounded bg-[#262A31] px-4 py-2 text-xs text-[#C2C7D0]">
                 Cancel
               </button>
             </div>
@@ -154,10 +249,10 @@ export function CartSummary() {
           <button
             onClick={() => setShowClearConfirm(true)}
             type="button"
-            className="flex w-full items-center justify-center gap-1.5 rounded px-3 py-2 text-xs text-[#8B9199] transition-colors hover:bg-[#1C2026] hover:text-[#B9C9D5]"
+            className="flex min-h-11 w-full items-center justify-center gap-1.5 rounded px-3 py-2 text-xs text-[#8B9199] transition-colors hover:bg-[#1C2026] hover:text-[#B9C9D5]"
           >
             <Trash2 className="h-3.5 w-3.5" />
-            <span>Empty Selection Cart</span>
+            <span>Empty Selection Cart ({totalCount})</span>
           </button>
         )}
       </div>

@@ -17,18 +17,18 @@ export function CartItemRow({ item }: CartItemRowProps) {
   const { design, screen } = item;
 
   return (
-    <article className="flex flex-col items-start justify-between gap-4 rounded-xl border border-[#31353C] bg-[#181C22] p-4 transition-all hover:border-[#353940] sm:flex-row sm:items-center sm:p-5">
-      <div className="flex min-w-0 flex-1 items-start gap-4">
+    <article className="print-offer flex flex-col items-start justify-between gap-4 rounded-xl border border-[#31353C] bg-[#181C22] p-3 transition-all hover:border-[#353940] sm:flex-row sm:items-center sm:p-5">
+      <div className="print-offer-content flex min-w-0 flex-1 items-start gap-3 sm:gap-4">
         <Link
           href={`/design/${design.id}`}
-          className="relative h-20 w-32 shrink-0 overflow-hidden rounded-lg border border-[#31353C] bg-[#0A0E14]"
+          className="print-offer-image relative aspect-[4/3] w-[36%] max-w-40 shrink-0 overflow-hidden rounded-lg border border-[#31353C] bg-[#0A0E14] sm:w-40"
         >
           <Image
             src={screen.image}
             alt={screen.title || design.title}
             fill
             sizes="128px"
-            className="object-cover"
+            className="object-contain"
             referrerPolicy="no-referrer"
           />
         </Link>
@@ -56,7 +56,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
       <button
         onClick={() => removeFromCart(item.id)}
         type="button"
-        className="print-hide flex items-center gap-2 self-end rounded px-2 py-1.5 text-xs text-[#8B9199] transition-colors hover:bg-[#262A31] hover:text-[#B9C9D5] sm:self-auto"
+        className="print-hide flex min-h-11 min-w-11 items-center justify-center gap-2 self-end rounded px-2 py-1.5 text-xs text-[#8B9199] transition-colors hover:bg-[#262A31] hover:text-[#B9C9D5] sm:self-auto"
         aria-label={`Remove ${screen.title || 'image offer'} from selection`}
       >
         <Trash2 className="h-4 w-4" />

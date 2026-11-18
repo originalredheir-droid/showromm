@@ -1,26 +1,8 @@
 import type { Category, Design } from '@/types';
 import type { CategoryRow, DesignRow } from '@/types/database';
 import { createClient } from '@/lib/supabase/server';
+import { getAssetUrl } from '@/lib/assets';
 import { isFilenameDerivedScreenTitle } from '@/lib/utils';
-
-const STORAGE_BUCKET = 'catalog-assets';
-
-export function getAssetUrl(path: string) {
-  if (!path || /^https?:\/\//i.test(path)) return path;
-  const { url } = getSupabaseAssetConfig();
-  return `${url}/storage/v1/object/public/${STORAGE_BUCKET}/${path
-    .split('/')
-    .map(encodeURIComponent)
-    .join('/')}`;
-}
-
-function getSupabaseAssetConfig() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  if (!url) {
-    throw new Error('Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL.');
-  }
-  return { url: url.replace(/\/$/, '') };
-}
 
 export function mapCategory(
   row: CategoryRow,

@@ -176,6 +176,13 @@
     color: #111 !important;
   }
 
+  body.printing-proposal .proposal-preview-overlay {
+    position: static !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
   body.printing-proposal * {
     visibility: hidden !important;
   }
@@ -201,6 +208,21 @@
 
   body.printing-proposal .proposal-document > article {
     padding: 0 !important;
+  }
+
+  body.printing-proposal .proposal-document header {
+    border-bottom-width: 2px !important;
+    border-color: #cbd5e1 !important;
+    padding-bottom: 5mm !important;
+  }
+
+  body.printing-proposal .proposal-document section {
+    break-inside: avoid-page;
+  }
+
+  body.printing-proposal .proposal-document .bg-\[\#F1F5F9\],
+  body.printing-proposal .proposal-document .bg-\[\#F8FAFC\] {
+    background: #f1f5f9 !important;
   }
 
   body.printing-proposal .proposal-image {

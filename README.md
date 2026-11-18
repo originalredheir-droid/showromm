@@ -13,7 +13,7 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 - **Website Catalogue:** Primary browsing module with keyword search, category filters, concept type tabs (Complete Concepts, Functional Modules, Individual Pages, UI Sections), and sorting. Catalogs link to their individual image offers; the catalog itself is not a cart item.
 - **Design Details / Image Offers:** Each catalog presents its images as independent, vertically ordered cards with optional titles and descriptions, individual prices, development-time estimates, and add/remove actions.
 - **Selection Cart & Proposal:** Review selected image offers and their estimates, see aggregate price and development-time totals, copy a project brief, or use browser Print / Save as PDF. Cart state persists in browser `localStorage`.
-- **Saved Client Proposals:** Add client and project details to create a year-numbered proposal, print a branded image-led proposal, and reopen admin-only saved records.
+- **Client Proposals:** Anyone can enter client/project details and generate a branded, image-led PDF without signing in. Client details stay in the browser unless an admin explicitly saves a copy; saved records remain admin-only.
 - **Meeting Presenter Controls:** Client-facing in-room switches to toggle commercial pricing and internal technical dev hours on the fly.
 - **Fully Responsive:** Optimized for mobile phones, tablets, and desktop workstations during in-person and screen-shared meetings.
 - **Admin Console:** Email/password protected category and design management, drafts and publishing, catalog-image uploads, business profile settings, and saved proposal records. Each image offer has editable display order, optional title/description, price, and development time.
@@ -112,7 +112,7 @@ npm install
    Replace the example email with the user you created. Do not enable public signup for this internal admin console.
 4. Open `/admin` to create categories and designs. Lists include confirmed deletion actions that also remove uploaded images. A category cannot be deleted while designs reference it; hide it instead or remove its designs first. Published catalog images are publicly viewable; uploads and content edits require an authorized admin.
 
-Saved proposals contain client contact and project information. Access is restricted to authorized admins. Business identity fields can be configured at `/admin/settings`; proposal numbering is allocated server-side by proposal year.
+Saved proposals contain client contact and project information. Access is restricted to authorized admins. Business identity fields can be configured at `/admin/settings`; those fields are included in PDFs and are publicly readable. Proposal numbering is allocated server-side only for saved admin records. Apply all migrations with `npx supabase db push --linked` to enable saved proposals and public PDF branding.
 
 ### Development Server
 

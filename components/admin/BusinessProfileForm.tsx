@@ -92,7 +92,7 @@ export function BusinessProfileForm({ initialProfile }: BusinessProfileFormProps
           onChange={(paths) => update('logoPath', paths[0] ?? '')}
         />
         <p className="text-xs text-[#8B9199]">
-          This identity profile is available only in the admin area. The uploaded logo is stored with the showroom’s public catalog images.
+          These business identity details and the logo are included in proposal PDFs and are visible to visitors. Do not enter private information here.
         </p>
       </section>
 

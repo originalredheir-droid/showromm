@@ -1,6 +1,6 @@
 import type { BusinessProfileRow, ProposalRow } from '@/types/database';
 import { createClient } from '@/lib/supabase/server';
-import { getAssetUrl } from '@/lib/catalog';
+import { getAssetUrl } from '@/lib/assets';
 
 export interface BusinessProfile {
   companyName: string;
@@ -45,7 +45,9 @@ export function isProposalSchemaUnavailable(error: unknown): boolean {
     );
 }
 
-export function mapBusinessProfile(row: BusinessProfileRow | null): BusinessProfile {
+export function mapBusinessProfile(
+  row: Pick<BusinessProfileRow, 'company_name' | 'brand_name' | 'address' | 'email' | 'phone' | 'website' | 'logo_path'> | null
+): BusinessProfile {
   return {
     companyName: row?.company_name ?? '',
     brandName: row?.brand_name ?? '',
@@ -91,8 +93,7 @@ export async function getBusinessProfile() {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('business_profiles')
-    .select('*')
-    .eq('id', true)
+    .select('company_name, brand_name, address, email, phone, website, logo_path')
     .maybeSingle();
   if (error) throw error;
   return mapBusinessProfile(data);
@@ -117,8 +118,4 @@ export async function getAdminProposal(id: string) {
     .maybeSingle();
   if (error) throw error;
   return data ? mapProposal(data) : null;
-}
-
-export function getBusinessLogoUrl(path: string) {
-  return path ? getAssetUrl(path) : '';
 }

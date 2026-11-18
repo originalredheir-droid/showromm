@@ -12,8 +12,20 @@ export default function ErrorBoundary({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log error to console for operator diagnostics
-    console.error('Showroom runtime error:', error);
+    console.error('Showroom runtime error digest:', error.digest ?? 'unavailable');
+    void fetch('/api/telemetry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source: 'react-error-boundary',
+        ...(error.digest ? { digest: error.digest } : {}),
+      }),
+      keepalive: true,
+    }).then((response) => {
+      if (!response.ok) console.warn(`Error telemetry was rejected (HTTP ${response.status}).`);
+    }).catch(() => {
+      console.warn('Error telemetry endpoint could not be reached.');
+    });
   }, [error]);
 
   return (

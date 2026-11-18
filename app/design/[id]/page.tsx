@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { DesignShowcase } from '@/components/design/DesignShowcase';
-import { getPublicCatalog } from '@/lib/catalog';
+import { getPublicDesign } from '@/lib/catalog';
 
 interface DesignDetailPageProps {
   params: Promise<{ id: string }>;
@@ -9,9 +9,7 @@ interface DesignDetailPageProps {
 
 export default async function DesignDetailPage({ params }: DesignDetailPageProps) {
   const { id } = await params;
-  const { designs } = await getPublicCatalog();
-  const design = designs.find((item) => item.id === id || item.slug === id);
-
+  const design = await getPublicDesign(id);
   if (!design) {
     notFound();
   }

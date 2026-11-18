@@ -9,6 +9,7 @@ const links = [
   { href: '/admin', label: 'Overview' },
   { href: '/admin/categories', label: 'Categories' },
   { href: '/admin/designs', label: 'Catalogue' },
+  { href: '/admin/storage', label: 'Storage' },
   { href: '/admin/proposals', label: 'Proposals' },
   { href: '/admin/settings', label: 'Business Profile' },
 ];
@@ -36,13 +37,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <Link href="/admin" className="font-bold tracking-tight">
             REDHEIR <span className="text-[#B9C9D5]">ADMIN</span>
           </Link>
-          <nav aria-label="Admin navigation" className="flex w-full items-center gap-4 overflow-x-auto pb-1 sm:w-auto sm:gap-4">
+          <nav aria-label="Admin navigation" className="flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={pathname === link.href || (link.href !== '/admin' && pathname.startsWith(`${link.href}/`)) ? 'page' : undefined}
                 className={`min-h-10 shrink-0 rounded px-2 py-2 text-sm sm:min-h-0 sm:p-0 ${
-                  pathname === link.href ? 'text-[#B9C9D5] font-semibold' : 'text-[#C2C7D0] hover:text-white'
+                  pathname === link.href || (link.href !== '/admin' && pathname.startsWith(`${link.href}/`))
+                    ? 'text-[#B9C9D5] font-semibold'
+                    : 'text-[#C2C7D0] hover:text-white'
                 }`}
               >
                 {link.label}

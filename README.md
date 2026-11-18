@@ -16,7 +16,8 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 - **Client Proposals:** Anyone can enter client/project details and generate a branded, image-led PDF without signing in. Client details stay in the browser unless an admin explicitly saves a copy; saved records remain admin-only.
 - **Meeting Presenter Controls:** Client-facing in-room switches to toggle commercial pricing and internal technical dev hours on the fly.
 - **Fully Responsive:** Optimized for mobile phones, tablets, and desktop workstations during in-person and screen-shared meetings.
-- **Admin Console:** Email/password protected category and design management, drafts and publishing, catalog-image uploads, business profile settings, and saved proposal records. Each image offer has editable display order, optional title/description, price, and development time.
+- **Admin Console:** Email/password protected category and design management, drafts and publishing, catalog-image uploads, business profile settings, saved proposal records, and Supabase Storage usage/capacity estimates. Each image offer has editable display order, optional title/description, price, and development time.
+- **Error reporting:** Browser and server errors are logged with route templates and optional digests only; proposal details, request data, and error messages are not transmitted. Review these events in the hosting platform logs.
 
 ---
 
@@ -113,6 +114,8 @@ npm install
 4. Open `/admin` to create categories and designs. Lists include confirmed deletion actions that also remove uploaded images. A category cannot be deleted while designs reference it; hide it instead or remove its designs first. Published catalog images are publicly viewable; uploads and content edits require an authorized admin.
 
 Saved proposals contain client contact and project information. Access is restricted to authorized admins. Business identity fields can be configured at `/admin/settings`; those fields are included in PDFs and are publicly readable. Proposal numbering is allocated server-side only for saved admin records. Apply all migrations with `npx supabase db push --linked` to enable saved proposals and public PDF branding.
+
+The admin Storage page reports object bytes and image usage from Supabase Storage. Enter the storage quota shown for your Supabase plan to calculate an approximate number of additional catalogs. Actual capacity varies with future image sizes and files not referenced by published catalogs.
 
 ### Development Server
 

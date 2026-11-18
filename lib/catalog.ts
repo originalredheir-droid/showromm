@@ -87,6 +87,30 @@ export async function getPublicCatalog() {
   return { categories, designs };
 }
 
+export async function getPublicDesign(idOrSlug: string) {
+  const supabase = await createClient();
+  const isId = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(idOrSlug);
+  const { data: design, error: designError } = await supabase
+    .from('designs')
+    .select('*')
+    .eq(isId ? 'id' : 'slug', idOrSlug)
+    .eq('status', 'published')
+    .maybeSingle();
+
+  if (designError) throw designError;
+  if (!design) return null;
+
+  const { data: category, error: categoryError } = await supabase
+    .from('categories')
+    .select('*')
+    .eq('id', design.category_id)
+    .eq('is_active', true)
+    .maybeSingle();
+
+  if (categoryError) throw categoryError;
+  return category ? mapDesign(design, category) : null;
+}
+
 export async function getAdminCategories() {
   const supabase = await createClient();
   const { data, error } = await supabase

@@ -109,6 +109,56 @@ export interface ProposalRow {
   created_at: string;
 }
 
+export interface InvoiceItem {
+  id: string;
+  catalogTitle: string;
+  title: string;
+  description: string;
+  image: string;
+  amount: number;
+}
+
+export interface InvoiceRow {
+  [key: string]: unknown;
+  id: string;
+  proposal_id: string;
+  invoice_number: string | null;
+  sequence_year: number | null;
+  sequence_number: number | null;
+  status: 'draft' | 'issued';
+  issue_date: string | null;
+  due_date: string | null;
+  client_name: string;
+  client_company: string;
+  client_email: string;
+  client_phone: string;
+  project_name: string;
+  items: InvoiceItem[];
+  adjustment_amount: number;
+  adjustment_note: string;
+  business_profile: BusinessProfileSnapshot;
+  total_amount: number;
+  created_by: string;
+  created_at: string;
+  issued_at: string | null;
+}
+
+export interface InvoicePaymentRow {
+  [key: string]: unknown;
+  id: string;
+  invoice_id: string;
+  receipt_number: string;
+  sequence_year: number;
+  sequence_number: number;
+  payment_date: string;
+  amount: number;
+  method: string;
+  reference: string;
+  memo: string;
+  created_by: string;
+  created_at: string;
+}
+
 type CategoryInsert = Omit<CategoryRow, 'id' | 'created_at' | 'updated_at'> &
   Partial<Pick<CategoryRow, 'id' | 'created_at' | 'updated_at'>>;
 type DesignInsert = Omit<DesignRow, 'id' | 'created_at' | 'updated_at'> &
@@ -117,6 +167,10 @@ type BusinessProfileInsert = Omit<BusinessProfileRow, 'updated_at' | 'updated_by
   Partial<Pick<BusinessProfileRow, 'updated_at' | 'updated_by'>>;
 type ProposalInsert = Omit<ProposalRow, 'id' | 'created_at'> &
   Partial<Pick<ProposalRow, 'id' | 'created_at'>>;
+type InvoiceInsert = Omit<InvoiceRow, 'id' | 'created_at' | 'issued_at'> &
+  Partial<Pick<InvoiceRow, 'id' | 'created_at' | 'issued_at'>>;
+type InvoicePaymentInsert = Omit<InvoicePaymentRow, 'id' | 'created_at'> &
+  Partial<Pick<InvoicePaymentRow, 'id' | 'created_at'>>;
 
 export interface Database {
   public: {
@@ -130,6 +184,8 @@ export interface Database {
       designs: Table<DesignRow, DesignInsert, Partial<DesignInsert>>;
       business_profiles: Table<BusinessProfileRow, BusinessProfileInsert, Partial<BusinessProfileInsert>>;
       proposals: Table<ProposalRow, ProposalInsert, Partial<ProposalInsert>>;
+      invoices: Table<InvoiceRow, InvoiceInsert, Partial<InvoiceInsert>>;
+      invoice_payments: Table<InvoicePaymentRow, InvoicePaymentInsert, Partial<InvoicePaymentInsert>>;
     };
     Views: Record<string, never>;
     Functions: {
@@ -154,6 +210,26 @@ export interface Database {
       create_proposal: {
         Args: { p_payload: Record<string, unknown> };
         Returns: Array<{ proposal_id: string; proposal_number: string }>;
+      };
+      create_invoice_draft: {
+        Args: { p_proposal_id: string };
+        Returns: string;
+      };
+      update_invoice_draft: {
+        Args: { p_invoice_id: string; p_payload: Record<string, unknown> };
+        Returns: undefined;
+      };
+      delete_invoice_draft: {
+        Args: { p_invoice_id: string };
+        Returns: undefined;
+      };
+      issue_invoice: {
+        Args: { p_invoice_id: string; p_issue_date: string };
+        Returns: Array<{ invoice_number: string }>;
+      };
+      record_invoice_payment: {
+        Args: { p_invoice_id: string; p_payload: Record<string, unknown> };
+        Returns: Array<{ payment_id: string; receipt_number: string }>;
       };
     };
     Enums: Record<string, never>;

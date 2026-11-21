@@ -16,7 +16,8 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 - **Client Proposals:** Anyone can enter client/project details and generate a branded, image-led PDF without signing in. Client details stay in the browser unless an admin explicitly saves a copy; saved records remain admin-only.
 - **Meeting Presenter Controls:** Client-facing in-room switches to toggle commercial pricing and internal technical dev hours on the fly.
 - **Fully Responsive:** Optimized for mobile phones, tablets, and desktop workstations during in-person and screen-shared meetings.
-- **Admin Console:** Email/password protected category and design management, drafts and publishing, catalog-image uploads, business profile settings, saved proposal records, and Supabase Storage usage/capacity estimates. Each image offer has editable display order, optional title/description, price, and development time.
+- **Admin Console:** Email/password protected category and design management, drafts and publishing, catalog-image uploads, business profile settings, saved proposal records, simple proposal-based invoices and payment receipts, and Supabase Storage usage/capacity estimates. Each image offer has editable display order, optional title/description, price, and development time.
+- **Invoices & receipts:** Start a draft from an unchanged saved proposal, edit the agreed scope and prices, issue a numbered commercial invoice, record partial or final payments, and print a numbered receipt for each payment. Issued invoices and payment history are immutable; the first version does not calculate taxes and is not a GST invoice system.
 - **Error reporting:** Browser and server errors are logged with route templates and optional digests only; proposal details, request data, and error messages are not transmitted. Review these events in the hosting platform logs.
 
 ---
@@ -45,11 +46,12 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 │   ├── design/[id]/        # Ordered independent image offers
 │   ├── selection/          # Image-offer cart and print-ready proposal
 │   ├── api/proposals/      # Admin-checked proposal creation endpoint
+│   ├── api/invoices/       # Draft, issue, and payment endpoints for admins
 │   └── showroom/           # Route alias to /catalogue
 ├── components/
 │   ├── layout/             # Sidebar, Header, MobileNav
 │   ├── catalogue/          # CatalogueCard, FilterBar, EmptyState
-│   ├── admin/              # Admin sign-in, forms, and image uploads
+│   ├── admin/              # Admin sign-in, catalog forms, invoices, and receipts
 │   ├── categories/         # CategoryCard
 │   ├── design/             # DesignShowcase image-offer cards
 │   ├── proposals/          # Saved branded proposal and print view
@@ -62,6 +64,7 @@ An internal digital showroom built with Next.js 15, TypeScript, and Tailwind CSS
 │   └── designs.ts          # Legacy sample data (not loaded by the app)
 ├── lib/
 │   ├── storage.ts          # Safe SSR LocalStorage helper
+│   ├── invoices.ts         # Admin invoice and payment queries
 │   ├── supabase/           # Browser and server Supabase clients
 │   └── utils.ts            # Formatting & class merging
 ├── supabase/
@@ -94,10 +97,11 @@ npm install
 ### Supabase setup
 
 1. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` from Supabase project settings. Never put a service-role key in browser environment variables.
-2. Link this repository to the project and apply all migrations (including the admin-only proposal tables and numbering function):
+2. Link this repository to the intended project. Review the remote migration state before applying migrations; this includes the admin-only proposal, invoice, and receipt schema:
 
    ```bash
    npx supabase link --project-ref YOUR_PROJECT_REF
+   npx supabase migration list --remote
    npx supabase db push --remote
    ```
 
@@ -113,7 +117,9 @@ npm install
    Replace the example email with the user you created. Do not enable public signup for this internal admin console.
 4. Open `/admin` to create categories and designs. Lists include confirmed deletion actions that also remove uploaded images. A category cannot be deleted while designs reference it; hide it instead or remove its designs first. Published catalog images are publicly viewable; uploads and content edits require an authorized admin.
 
-Saved proposals contain client contact and project information. Access is restricted to authorized admins. Business identity fields can be configured at `/admin/settings`; those fields are included in PDFs and are publicly readable. Proposal numbering is allocated server-side only for saved admin records. Apply all migrations with `npx supabase db push --linked` to enable saved proposals and public PDF branding.
+Saved proposals contain client contact and project information. Access is restricted to authorized admins. Business identity fields can be configured at `/admin/settings`; those fields are included in PDFs and are publicly readable. Proposal numbering is allocated server-side only for saved admin records.
+
+Invoices and receipts are admin-only. Invoice numbering and receipt numbering are allocated server-side; invoice totals, final scope, and business identity are snapshotted when issued. Payment recording is transactional and prevents overpayment. The simple commercial invoice does not calculate tax and should not be treated as a GST/tax invoice. Review production migrations and verify the linked Supabase project before applying them.
 
 The admin Storage page reports object bytes and image usage from Supabase Storage. Enter the storage quota shown for your Supabase plan to calculate an approximate number of additional catalogs. Actual capacity varies with future image sizes and files not referenced by published catalogs.
 
@@ -138,6 +144,6 @@ npm run start
 
 ## 🔒 Future Roadmap
 
-The initial Supabase-backed admin and public catalogue are in place. Future milestones may introduce:
-- Automated branded quotation PDF generation and invoice milestone billing
-- Internal pricing intelligence engine
+Future milestones may introduce:
+- Internal pricing intelligence and catalog analytics
+- Invoice milestone billing and other accounting integrations, if needed

@@ -7,6 +7,7 @@ import { getAssetUrl } from '@/lib/assets';
 import { formatINR } from '@/lib/utils';
 import type { ProposalDocument as ProposalData } from '@/lib/proposals';
 import { ProposalPrintButton } from './ProposalPrintButton';
+import { CreateInvoiceButton } from '@/components/admin/CreateInvoiceButton';
 
 function formatDate(value: string) {
   return new Date(`${value}T00:00:00`).toLocaleDateString('en-IN', {
@@ -19,9 +20,11 @@ function formatDate(value: string) {
 export function ProposalDocument({
   proposal,
   onClose,
+  showInvoiceAction = false,
 }: {
   proposal: ProposalData;
   onClose?: () => void;
+  showInvoiceAction?: boolean;
 }) {
   const profile = proposal.businessProfile;
   const logoUrl = getAssetUrl(profile.logoPath);
@@ -41,7 +44,10 @@ export function ProposalDocument({
             Saved proposals
           </Link>
         )}
-        <ProposalPrintButton />
+        <div className="flex flex-wrap gap-2">
+          {showInvoiceAction && <CreateInvoiceButton proposalId={proposal.id} />}
+          <ProposalPrintButton />
+        </div>
       </div>
 
       <article className="space-y-6 rounded-2xl border border-[#31353C] bg-white p-5 text-[#17202A] shadow-xl sm:p-9 print:border-0 print:p-0 print:shadow-none">

@@ -38,6 +38,10 @@ export default async function AdminOverviewPage() {
           <h2 className="font-semibold">Saved proposals</h2>
           <p className="mt-1 text-sm text-[#C2C7D0]">Review and reopen client proposals.</p>
         </Link>
+        <Link href="/admin/invoices" className="rounded-xl border border-[#31353C] bg-[#181C22] p-5 hover:border-[#B9C9D5]">
+          <h2 className="font-semibold">Invoices and receipts</h2>
+          <p className="mt-1 text-sm text-[#C2C7D0]">Finalize negotiated prices, record payments, and print receipts.</p>
+        </Link>
         <Link href="/admin/storage" className="rounded-xl border border-[#31353C] bg-[#181C22] p-5 hover:border-[#B9C9D5]">
           <h2 className="font-semibold">Storage usage</h2>
           <p className="mt-1 text-sm text-[#C2C7D0]">View uploaded image usage and estimate remaining catalog capacity.</p>

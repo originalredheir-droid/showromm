@@ -18,5 +18,5 @@ export default async function AdminProposalPage({ params }: AdminProposalPagePro
   }
   if (!proposal) notFound();
 
-  return <ProposalDocument proposal={proposal} />;
+  return <ProposalDocument proposal={proposal} showInvoiceAction />;
 }

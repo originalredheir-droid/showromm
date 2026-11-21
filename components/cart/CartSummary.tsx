@@ -1,6 +1,7 @@
 'use client';
 
-import React, { FormEvent, useRef, useState } from 'react';
+import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Trash2,
@@ -31,6 +32,7 @@ function isBusinessProfile(value: unknown): value is BusinessProfile {
 export function CartSummary() {
   const { items, totalCount, totalEstimatedHours, totalEstimatedBaseINR, clearCart } = useCart();
   const formRef = useRef<HTMLFormElement>(null);
+  const printPendingRef = useRef(false);
   const [copied, setCopied] = useState(false);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -39,6 +41,8 @@ export function CartSummary() {
   const [needsAdminSignIn, setNeedsAdminSignIn] = useState(false);
   const [proposalPreview, setProposalPreview] = useState<ProposalData | null>(null);
   const [brandingWarning, setBrandingWarning] = useState('');
+  const [printBusinessProfile, setPrintBusinessProfile] = useState<BusinessProfile | null>(null);
+  const [isPreparingPrint, setIsPreparingPrint] = useState(false);
   const [clientName, setClientName] = useState('');
   const [clientCompany, setClientCompany] = useState('');
   const [clientEmail, setClientEmail] = useState('');
@@ -179,13 +183,38 @@ export function CartSummary() {
     }
   };
 
-  const handlePrintCurrentSelection = () => {
+  const handlePrintCurrentSelection = async () => {
+    setErrorMessage('');
+    setIsPreparingPrint(true);
+    try {
+      const response = await fetch('/api/proposals/branding', { cache: 'no-store' });
+      const result: unknown = await response.json();
+      if (!response.ok || !result || typeof result !== 'object' || !('profile' in result) || !isBusinessProfile(result.profile)) {
+        const message = result && typeof result === 'object' && 'error' in result && typeof result.error === 'string'
+          ? result.error
+          : 'Could not load business details for printing.';
+        throw new Error(message);
+      }
+
+      setBrandingWarning('warning' in result && typeof result.warning === 'string' ? result.warning : '');
+      printPendingRef.current = true;
+      setPrintBusinessProfile(result.profile);
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Could not prepare the selection for printing.');
+    } finally {
+      setIsPreparingPrint(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!printPendingRef.current || !printBusinessProfile) return;
+    printPendingRef.current = false;
     document.body.classList.add('printing-selection');
     window.addEventListener('afterprint', () => {
       document.body.classList.remove('printing-selection');
     }, { once: true });
-    window.print();
-  };
+    window.requestAnimationFrame(() => window.print());
+  }, [printBusinessProfile]);
 
   if (proposalPreview) {
     return (
@@ -202,6 +231,44 @@ export function CartSummary() {
 
   return (
     <div className="print-summary space-y-5 rounded-xl border border-[#31353C] bg-[#181C22] p-4 shadow-xl sm:p-6">
+      {printBusinessProfile && (
+        <header className="print-business-header mb-6 items-start gap-4 border-b-2 border-[#B9C9D5] pb-5 text-[#17202A]">
+          {printBusinessProfile.logoPath && (
+            <Image
+              src={printBusinessProfile.logoPath}
+              alt={printBusinessProfile.brandName || printBusinessProfile.companyName || 'Business logo'}
+              width={120}
+              height={80}
+              unoptimized
+              className="h-auto max-h-16 w-auto max-w-32 object-contain"
+            />
+          )}
+          <div className="min-w-0 space-y-1">
+            {(printBusinessProfile.brandName || printBusinessProfile.companyName) && (
+              <h1 className="text-xl font-bold">{printBusinessProfile.brandName || printBusinessProfile.companyName}</h1>
+            )}
+            {printBusinessProfile.brandName && printBusinessProfile.companyName
+              && printBusinessProfile.brandName !== printBusinessProfile.companyName && (
+                <p className="text-sm text-[#475569]">{printBusinessProfile.companyName}</p>
+              )}
+            {printBusinessProfile.address && (
+              <p className="whitespace-pre-line text-xs text-[#475569]">{printBusinessProfile.address}</p>
+            )}
+            {(printBusinessProfile.email || printBusinessProfile.phone || printBusinessProfile.website) && (
+              <p className="flex flex-wrap gap-x-3 gap-y-1 pt-1 text-xs text-[#475569]">
+                {printBusinessProfile.email && <span>{printBusinessProfile.email}</span>}
+                {printBusinessProfile.phone && <span>{printBusinessProfile.phone}</span>}
+                {printBusinessProfile.website && <span>{printBusinessProfile.website}</span>}
+              </p>
+            )}
+          </div>
+        </header>
+      )}
+      {brandingWarning && !proposalPreview && (
+        <p role="status" className="print-hide mb-3 rounded-lg border border-amber-500/40 bg-amber-950/20 p-3 text-xs text-amber-200">
+          {brandingWarning} The selection can still be printed, but business details may be missing.
+        </p>
+      )}
       <div className="print-hide space-y-2 border-b border-[#31353C] pb-4">
         <h2 className="text-base font-bold text-[#DFE2EB]">Proposal details</h2>
         <p className="text-xs leading-relaxed text-[#8B9199]">
@@ -304,10 +371,11 @@ export function CartSummary() {
         <button
           onClick={handlePrintCurrentSelection}
           type="button"
-          className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#31353C] bg-[#1C2026] px-4 py-2.5 text-xs font-semibold text-[#DFE2EB] transition-colors hover:border-[#B9C9D5]"
+          disabled={isPreparingPrint}
+          className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#31353C] bg-[#1C2026] px-4 py-2.5 text-xs font-semibold text-[#DFE2EB] transition-colors hover:border-[#B9C9D5] disabled:cursor-wait disabled:opacity-60"
         >
           <Printer className="h-4 w-4" />
-          <span>Print current selection</span>
+          <span>{isPreparingPrint ? 'Preparing print…' : 'Print current selection'}</span>
         </button>
         <Link
           href="/catalogue"

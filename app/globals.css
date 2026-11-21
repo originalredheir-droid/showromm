@@ -68,6 +68,10 @@
   border-color: #B9C9D5;
 }
 
+.print-business-header {
+  display: none;
+}
+
 @supports (padding: env(safe-area-inset-bottom)) {
   body {
     scroll-padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
@@ -132,6 +136,11 @@
 
   body.printing-selection .print-summary > .absolute {
     display: none !important;
+  }
+
+  body.printing-selection .print-business-header {
+    display: flex !important;
+    break-inside: avoid;
   }
 
   body.printing-selection .print-card {

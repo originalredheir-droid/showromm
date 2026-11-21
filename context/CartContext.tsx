@@ -17,6 +17,7 @@ interface CartContextType {
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
+const EMPTY_CART_ITEMS: CartItem[] = [];
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const isLoaded = useSyncExternalStore(
@@ -24,10 +25,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     () => true,
     () => false
   );
-
-  const [items, setItems] = useState<CartItem[]>(() => {
-    return getStoredCart();
-  });
+  const [items, setItems] = useState<CartItem[]>(() => getStoredCart());
 
   // Sync state to external storage whenever items change
   useEffect(() => {
@@ -36,6 +34,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [items, isLoaded]);
 
+  const visibleItems = isLoaded ? items : EMPTY_CART_ITEMS;
   const addToCart = (design: Design, screen: ScreenPreview) => {
     const id = `${design.id}:${screen.id}`;
     setItems((prev) => {
@@ -61,29 +60,29 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const isInCart = (offerId: string) => {
-    return items.some((item) => item.id === offerId);
+    return isLoaded && items.some((item) => item.id === offerId);
   };
 
   const totalCount = useMemo(() => {
-    return items.length;
-  }, [items]);
+    return visibleItems.length;
+  }, [visibleItems]);
 
   const totalEstimatedHours = useMemo(() => {
-    return items.reduce((sum, item) => {
+    return visibleItems.reduce((sum, item) => {
       return sum + (item.screen.devHours ?? 0);
     }, 0);
-  }, [items]);
+  }, [visibleItems]);
 
   const totalEstimatedBaseINR = useMemo(() => {
-    return items.reduce((sum, item) => {
+    return visibleItems.reduce((sum, item) => {
       return sum + (item.screen.estimatedPriceINR ?? 0);
     }, 0);
-  }, [items]);
+  }, [visibleItems]);
 
   return (
     <CartContext.Provider
       value={{
-        items,
+        items: visibleItems,
         totalCount,
         totalEstimatedHours,
         totalEstimatedBaseINR,

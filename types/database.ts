@@ -190,23 +190,6 @@ export interface Database {
     Views: Record<string, never>;
     Functions: {
       is_admin: { Args: Record<never, never>; Returns: boolean };
-      get_catalog_storage_usage: {
-        Args: Record<never, never>;
-        Returns: Array<{
-          total_storage_bytes: number;
-          total_storage_objects: number;
-          catalog_asset_bytes: number;
-          catalog_asset_objects: number;
-          referenced_catalog_bytes: number;
-          referenced_catalog_objects: number;
-          published_catalog_count: number;
-          quota_bytes: number | null;
-        }>;
-      };
-      set_catalog_storage_quota: {
-        Args: { p_quota_bytes: number | null };
-        Returns: undefined;
-      };
       create_proposal: {
         Args: { p_payload: Record<string, unknown> };
         Returns: Array<{ proposal_id: string; proposal_number: string }>;
